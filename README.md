@@ -1,2 +1,2 @@
 # ProyectoFinalWeb2025
-[Sitio Web de EstaHambreQueAta](/Sitio-Web/Index.html)
+[Sitio Web de EstaHambreQueAta](/Sitio-Web/public/Index.html)
