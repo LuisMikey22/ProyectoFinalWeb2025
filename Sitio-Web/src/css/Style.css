@@ -119,23 +119,19 @@ nav {
 
 .search-bar-container-hidden {
     display: none;
-    margin: auto;
-    height: 12vh;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    background-color: var(--color-dark-blue);
+    position: absolute;
 }
 
 .search-bar-container-visible {
     position: absolute;
     display: flex;
     margin: auto;
-    height: 12vh;
+    height: 100%;
     width: 100%;
     justify-content: center;
     background-color: var(--color-dark-blue);
     z-index: 75;
+    top: 0;
 }
 
 .search-bar-input-container {
@@ -983,11 +979,8 @@ footer {
     background-color: var(--color-white);
     color: var(--color-dark-blue);
 }
-@media only screen and (max-width: 480px) {
-    .search-bar-container-visible {
-        height: 6vh;
-    }
 
+@media only screen and (max-width: 480px) {
     .search-bar-input-container {
         width: 80%;
     }
@@ -1019,10 +1012,6 @@ footer {
     }
 }
 @media only screen and (max-width: 768px) {
-    .search-bar-container-visible {
-        height: 8vh;
-    }
-
     .search-bar-input-container {
         width: 60%;
     }
@@ -1096,10 +1085,6 @@ footer {
 @media only screen and (max-width: 1200px) {
     nav {
         padding: 3% 5%;
-    }
-
-    .search-bar-container-visible {
-        height: 10vh;
     }
 
     nav .svg-logo {

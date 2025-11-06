@@ -43,8 +43,6 @@
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -961,22 +959,18 @@ nav {
 }
 .search-bar-container-hidden {
   display: none;
-  margin: auto;
-  height: 12vh;
-  width: 100%;
-  justify-content: center;
-  align-content: center;
-  background-color: var(--color-dark-blue);
+  position: absolute;
 }
 .search-bar-container-visible {
   position: absolute;
   display: flex;
   margin: auto;
-  height: 12vh;
+  height: 100%;
   width: 100%;
   justify-content: center;
   background-color: var(--color-dark-blue);
   z-index: 75;
+  top: 0;
 }
 .search-bar-input-container {
   position: relative;
@@ -1705,9 +1699,6 @@ footer {
   color: var(--color-dark-blue);
 }
 @media only screen and (max-width: 480px) {
-  .search-bar-container-visible {
-    height: 6vh;
-  }
   .search-bar-input-container {
     width: 80%;
   }
@@ -1734,9 +1725,6 @@ footer {
   }
 }
 @media only screen and (max-width: 768px) {
-  .search-bar-container-visible {
-    height: 8vh;
-  }
   .search-bar-input-container {
     width: 60%;
   }
@@ -1789,9 +1777,6 @@ footer {
 @media only screen and (max-width: 1200px) {
   nav {
     padding: 3% 5%;
-  }
-  .search-bar-container-visible {
-    height: 10vh;
   }
   nav .svg-logo {
     height: 8vh;
