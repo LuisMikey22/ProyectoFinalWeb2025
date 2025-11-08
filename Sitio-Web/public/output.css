@@ -43,6 +43,8 @@
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -1009,6 +1011,7 @@ nav {
   border-style: none;
   vertical-align: middle;
   cursor: pointer;
+  border-radius: var(--border-radius-50);
   transition: transform 0.3s ease-in-out;
 }
 .close-button {
@@ -1019,6 +1022,7 @@ nav {
   background-color: var(--color-white);
   border-style: none;
   vertical-align: middle;
+  border-radius: var(--border-radius-50);
   cursor: pointer;
 }
 .close-button:hover, .search-bar-button:hover {
@@ -1119,7 +1123,7 @@ nav {
   width: auto;
   margin: auto;
 }
-.menu-button img:hover, .account-button:hover, .cart-button:hover, .search-button:hover, .instagram-button:hover, .youtube-button:hover {
+.menu-button img:hover, .search-bar-button:hover, .close-button:hover, .account-button:hover, .cart-button:hover, .search-button:hover, .instagram-button:hover, .youtube-button:hover {
   background-color: var(--color-lighter-grey);
 }
 .nav-link-list {
@@ -1200,7 +1204,7 @@ li:hover .nav-link-sub-list {
   flex-direction: column;
 }
 .nav-decoration-line {
-  height: 0.5rem;
+  height: 0.2rem;
   width: 100%;
   clear: both;
   background-color: var(--color-dark-blue);
@@ -1438,9 +1442,9 @@ footer {
   background-color: var(--color-white);
   border-color: var(--color-lighter-blue);
   border-style: solid;
-  border-width: 3px 0 0 0;
+  border-width: 2px 0 0 0;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .about-links-container, .help-links-container, .store-links-container {
   display: flex;
@@ -1448,29 +1452,27 @@ footer {
   height: max-content;
   width: auto;
   margin: 0;
-  flex: 1 1 0;
   justify-content: center;
   align-content: center;
 }
 .about-links-container h4, .help-links-container h4, .store-links-container h4 {
-  display: block;
+  display: flex;
+  width: fit-content;
   padding: 0.5rem;
+  margin: auto 0 2% 0;
   color: var(--color-dark-blue);
   flex: 1 2 0;
   text-align: left;
   font-size: 1.5rem;
-  line-height: 1.5rem;
   font-family: var(--font-main);
-  line-height: 10px;
+  line-height: 15px;
   border-bottom-color: var(--color-darker-blue);
-  width: fit-content;
-  margin: auto auto 2% 25%;
 }
 .about-list, .help-list, .store-list {
   display: block;
   list-style: none;
   width: fit-content;
-  margin: auto;
+  margin: auto 0 auto 0;
 }
 .about-list li, .help-list li, .store-list li {
   display: grid;
@@ -1492,35 +1494,36 @@ footer {
   text-decoration-color: var(--color-darker-blue);
 }
 .footer-brand-links-bar {
-  display: flex;
-  height: auto;
+  display: grid;
+  height: 100%;
   width: auto;
-  padding: 0.5rem 0;
+  margin: auto 0;
+  grid-template-rows: 1fr 1fr;
   background-color: var(--color-white);
-  border-color: var(--color-lighter-blue);
-  border-style: solid;
-  border-width: 2px 0 0 0;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .footer-brand-links-bar .svg-logo {
-  display: inline;
+  display: flex;
   height: 4rem;
   width: auto;
-  margin: auto auto auto 5%;
+  margin: auto;
   cursor: pointer;
 }
 .social-media-links {
   display: flex;
-  height: auto;
-  width: auto;
-  margin: auto 5% auto auto;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  gap: normal;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
 }
 .social-media-links .instagram-button, .social-media-links .youtube-button {
   display: flex;
   height: 2.2rem;
   width: 2.2rem;
-  margin: 1.5rem;
   background-color: var(--color-white);
   border-style: none;
   border-radius: var(--border-radius-24);
@@ -1712,10 +1715,7 @@ footer {
   color: var(--color-dark-blue);
 }
 @media only screen and (max-width: 480px) {
-  .search-bar-input-container {
-    width: 80%;
-  }
-  nav .svg-logo {
+  nav .svg-logo, .footer-brand-links-bar .svg-logo {
     height: 4vh;
     margin: auto;
   }
@@ -1736,10 +1736,10 @@ footer {
 }
 @media only screen and (max-width: 768px) {
   .search-bar-input-container {
-    width: 60%;
+    width: 80%;
   }
-  nav .svg-logo {
-    height: 6vh;
+  nav .svg-logo, .footer-brand-links-bar .svg-logo {
+    height: 5vh;
     margin: auto;
   }
   .account-button, .cart-button, .menu-button, .search-button {
@@ -1766,8 +1766,22 @@ footer {
   .return-icon, .shipping-icon, .star-review-icon {
     height: 1.6rem;
   }
+  .footer-links-bar {
+    justify-content: space-between;
+  }
   .footer-links-bar ul li a {
     font-size: 0.8rem;
+  }
+  .footer-brand-links-bar {
+    grid-template-rows: 1fr 4fr;
+  }
+  .social-media-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  .social-media-links .instagram-button, .social-media-links .youtube-button {
+    height: 1.8rem;
+    width: 1.8rem;
   }
   .about-links-container h4, .help-links-container h4, .store-links-container h4 {
     font-size: 1rem;
