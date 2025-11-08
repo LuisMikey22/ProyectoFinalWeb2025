@@ -6,6 +6,38 @@ const menuButtonImage = document.getElementById("menu-button-image");
 
 const closeButton = document.getElementById("close-button");
 
+document.querySelectorAll('.item-container').forEach(container => {
+    let currentIndex = 0;
+    
+    const carousel = container.parentElement;
+    const carouselCards = container.querySelectorAll('.item');
+    const totalCarouselCards = carouselCards.length;
+
+    const nextElButton = carousel.querySelector('.next-element-button');
+    const previousElButton = carousel.querySelector('.previous-element-button');
+
+    nextElButton.addEventListener('click', () => {
+        if(currentIndex<totalCarouselCards-1) {
+            currentIndex++;
+            updateTransform(carouselCards, currentIndex);
+        }
+    });
+
+    previousElButton.addEventListener('click', () => {
+        if(currentIndex>0) {
+            currentIndex--;
+            updateTransform(carouselCards, currentIndex);
+        }
+    });
+});
+
+function updateTransform(cards, currentIndex) {
+    cards.forEach((card, index) => {
+        const offset = -currentIndex * card.offsetWidth; //dezplazar según el ancho de la tarjetas
+        card.style.transform = `translateX(${offset}px)`;
+    });
+}
+
 searchButton.addEventListener('click', function() {
     searchBarCont.classList.replace("search-bar-container-hidden", "search-bar-container-visible");
     menuToggle.checked = false;
@@ -23,6 +55,8 @@ menuToggle.addEventListener('change', function() {
         menuButtonImage.src = "images/menuIcon.svg";
     }
 });
+
+
 
 /*
 window.addEventListener('load', () => {

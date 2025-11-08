@@ -94,7 +94,7 @@ nav {
     padding: 1.3% 10%;
     flex-wrap: nowrap;
     flex-direction: row;
-    background-color: var(--color-dark-blue);
+    background-color: var(--color-white);
     justify-content: space-evenly;
     align-content: center;
 }
@@ -115,6 +115,10 @@ nav {
     border-radius: var(--border-radius-50);
     cursor: pointer;
     transition: transform 0.1s ease-in-out;
+}
+
+.menu-button img {
+    border-radius: var(--border-radius-50);
 }
 
 .search-bar-container-hidden {
@@ -280,9 +284,13 @@ nav {
     width: auto;
     margin: auto;
 }
+
+.menu-button img:hover,
 .account-button:hover,
 .cart-button:hover,
-.search-button:hover {
+.search-button:hover,
+.instagram-button:hover,
+.youtube-button:hover {
     background-color: var(--color-lighter-grey);
 }
 
@@ -319,19 +327,17 @@ nav {
 .nav-link-list li {
     display: inline;
     height: auto;
-    width: 10rem;
-    max-width: 10rem;
-    min-width: 10rem;
-    flex: 0 1 5rem;
+    width: fit-content;
+    flex: 0 1 0;
     text-align: center;
-    align-self: center;
+    align-self: flex-start;
 }
 
 .nav-link-sub-list li {
     display: block;
     flex: 1 1 0;
     text-align: left;
-    align-self: center;
+    align-self: flex-start;
     width: auto;
     background-color: var(--color-white);
     border-width: 2px 0 0 0;
@@ -346,7 +352,7 @@ nav {
 .nav-link-list li a {
     display: block;
     padding: 1rem 1.2rem;
-    color: var(--color-white);
+    color: var(--color-dark-blue);
     font-size: 1.4rem;
     font-family: var(--font-main);
     cursor: pointer;
@@ -374,17 +380,17 @@ li:hover .nav-link-sub-list {
 }
 
 .nav-decoration-line {
-    height: 1rem;
+    height: 0.5rem;
     width: 100%;
     clear: both;
-    background-color: var(--color-coral);
+    background-color: var(--color-dark-blue);
 }
-.separation-line {
+/*.separation-line {
     height: 1rem;
     width: 100%;
     clear: both;
     background-color: var(--color-white);
-}
+}*/
 
 /*-------------CAROUSEL-------------*/
 .best-selling-art,
@@ -393,6 +399,7 @@ li:hover .nav-link-sub-list {
     display: flex;
     height: 100%;
     width: 95%;
+    margin: 3% auto 1.5% auto;
     flex-direction: column;
     flex: 1 1 0;
     text-align: center;
@@ -404,7 +411,7 @@ li:hover .nav-link-sub-list {
 .seasonal-art-title {
     display: inline;
     height: auto;
-    margin: 2em auto 1em;
+    margin: auto auto 1em auto;
     text-align: center;
     font-size: 1.6rem;
     font-weight: bold;
@@ -418,7 +425,7 @@ li:hover .nav-link-sub-list {
     display: flex;
     width: 100%;
     height: 100%;
-    margin: 0 auto 1em;
+    margin: auto;
     flex-direction: row;
     flex: 1 1 0;
     align-items: center;
@@ -477,7 +484,7 @@ li:hover .nav-link-sub-list {
 .seasonal-art-item-container {
     position: relative;
     display: flex;
-    overflow-x: scroll;
+    overflow-x: hidden;
     height: 100%;
     width: 90%;
     margin: auto;
@@ -602,7 +609,7 @@ li:hover .nav-link-sub-list {
 }
 
 .carousel-indicator {
-    margin: auto auto 1em;
+    margin: auto;
 }
 
 /*-------------BANNER-------------*/
@@ -611,6 +618,7 @@ li:hover .nav-link-sub-list {
     height: fit-content;
     width: 100%;
     padding: 2%;
+    margin: 4% auto;
     align-items: center;
     justify-content: space-evenly;
     background-image: linear-gradient(to bottom, var(--color-wine-red), var(--color-wine-red), var(--color-coral));
@@ -664,7 +672,7 @@ footer {
     margin: auto;
     padding: 1rem;
     background-color: var(--color-white);
-    border-color: var(--color-light-grey);
+    border-color: var(--color-lighter-blue);
     border-style: solid;
     border-width: 3px 0 0 0;
     align-items: flex-start;
@@ -689,7 +697,7 @@ footer {
 .store-links-container h4 {
     display: block;
     padding: 0.5rem;
-    color: var(--color-darker-blue);
+    color: var(--color-dark-blue);
     flex: 1 2 0;
     text-align: left;
     font-size: 1.5rem;
@@ -721,7 +729,7 @@ footer {
 
 .footer-links-bar ul li a {
     display: block;
-    color: var(--color-darker-blue);
+    color: var(--color-dark-blue);
     font-size: 1.2rem;
     font-family: var(--font-main);
     line-height: 1.2rem;
@@ -737,8 +745,11 @@ footer {
     display: flex;
     height: auto;
     width: auto;
-    padding: 0.3rem 0;
-    background-color: var(--color-dark-blue);
+    padding: 0.5rem 0;
+    background-color: var(--color-white);
+    border-color: var(--color-lighter-blue);
+    border-style: solid;
+    border-width: 2px 0 0 0;
     justify-content: center;
     align-items: center;
 }
@@ -796,8 +807,8 @@ footer {
     display: flex;
     height: auto;
     width: auto;
-    padding: 1rem;
-    background-color: var(--color-darker-blue);
+    padding: 2%;
+    background-color: var(--color-white);
     border-color: var(--color-lighter-blue);
     border-style: solid;
     border-width: 2px 0 0 0;
@@ -805,8 +816,8 @@ footer {
     justify-content: right;
 }
 
-.footer-copyright-content small {
-    color: var(--color-white);
+.copyright-content {
+    color: var(--color-dark-blue);
     font: var(--font-secondary);
     font-size: 1rem;
     width: 100%;
@@ -815,14 +826,13 @@ footer {
 .create-account-section {
     height: auto;
     width: 100%;
-    padding: 2%;
 }
 
 .create-account-form {
     display: flex;
     height: auto;
     width: 40%;
-    margin: 0 auto 1% auto;
+    margin: 4% auto;
     border-style: none;
     background-color: var(--color-white);
     border-style: solid;
@@ -997,14 +1007,10 @@ footer {
         padding: 4%;
     }
 
-    .copyright-content {
-        font-size: 0.5rem;
-    }
-
     .create-account-form {
         width: 80%;
         max-width: 80%;
-        margin: 2% auto 7% auto;
+        margin: 7% auto;
     }
 
     .product {
@@ -1050,6 +1056,7 @@ footer {
         display: grid;
         font-size: 0.8rem;
         text-align: left;
+        padding: 4%;
     }
 
     .return-icon,
@@ -1071,7 +1078,7 @@ footer {
     }
 
     .copyright-content {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 }
 @media only screen and (min-width: 500px) and (max-width: 800px) {
@@ -1105,7 +1112,7 @@ footer {
         left: 0;
         height: 100%;
         width: auto;
-        padding: 20% 0 0 2%;
+        padding: 15% 2% 0 2%;
         margin: auto;
         flex-direction: column;
         justify-content: flex-start;
