@@ -1,7 +1,7 @@
 :root {
     --color-white: #FFFFFF;
-    --color-light-grey: #d5d5d5;
-    --color-lighter-grey: #f1f1f1;
+    --color-light-grey: #EBEBEB;
+    --color-lighter-grey: #F1F1F1;
     --color-darker-blue: #062E32;
     --color-dark-blue: #16464B;
     --color-lighter-blue: #508285;
@@ -82,7 +82,6 @@ header {
     width: 100%;
     height: auto;
     top: 0;
-    background-color: var(--color-dark-blue);
 }
 
 nav {
@@ -110,14 +109,15 @@ nav {
     width: 3rem;
     margin: auto auto auto 0;
     flex: 0 1 3rem;
-    background-color: var(--color-white);
     border-style: none;
     border-radius: var(--border-radius-50);
     cursor: pointer;
     transition: transform 0.1s ease-in-out;
+    align-content: center;
 }
 
 .menu-button img {
+    background-color: var(--color-white);
     border-radius: var(--border-radius-50);
 }
 
@@ -173,10 +173,6 @@ nav {
     vertical-align: middle;
     border-radius: var(--border-radius-50);
     cursor: pointer;
-}
-.close-button:hover,
-.search-bar-button:hover {
-    opacity: 70%;
 }
 
 .close-button img,
@@ -295,7 +291,7 @@ nav {
 .search-button:hover,
 .instagram-button:hover,
 .youtube-button:hover {
-    background-color: var(--color-lighter-grey);
+    background-color: var(--color-light-grey);
 }
 
 .nav-link-list {
@@ -331,25 +327,25 @@ nav {
 .nav-link-list li {
     display: inline;
     height: auto;
-    width: fit-content;
+    width: 100%;
     flex: 0 1 0;
     text-align: center;
     align-self: flex-start;
 }
 
 .nav-link-sub-list li {
-    display: block;
+    display: flex;
     flex: 1 1 0;
     text-align: left;
     align-self: flex-start;
-    width: auto;
+    width: 100%;
     background-color: var(--color-white);
     border-width: 2px 0 0 0;
     border-style: solid;
     border-color: var(--color-lighter-grey);
 }
 .nav-link-sub-list li:hover {
-    background-color: var(--color-lighter-grey);
+    background-color: var(--color-light-grey);
     cursor: pointer;
 }
 
@@ -768,7 +764,7 @@ footer {
     height: 100%;
     width: 100%;
     margin: auto;
-    gap: normal;
+    gap: 1rem;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
@@ -813,7 +809,7 @@ footer {
     height: auto;
     width: auto;
     padding: 2%;
-    background-color: var(--color-white);
+    background-color: var(--color-light-grey);
     border-color: var(--color-lighter-blue);
     border-style: solid;
     border-width: 2px 0 0 0;
@@ -1140,6 +1136,9 @@ footer {
         justify-content: flex-start;
         color: var(--color-dark-blue);
         background-color: var(--color-white);
+        border-color: var(--color-lighter-grey);
+        border-style: solid;
+        border-width: 0 2px 0 0;
         z-index: 30;
         transform: translateX(-100%);
     }
