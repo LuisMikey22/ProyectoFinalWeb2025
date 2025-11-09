@@ -774,23 +774,24 @@ footer {
     justify-content: center;
 }
 
-.social-media-links .instagram-button,
-.social-media-links .youtube-button {
+.instagram-button,
+.youtube-button {
     display: flex;
     height: 2.2rem;
     width: 2.2rem;
     background-color: var(--color-white);
     border-style: none;
-    border-radius: var(--border-radius-24);
+    border-radius: var(--border-radius-50);
     cursor: pointer;
 }
-.instagram-button:hover,
-.youtube-button:hover {
-    background-color: var(--color-lighter-grey);
+
+.youtube-button {
+    border-radius: var(--border-radius-8);
+    padding: 0 4px;
 }
 
 .youtube-button img {
-    height: 65%;
+    height: 100%;
     width: auto;
     margin: auto;
 }
