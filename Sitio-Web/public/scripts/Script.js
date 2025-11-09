@@ -19,22 +19,23 @@ document.querySelectorAll('.item-container').forEach(container => {
     nextElButton.addEventListener('click', () => {
         if(currentIndex<totalCarouselCards-1) {
             currentIndex++;
-            updateTransform(carouselCards, currentIndex);
+            updateTransform(carouselCards, currentIndex, container);
         }
     });
 
     previousElButton.addEventListener('click', () => {
         if(currentIndex>0) {
             currentIndex--;
-            updateTransform(carouselCards, currentIndex);
+            updateTransform(carouselCards, currentIndex, container);
         }
     });
 });
 
-function updateTransform(cards, currentIndex) {
+function updateTransform(cards, currentIndex, container) {
     cards.forEach((card, index) => {
         const offset = -currentIndex * card.offsetWidth; //dezplazar según el ancho de la tarjetas
         card.style.transform = `translateX(${offset}px)`;
+        container.scrollBy(offset, 0);
     });
 }
 
