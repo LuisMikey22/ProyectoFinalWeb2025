@@ -207,10 +207,11 @@ nav {
 
 .svg-logo {
     position: relative;
-    display: inline;
+    display: flex;
     flex: 0 1 auto;
     height: 8vh;
     width: auto;
+    margin: auto;
     align-self: center;
 }
 .svg-logo:hover {
@@ -236,35 +237,16 @@ nav {
     flex: 0 1 0;
     width: auto;
     justify-content: flex-end;
+    gap: 2rem;
 }
 
-.search-button {
-    height: 3rem;
-    width: 3rem;
-    margin: 1rem;
-    flex: 0 1 3rem;
-    background-color: var(--color-white);
-    border-style: none;
-    border-radius: var(--border-radius-50);
-    cursor: pointer;
-}
-
-.account-button {
-    display: inline;
-    height: 3rem;
-    width: 3rem;
-    margin: 1rem;
-    flex: 0 1 3rem;
-    background-color: var(--color-white);
-    border-style: none;
-    border-radius: var(--border-radius-50);
-    cursor: pointer;
-}
-
+.search-button, 
+.account-button, 
 .cart-button {
+    display: flex;
     height: 3rem;
     width: 3rem;
-    margin: 1rem;
+    margin: auto;
     flex: 0 1 3rem;
     background-color: var(--color-white);
     border-style: none;
@@ -349,7 +331,7 @@ nav {
 }
 
 .nav-link-list li a {
-    display: block;
+    display: flex;
     padding: 1rem 1.2rem;
     color: var(--color-dark-blue);
     font-size: 1.4rem;
@@ -679,7 +661,7 @@ footer {
     border-style: solid;
     border-width: 2px 0 0 0;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .about-links-container,
@@ -689,19 +671,17 @@ footer {
     flex-direction: column;
     height: max-content;
     width: auto;
-    margin: 0;
     /*flex: 1 1 0;*/
     justify-content: center;
     align-content: center;
+    gap: 1.5rem;
 }
 
 .about-links-container h4,
 .help-links-container h4,
 .store-links-container h4 {
     display: flex;
-    width: fit-content;
-    padding: 0.5rem;
-    margin: auto 0 2% 0;
+    width: 100%;
     color: var(--color-dark-blue);
     flex: 1 2 0;
     text-align: left;
@@ -714,23 +694,24 @@ footer {
 .about-list,
 .help-list,
 .store-list {
-    display: block;
+    display: flex;
     list-style: none;
-    width: fit-content;
+    width: auto;
     margin: auto 0 auto 0;
+    gap: 1rem;
+    flex-direction: column;
 }
 
 .about-list li,
 .help-list li,
 .store-list li {
-    display: grid;
-    margin: auto;
-    padding: 0.5rem;
+    display: flex;
     flex: 1 1 0;
 }
 
 .footer-links-bar ul li a {
-    display: block;
+    display: flex;
+    width: min-content;
     color: var(--color-dark-blue);
     font-size: 1.2rem;
     font-family: var(--font-main);
@@ -748,7 +729,7 @@ footer {
     height: 100%;
     width: auto;
     margin: auto 0;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
     background-color: var(--color-white);
     justify-content: space-between;
     align-items: center;
@@ -762,7 +743,7 @@ footer {
     gap: 1rem;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .instagram-button,
@@ -803,7 +784,7 @@ footer {
     display: flex;
     height: auto;
     width: auto;
-    padding: 2%;
+    padding: 1rem;
     background-color: var(--color-light-grey);
     border-color: var(--color-lighter-blue);
     border-style: solid;
@@ -1005,6 +986,10 @@ footer {
     }
 }
 @media only screen and (max-width: 768px) {
+    nav { 
+        padding: 3% 10%;
+    }
+
     .search-bar-input-container {
         width: 80%;
         height: 70%;
@@ -1018,6 +1003,10 @@ footer {
         margin: auto;
     }
 
+    .nav-button-bar {
+        gap: 0;
+    }
+    
     .account-button,
     .cart-button,
     .menu-button,
@@ -1028,10 +1017,19 @@ footer {
         flex: 0 1 2.5rem;
     }
 
+    .best-selling-art, .new-art, .seasonal-art {
+        margin: 6% auto 3% auto;
+    }
+    
     .best-selling-art-title,
     .new-art-title,
     .seasonal-art-title {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+    }
+
+    .art-desc-container,
+    .art-item {
+        gap: 4px;
     }
 
     .art-item-image-container {
