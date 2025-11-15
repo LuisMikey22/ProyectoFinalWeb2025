@@ -42,7 +42,7 @@ function updateTransform(cards, currentIndex, container) {
 searchButton.addEventListener('click', function() {
     searchBarCont.classList.replace("search-bar-container-hidden", "search-bar-container-visible");
     menuToggle.checked = false;
-    menuButtonImage.src = "images/menuIcon.svg";
+    menuButtonImage.src = `${ASSETS_PATH}/images/menuIcon.svg`;
 });
 
 closeButton.addEventListener('click', function() {
@@ -51,9 +51,9 @@ closeButton.addEventListener('click', function() {
 
 menuToggle.addEventListener('change', function() {
     if(this.checked){
-        menuButtonImage.src = "images/closeIconDark.svg";
+        menuButtonImage.src = `${ASSETS_PATH}/images/closeIconDark.svg`;
     }else {
-        menuButtonImage.src = "images/menuIcon.svg";
+        menuButtonImage.src = `${ASSETS_PATH}/images/menuIcon.svg`;
     }
 });
 

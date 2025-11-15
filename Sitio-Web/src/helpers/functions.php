@@ -85,40 +85,42 @@
     }
 
     function getSeasonalArt() {
-        [
-            'image' => 'seasonArtItem (1).png',
-            'description' => 'Ramo de tulipanes y flores, Algodón.',
-            'price' => '$85.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (2).png',
-            'description' => 'Bolsa de estrella de rayas, Algodón.',
-            'price' => '$150.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (3).png',
-            'description' => 'Bolsa cangurera, Algodón.',
-            'price' => '$60.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (4).png',
-            'description' => 'Funda de laptop, Algodón.',
-            'price' => '$50.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (5).png',
-            'description' => 'Bolsa tejida a rayas, Algodón.',
-            'price' => '$120.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (2).png',
-            'description' => 'Bolsa cangurera, Algodón.',
-            'price' => '$60.00 MXN'
-        ],
-        [
-            'image' => 'seasonArtItem (2).png',
-            'description' => 'Bolsa cangurera, Algodón.',
-            'price' => '$60.00 MXN'
-        ]
+        return [
+            [
+                'image' => 'seasonArtItem (1).png',
+                'description' => 'Ramo de tulipanes y flores, Algodón.',
+                'price' => '$85.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (2).png',
+                'description' => 'Bolsa de estrella de rayas, Algodón.',
+                'price' => '$150.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (3).png',
+                'description' => 'Bolsa cangurera, Algodón.',
+                'price' => '$60.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (4).png',
+                'description' => 'Funda de laptop, Algodón.',
+                'price' => '$50.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (5).png',
+                'description' => 'Bolsa tejida a rayas, Algodón.',
+                'price' => '$120.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (2).png',
+                'description' => 'Bolsa cangurera, Algodón.',
+                'price' => '$60.00 MXN'
+            ],
+            [
+                'image' => 'seasonArtItem (2).png',
+                'description' => 'Bolsa cangurera, Algodón.',
+                'price' => '$60.00 MXN'
+            ]
+        ];
     }
 ?>
