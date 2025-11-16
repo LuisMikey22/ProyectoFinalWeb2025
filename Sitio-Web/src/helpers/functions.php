@@ -112,12 +112,12 @@
                 'price' => '$120.00 MXN'
             ],
             [
-                'image' => 'seasonArtItem (2).png',
+                'image' => 'seasonArtItem (3).png',
                 'description' => 'Bolsa cangurera, Algodón.',
                 'price' => '$60.00 MXN'
             ],
             [
-                'image' => 'seasonArtItem (2).png',
+                'image' => 'seasonArtItem (3).png',
                 'description' => 'Bolsa cangurera, Algodón.',
                 'price' => '$60.00 MXN'
             ]

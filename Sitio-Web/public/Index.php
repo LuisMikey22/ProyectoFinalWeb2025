@@ -17,14 +17,16 @@
         <div class="new-art-item-container item-container">
             <?php foreach($newArts as $newest) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php"><figure class="art-item-image-container">
-                        <img src="<?=ASSETS_PATH?>/images/<?=$newest['image']?>">  
-                    </figure></a>
+                    <a href="<?=SRC_PATH?>/views/product.php/<?=$newest['description']?>">
+                        <figure class="art-item-image-container">
+                            <img src="<?=ASSETS_PATH?>/images/<?=$newest['image']?>">  
+                        </figure>
 
-                    <div class="card-body art-desc-container">
-                        <p><h4 class="card-title art-desc"><?=$newest['description']?></h4></p>
-                        <p><h4 class="card-actions art-price"><?=$newest['price']?></h4></p> 
-                    </div>
+                        <div class="card-body art-desc-container">
+                            <p><h4 class="card-title art-desc"><?=$newest['description']?></h4></p>
+                            <p><h4 class="card-actions art-price"><?=$newest['price']?></h4></p> 
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -49,14 +51,16 @@
         <div class="best-selling-art-item-container item-container">
             <?php foreach($bestSellingArts as $bestSeller) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php"><figure class="art-item-image-container">
-                        <img src="<?=ASSETS_PATH?>/images/<?=$bestSeller['image']?>">  
-                    </figure></a>
+                    <a href="<?=SRC_PATH?>/views/product.php/<?=$bestSeller['description']?>">
+                        <figure class="art-item-image-container">
+                            <img src="<?=ASSETS_PATH?>/images/<?=$bestSeller['image']?>">  
+                        </figure>
 
-                    <div class="card-body art-desc-container">
-                        <p><h4 class="card-title art-desc"><?=$bestSeller['description']?></h4></p>
-                        <p><h4 class="card-actions art-price"><?=$bestSeller['price']?></h4></p> 
-                    </div>
+                        <div class="card-body art-desc-container">
+                            <p><h4 class="card-title art-desc"><?=$bestSeller['description']?></h4></p>
+                            <p><h4 class="card-actions art-price"><?=$bestSeller['price']?></h4></p> 
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -81,14 +85,16 @@
         <div class="seasonal-art-item-container item-container">
             <?php foreach($seasonalArts as $seasonal) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php"><figure class="art-item-image-container">
-                        <img src="<?=ASSETS_PATH?>/images/<?=$seasonal['image']?>">  
-                    </figure></a>
+                    <a href="<?=SRC_PATH?>/views/product.php/<?=$seasonal['description']?>">
+                        <figure class="art-item-image-container">
+                            <img src="<?=ASSETS_PATH?>/images/<?=$seasonal['image']?>">  
+                        </figure>
 
-                    <div class="card-body art-desc-container">
-                        <p><h4 class="card-title art-desc"><?= $seasonal['description'] ?></h4></p>
-                        <p><h4 class="card-actions art-price"><?= $seasonal['price'] ?></h4></p> 
-                    </div>
+                        <div class="card-body art-desc-container">
+                            <p><h4 class="card-title art-desc"><?= $seasonal['description'] ?></h4></p>
+                            <p><h4 class="card-actions art-price"><?= $seasonal['price'] ?></h4></p> 
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>

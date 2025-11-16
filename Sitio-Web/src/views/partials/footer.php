@@ -2,7 +2,7 @@
         <div class="footer-links-bar">
             <div class="footer-brand-links-bar">
                 <a href="#"><span class="svg-logo">
-                    <img src="<?=ASSETS_PATH?>/images/EHQALogo3.svg" alt="EstaHambreQueAta-logo">
+                    <img src="<?=ASSETS_PATH?>/images/EHQALogoText.svg" alt="EstaHambreQueAta-logo">
                 </span></a>
 
                 <div class="social-media-links">

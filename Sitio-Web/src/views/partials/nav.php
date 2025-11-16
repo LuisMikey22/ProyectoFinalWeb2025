@@ -34,7 +34,7 @@
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
 
                 <span class="svg-logo">
-                    <img  src="<?=ASSETS_PATH?>/images/EHQALogo3.svg" alt="EstaHambreQueAta-logo">
+                    <img  src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo">
                 </span>
 
                 <ul class="nav-link-list">

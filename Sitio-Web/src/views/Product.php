@@ -1,26 +1,58 @@
 <?php 
     require __DIR__.'/partials/nav.php';
+
+    //cada categoría de artículos por separado
+    $newArts = getNewArt();
+    $bestSellingArts = getBestSellingArt();
+    $seasonalArts = getSeasonalArt();
+
+
+    $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
+    $url = $scheme . '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //url completa
+
+    $parsedUrl = parse_url($url); //obtener componentes de la url
+
+    $path = $parsedUrl['path']; //obtener la url después de 'product.php/'
+    $segments = explode('/', $path); //separar el string cada '/', se crea un arreglo
+
+    $productDesc = end($segments); //obtener último segmento
+    $productDesc = urldecode($productDesc); //decodificar string dejando solo texto legible
+
+
+    $productName = explode(",", $productDesc); //dejar solo el nombre, quitando 'Aldogón'
+    $productName = $productName[0]; 
+
+
+    $allProductos = [$newArts, $bestSellingArts, $seasonalArts]; //unir los categorías de artículos en un arreglo
+
+    foreach($allProductos as $category) : 
+        foreach($category as $product) :
+            if($productDesc===$product['description']) { //obtener el producto al que se le dió click
+                $cardInfo = $product;
+                break;
+            }
+        endforeach;
+    endforeach;
 ?>
 
 <section class="bg-base-100 rounded-3xl product">
-    <div class="max-w-6xl mx-auto bg-base-100 rounded-xl shadow-lg p-6 flex flex-col lg:flex-row gap-8">
+    <div class="max-w-6xl mx-auto bg-base-100 p-6 flex flex-col lg:flex-row gap-8 product-container">
         <figure class="lg:w-1/2 w-full">
-            <img class="w-full h-full rounded-2xl object-cover" src="<?=ASSETS_PATH?>/images/bestSellingArt (2).png" alt="product">
+            <img class="w-full h-full rounded-2xl object-cover" src="<?=ASSETS_PATH?>/images/<?=$cardInfo['image']?>" alt="product">
         </figure>
 
         <div class="lg:w-1/2 w-full flex flex-col justify-center gap-8">
-            <h2 class="text-3xl font-bold text-teal-950">Amigurumi de Coraje</h2>
+            <h2 class="text-3xl font-bold text-teal-950"><?=$productName?></h2>
             <p class="text-sm text-teal-950">100% Algodón</p>
 
             <div class="flex items-center gap-4">
-                <span class="text-2xl font-bold text-teal-950">$72.00 MXN.</span>
+                <span class="text-2xl font-bold text-teal-950"><?=$cardInfo['price']?></span>
             </div>
 
             <button class="btn bg-teal-950 text-white w-full max-w-xs mt-2 rounded-2xl">Añadir al carrito</button>
 
             <p class="text-teal-950 font-semibold mt-4">
-                Amigurumi del personaje de Coraje, el perro cobarde. 
-                Ideal para un regalo, detalle o peluche.
+                <?= $cardInfo['description'] ?>
             </p>
         </div>
     </div>
