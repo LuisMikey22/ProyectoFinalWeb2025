@@ -5,30 +5,30 @@
 <section class="create-account-section">
     <form class="create-account-form" action="<?=BASE_PATH?>/index.php" method="post">
         <fieldset class="create-account-fieldset">
-            <legend>Crear cuenta</legend>
+            <legend>Por favor complete todos los campos: </legend>
 
             <div class="name-input-container">
-                <label for="name">Nombre de usuario:</label>
+                <label for="name">Nombre de usuario</label>
                 <input id="name" type="text" name="name" placeholder="Usuario" required>
             </div>
             
             <div class="email-input-container">
-                <label for="email">Correo electrónico:</label>
+                <label for="email">Correo electrónico</label>
                 <input id="email" type="email" name="email" placeholder="Ejemplo@gmail.com" required>
             </div>
             
             <div class="password-input-container">
-                <label for="password">Contraseña:</label>
+                <label for="password">Contraseña</label>
                 <input id="password" type="password" name="password" placeholder="Contraseña" required>
             </div>
 
             <div class="desc-container">
-                <label for="description">Descripción de perfil:</label>
+                <label for="description">Descripción de perfil</label>
                 <textarea name="description" placeholder="Descripción"></textarea>
             </div>
 
             <div class="techniques-options-container">
-                <label for="fabric-techniques">Técnica de tejido favorita</label>
+                <label for="fabric-techniques">Técnica de manejo de fibras favorita</label>
 
                 <select id="fabric-techniques" name="fabric-techniques" required>
                     <optgroup label="Tejidos">
@@ -36,10 +36,10 @@
                         <option value="knitting">Tejido a aguja</option>
                         <option value="crochet">Tejido a crochet</option>
                         <option value="needle-felting">Fieltro a aguja</option>
-                        <option value="lace">Encaje</option>
+                        <option value="lace">Encaje (Lace)</option>
                         <option value="embroidery">Bordado</option>
                         <option value="macramé">Macramé</option>
-                        <option value="quilting">Edredón bordado</option> 
+                        <option value="quilting">Edredón bordado (Quilting)</option> 
                         <option value="patchwork">Manta bordada</option>
                         <option value="Nålebinding">Tejido Escandinavo (Nålebinding)</option>  
                     </optgroup>
@@ -72,7 +72,10 @@
                 </datalist>
             </div>
 
-            <button class="create-account-button" type="submit">Crear Cuenta</button>
+            <div class="action-container">
+                <a class="small-link" href="<?=SRC_PATH?>/views/loginAccount.php">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+                <button class="create-account-button" type="submit">Registrarme</button>
+            </div>
         </fieldset>
     </form>
 </section>

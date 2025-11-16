@@ -927,7 +927,7 @@ body {
   justify-items: center;
   overflow-X: hidden;
   background-color: var(--color-white);
-  background-image: url("../Public/Images/yarnBackgroundTexture.svg");
+  background-image: url("http://localhost:80/ProyectoFinalWeb2025/Sitio-Web/public/assets/images/yarnBackgroundTexture.svg");
   background-size: auto;
   background-repeat: repeat;
   background-position: center;
@@ -950,29 +950,12 @@ nav {
   padding: 1.3% 10%;
   flex-wrap: nowrap;
   flex-direction: row;
-  background-color: var(--color-white);
+  background-color: var(--color-electric-blue);
   justify-content: space-between;
   align-content: center;
 }
 .menu-toggle {
   display: none;
-}
-.menu-button {
-  position: absolute;
-  display: none;
-  height: 3rem;
-  width: 3rem;
-  margin: auto 0;
-  flex: 0 1 3rem;
-  border-style: none;
-  border-radius: var(--border-radius-50);
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-  align-content: center;
-}
-.menu-button img {
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-50);
 }
 .search-bar-container-hidden {
   display: none;
@@ -985,7 +968,7 @@ nav {
   height: 100%;
   width: 100%;
   justify-content: center;
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-electric-blue);
   z-index: 75;
   top: 0;
   left: 0;
@@ -1082,7 +1065,7 @@ nav {
   justify-content: flex-end;
   gap: 2rem;
 }
-.search-button, .account-button, .cart-button {
+.menu-button, .search-button, .account-button, .cart-button {
   display: flex;
   height: 3rem;
   width: 3rem;
@@ -1092,6 +1075,11 @@ nav {
   border-style: none;
   border-radius: var(--border-radius-50);
   cursor: pointer;
+  align-content: center;
+  z-index: 30;
+}
+.menu-button {
+  display: none;
 }
 .account-button img, .cart-button img, .menu-button img, .search-button img {
   display: block;
@@ -1099,8 +1087,8 @@ nav {
   width: auto;
   margin: auto;
 }
-.menu-button img:hover, .search-bar-button:hover, .close-button:hover, .account-button:hover, .cart-button:hover, .search-button:hover, .instagram-button:hover, .youtube-button:hover {
-  background-color: var(--color-light-grey);
+.menu-button:hover, .search-bar-button:hover, .close-button:hover, .account-button:hover, .cart-button:hover, .search-button:hover, .instagram-button:hover, .youtube-button:hover {
+  background-color: var(--color-lighter-grey);
 }
 .nav-link-list {
   display: flex;
@@ -1156,7 +1144,7 @@ nav {
 .nav-link-list li a {
   display: flex;
   padding: 1rem 1.2rem;
-  color: var(--color-dark-blue);
+  color: var(--color-darker-blue);
   font-size: 1.4rem;
   font-family: var(--font-main);
   cursor: pointer;
@@ -1183,7 +1171,7 @@ li:hover .nav-link-sub-list {
   height: 0.2rem;
   width: 100%;
   clear: both;
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-white);
 }
 .best-selling-art, .new-art, .seasonal-art {
   display: flex;
@@ -1194,7 +1182,7 @@ li:hover .nav-link-sub-list {
   flex: 1 1 0;
   text-align: center;
 }
-.best-selling-art-title, .create-account-fieldset legend, .new-art-title, .seasonal-art-title {
+.best-selling-art-title, .create-account-fieldset legend, .login-account-fieldset legend, .new-art-title, .seasonal-art-title {
   display: inline;
   height: auto;
   margin: auto auto 1em auto;
@@ -1415,7 +1403,7 @@ footer {
   height: auto;
   width: 100%;
   margin: auto;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background-color: var(--color-white);
   border-color: var(--color-lighter-blue);
   border-style: solid;
@@ -1535,14 +1523,14 @@ footer {
   font-size: 1rem;
   width: 100%;
 }
-.create-account-section {
+.create-account-section, .login-account-section {
   height: auto;
   width: 100%;
 }
-.create-account-form {
+.create-account-form, .login-account-form {
   display: flex;
   height: auto;
-  width: 40%;
+  width: 28rem;
   margin: 4% auto;
   border-style: none;
   background-color: var(--color-white);
@@ -1551,7 +1539,7 @@ footer {
   border-width: 2.5px;
   border-radius: var(--border-radius-24);
 }
-.create-account-fieldset {
+.create-account-fieldset, .login-account-fieldset {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1560,17 +1548,15 @@ footer {
   border-style: none;
   text-align: justify;
 }
-.create-account-fieldset legend {
+.create-account-fieldset legend, .login-account-fieldset legend {
   z-index: 1;
-  margin: auto;
-  padding: 10px;
+  margin: auto 5%;
+  padding: 15px 10px 10px 0;
   height: auto;
-  width: 100%;
-  border-width: 0 0 2px 0;
-  border-style: solid;
-  border-color: var(--color-dark-blue);
-  text-align: center;
+  width: fit-content;
+  text-align: justify;
   justify-content: center;
+  font-size: 1rem;
 }
 .create-account-fieldset legend::before {
   content: "🧶";
@@ -1582,7 +1568,13 @@ footer {
   width: auto;
   text-align: justify;
 }
-.create-account-fieldset label {
+.action-container {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 5% 5% 5%;
+  gap: 1.5rem;
+}
+.create-account-fieldset label, .login-account-fieldset label {
   display: flex;
   height: auto;
   width: 100%;
@@ -1592,7 +1584,7 @@ footer {
   font-family: var(--font-secondary);
   color: var(--color-dark-blue);
 }
-.create-account-fieldset input {
+.create-account-fieldset input, .login-account-fieldset input {
   display: flex;
   width: 100%;
   margin: 5px 0 10px;
@@ -1601,11 +1593,11 @@ footer {
   border-radius: var(--border-radius-16);
   font-size: 12px;
 }
-.create-account-fieldset input:hover {
+.create-account-fieldset input:hover, .login-account-fieldset input:hover {
   box-shadow: 2px 2px 4px var(--color-lighter-blue);
   cursor: pointer;
 }
-.create-account-fieldset input:focus {
+.create-account-fieldset input:focus, .login-account-fieldset input:focus {
   outline: var(--color-electric-blue);
   border: 1.7px solid var(--color-electric-blue);
   border-radius: var(--border-radius-16);
@@ -1651,13 +1643,40 @@ footer {
   box-shadow: 2px 2px 4px var(--color-lighter-blue);
   cursor: pointer;
 }
-.create-account-form button {
+.small-link {
+  display: flex;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+  font-size: 0.8rem;
+  font-weight: normal;
+  font-family: var(--font-secondary);
+  color: var(--color-dark-blue);
+  text-align: justify;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login-account-fieldset .small-link {
+  margin: auto 5%;
+  color: var(--color-lighter-blue);
+  font-style: oblique;
+}
+.action-container .small-link {
+  width: 45%;
+  margin: auto auto auto 0;
+  color: var(--color-dark-blue);
+  font-style: normal;
+  justify-content: center;
+  align-content: center;
+}
+.create-account-button, .login-account-button {
   display: block;
   height: auto;
-  width: auto;
-  margin: 20px auto;
+  width: 55%;
+  margin: auto 0 auto auto;
   padding: 15px 30px;
-  text-align: justify;
+  text-align: center;
   font-size: 16px;
   font-family: var(--font-secondary);
   color: var(--color-white);
@@ -1666,7 +1685,7 @@ footer {
   border-color: var(--color-darker-blue);
   border-radius: var(--border-radius-16);
 }
-.create-account-form button:hover {
+.create-account-button:hover, .login-account-button:hover {
   background-color: var(--color-lighter-blue);
   border-color: var(--color-lighter-blue);
 }
@@ -1691,7 +1710,7 @@ footer {
     min-width: 68%;
     padding: 4%;
   }
-  .create-account-form {
+  .create-account-form, .login-account-form {
     width: 80%;
     max-width: 80%;
     margin: 7% auto;
@@ -1702,7 +1721,7 @@ footer {
 }
 @media only screen and (max-width: 768px) {
   nav {
-    padding: 3% 10%;
+    padding: 3% 5%;
   }
   .search-bar-input-container {
     width: 80%;
@@ -1779,6 +1798,15 @@ footer {
   .copyright-content {
     font-size: 0.7rem;
   }
+  .action-container {
+    gap: 1rem;
+  }
+  .create-account-button, .login-account-button {
+    width: 50%;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 14px;
+  }
 }
 @media only screen and (min-width: 481px) and (max-width: 800px) {
   .art-item {
@@ -1834,7 +1862,7 @@ footer {
     background-color: transparent;
   }
   .nav-link-sub-list {
-    transform: translate(82%, -20%);
+    transform: translate(82%);
     border-width: 1px;
     transition: transform 0.2s ease-in;
     z-index: 35;

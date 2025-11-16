@@ -13,7 +13,7 @@
             ],
             [
                 'image' => 'newArtItem (2).png',
-                'description' => 'Cajita organizadora, Algodón',
+                'description' => 'Cajita organizadora, Algodón.',
                 'price' => '$55.00 MXN'
             ],
             [
@@ -23,7 +23,7 @@
             ],
             [
                 'image' => 'newArtItem (4).png',
-                'description' => 'Sombrero con diseño, Algodó',
+                'description' => 'Sombrero con diseño, Algodón.',
                 'price' => '$70.00 MXN'
             ],
             [
