@@ -4,6 +4,32 @@
     define('ASSETS_PATH', $config['assets_url']);
     define('SRC_PATH', $config['src_url']);
 
+    function getAllProducts() {
+        return [
+            getNewArt(),
+            getBestSellingArt(),
+            getSeasonalArt()
+        ];
+    }
+
+    function getParsedURL() {
+        $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
+        $url = $scheme . '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //url completa
+        $parsedUrl = parse_url($url); //obtener componentes de la url
+        return $parsedUrl;
+    }
+
+    function getLastSegmentURL() {
+        $parsedUrl = getParsedURL();
+
+        $path = $parsedUrl['path']; //obtener la url después de 'ProyectoFinalWeb2025'
+        $segments = explode('/', $path); //separar el string cada '/', se crea un arreglo
+
+        $lastSegment = end($segments); //obtener último segmento
+        $lastSegment = urldecode($lastSegment); //decodificar string dejando solo texto legible 
+        return $lastSegment;
+    }
+
     function getNewArt() {
         return [
             [

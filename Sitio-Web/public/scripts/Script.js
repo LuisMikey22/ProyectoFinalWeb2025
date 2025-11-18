@@ -1,11 +1,17 @@
 const searchBarCont = document.getElementById("search-bar-container");
+const searchBarButton = document.getElementById("search-bar-button");
+const searchBarInput = document.getElementById("search-bar-input");
+const closeButton = document.getElementById("close-button");
+
 const searchButton = document.getElementById("search-button");
 
 const menuToggle = document.getElementById("menu-toggle");
 const menuButtonImage = document.getElementById("menu-button-image");
 
-const closeButton = document.getElementById("close-button");
 
+
+
+//por cada contenedor de tarjetas
 document.querySelectorAll('.item-container').forEach(container => {
     let currentIndex = 0;
     
@@ -43,6 +49,16 @@ searchButton.addEventListener('click', function() {
     searchBarCont.classList.replace("search-bar-container-hidden", "search-bar-container-visible");
     menuToggle.checked = false;
     menuButtonImage.src = `${ASSETS_PATH}/images/menuIcon.svg`;
+});
+
+searchBarButton.addEventListener('click', function() {
+    if(searchBarInput.value!=="") {
+        const searchBarInput = document.getElementById("search-bar-input");
+        window.location = `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`;
+    }
+    //window.location.pathname = `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`;
+    //window.history.pushState(null, null, `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`);
+    //$(window).bind("popstate", function(e) { alert("location changed"); });
 });
 
 closeButton.addEventListener('click', function() {

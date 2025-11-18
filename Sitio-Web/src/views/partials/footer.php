@@ -53,7 +53,4 @@
     </footer>
 
     </body>
-
-    <script> const ASSETS_PATH = "<?=ASSETS_PATH?>"; </script>
-    <script src="<?=BASE_PATH?>/scripts/script.js" defer></script>
 </html>

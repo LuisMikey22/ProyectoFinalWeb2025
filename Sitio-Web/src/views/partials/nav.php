@@ -1,5 +1,15 @@
 <?php 
     require __DIR__.'/../../helpers/functions.php';
+
+    function searchBarValue() {
+        $inputValue = "";
+        if($_SERVER["REQUEST_METHOD"]=="POST") {
+            $inputValue = $_POST['inputValue'];
+            $inputValue = htmlspecialchars($inputValue);
+        }else {
+            $inputValue = "Not found";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +28,12 @@
         <title>EstaHambreQueAta</title>
     </head>
 
+    <script> 
+        const SRC_PATH = "<?=SRC_PATH?>"; //constante para acceder a la ruta SRC en "script.js"
+        const ASSETS_PATH = "<?=ASSETS_PATH?>"; //constante para acceder a la ruta ASSETS en "script.js"
+    </script> 
+    <script src="<?=BASE_PATH?>/scripts/script.js" defer></script>
+
     <body>
         <header>
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -25,9 +41,15 @@
             <nav>
                 <div id="search-bar-container" class="search-bar-container-hidden">
                     <div class="search-bar-input-container">
-                        <button class="search-bar-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                        <input class="search-bar-input" type="text" name="search" placeholder="Buscar" required>
-                        <button id="close-button" class="close-button" title="Cerrar"><img src="<?=ASSETS_PATH?>/images/closeIconDark.svg" alt="close"></button>
+                        <button id="search-bar-button" class="search-bar-button" type="submit" name="submit" title="Buscar">
+                            <img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search">
+                        </button>
+
+                        <input id="search-bar-input" class="search-bar-input" type="text" name="inputValue" placeholder="Buscar" focus required>
+
+                        <button id="close-button" class="close-button" type="button" name="close" title="Cerrar">
+                            <img src="<?=ASSETS_PATH?>/images/closeIconDark.svg" alt="close">
+                        </button>  
                     </div>
                 </div>
 
@@ -68,6 +90,7 @@
                             <li><a>Metal</a></li>
                             <li><a>Bambú</a></li>
                             <li><a>Plástico</a></li>
+                            <li><a>Vidrio</a></li>
                         </ul>
                     </li>
                 </ul>

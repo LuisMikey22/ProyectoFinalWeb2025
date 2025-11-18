@@ -942,10 +942,11 @@ nav {
   padding: 1.3% 10%;
   flex-wrap: nowrap;
   flex-direction: row;
-  background-color: var(--color-electric-blue);
+  background-color: var(--color-white);
   justify-content: space-between;
   align-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(22, 70, 75, 0.35);
+  border-bottom: 1rem solid var(--color-electric-blue);
 }
 .menu-toggle {
   display: none;
@@ -971,7 +972,7 @@ nav {
   display: flex;
   height: auto;
   width: 40%;
-  margin: auto;
+  margin: auto auto 1rem auto;
   padding: 0.5rem;
   justify-content: center;
   background-color: var(--color-white);
@@ -1081,7 +1082,7 @@ nav {
   margin: auto;
 }
 .menu-button:hover, .search-bar-button:hover, .close-button:hover, .account-button:hover, .cart-button:hover, .search-button:hover, .instagram-button:hover, .youtube-button:hover {
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-light-grey);
 }
 .nav-link-list {
   display: flex;
@@ -1103,7 +1104,7 @@ nav {
   justify-items: center;
   align-items: center;
   background-color: var(--color-white);
-  border-width: 0 1px 1px 1px;
+  border-width: 0 2px 2px 2px;
   border-style: solid;
   border-color: var(--color-light-grey);
   border-radius: var(--border-radius-8);
@@ -1117,12 +1118,7 @@ nav {
   align-self: flex-start;
   background-color: var(--color-white);
   transition: background-color 0.2s, color 0.2s;
-}
-.nav-link-list li:first-child {
-  border-radius: var(--border-radius-8) 0 0 var(--border-radius-8);
-}
-.nav-link-list li:last-child {
-  border-radius: 0 var(--border-radius-8) var(--border-radius-8) 0;
+  border-radius: var(--border-radius-8);
 }
 .nav-link-sub-list li {
   display: flex;
@@ -1133,12 +1129,12 @@ nav {
   background-color: var(--color-white);
   border-width: 2px 0 0 0;
   border-style: solid;
-  border-color: var(--color-lighter-grey);
-  border-radius: var(--border-radius-4);
+  border-color: var(--color-light-grey);
+  border-radius: 0;
   transition: background-color 0.2s, color 0.2s;
 }
 .nav-link-list li:hover {
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-light-grey);
 }
 .nav-link-sub-list li:hover {
   background-color: var(--color-light-grey);
@@ -1177,7 +1173,7 @@ li:hover .nav-link-sub-list {
   clear: both;
   background-color: var(--color-white);
 }
-.best-selling-art, .new-art, .seasonal-art {
+.best-selling-art, .new-art, .seasonal-art, .search-art {
   display: flex;
   height: 100%;
   width: 95%;
@@ -1186,8 +1182,8 @@ li:hover .nav-link-sub-list {
   flex: 1 1 0;
   text-align: center;
 }
-.best-selling-art-title, .create-account-fieldset legend, .login-account-fieldset legend, .new-art-title, .seasonal-art-title {
-  display: inline;
+.best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title, .search-art-subtitle, .create-account-fieldset legend, .login-account-fieldset legend {
+  display: flex;
   height: auto;
   margin: auto auto 1em auto;
   text-align: center;
@@ -1196,7 +1192,11 @@ li:hover .nav-link-sub-list {
   font-family: var(--font-main);
   color: var(--color-dark-blue);
 }
-.best-selling-art-carousel, .new-art-carousel, .seasonal-art-carousel {
+.search-art-subtitle {
+  padding: 0 0 20% 0;
+  font-size: 1rem;
+}
+.best-selling-art-carousel, .new-art-carousel, .seasonal-art-carousel, .search-art-carousel-visible {
   display: flex;
   width: 100%;
   height: 100%;
@@ -1207,6 +1207,9 @@ li:hover .nav-link-sub-list {
   justify-content: space-evenly;
   overflow: visible;
   transform-style: flat;
+}
+.search-art-carousel-hidden {
+  display: none;
 }
 .next-element-button-container, .previous-element-button-container {
   display: flex;
@@ -1244,7 +1247,7 @@ li:hover .nav-link-sub-list {
   opacity: 70%;
   cursor: pointer;
 }
-.best-selling-art-item-container, .new-art-item-container, .seasonal-art-item-container {
+.best-selling-art-item-container, .new-art-item-container, .seasonal-art-item-container, .search-art-item-container {
   position: relative;
   display: flex;
   overflow-x: hidden;
@@ -1260,7 +1263,7 @@ li:hover .nav-link-sub-list {
   gap: 1.5em;
   justify-content: start;
 }
-.new-art-item-container {
+.new-art-item-container, .search-art-item-container {
   background-color: var(--color-light-grey);
   border-radius: var(--border-radius-24);
   border-color: var(--color-light-grey);
@@ -1427,7 +1430,7 @@ footer {
 .about-links-container h4, .help-links-container h4, .store-links-container h4 {
   display: flex;
   width: 100%;
-  color: var(--color-dark-blue);
+  color: var(--color-darker-blue);
   flex: 1 2 0;
   text-align: left;
   font-size: 1.5rem;
@@ -1522,7 +1525,7 @@ footer {
   justify-content: right;
 }
 .copyright-content {
-  color: var(--color-dark-blue);
+  color: var(--color-darker-blue);
   font: var(--font-secondary);
   font-size: 1rem;
   width: 100%;
@@ -1724,6 +1727,7 @@ footer {
   .search-bar-input-container {
     width: 80%;
     height: 70%;
+    margin: auto auto 0.3rem auto;
   }
   .search-bar-input {
     font-size: 16px;
@@ -1741,11 +1745,15 @@ footer {
     margin: 0.5rem;
     flex: 0 1 2.5rem;
   }
-  .best-selling-art, .new-art, .seasonal-art {
+  .best-selling-art, .new-art, .seasonal-art, .search-art {
     margin: 6% auto 3% auto;
   }
-  .best-selling-art-title, .new-art-title, .seasonal-art-title {
+  .best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title {
     font-size: 1.2rem;
+  }
+  .search-art-subtitle {
+    font-size: 0.8rem;
+    padding: 0 0 280px 0;
   }
   .art-desc-container, .art-item {
     gap: 4px;
