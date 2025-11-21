@@ -3,6 +3,11 @@
     $newArts = getNewArt();
     $bestSellingArts = getBestSellingArt();
     $seasonalArts = getSeasonalArt();
+
+    require __DIR__ . '/vendor/autoload.php';
+
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 ?>
 
 <section class="new-art">
