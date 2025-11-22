@@ -1,15 +1,5 @@
 <?php 
     require __DIR__.'/../../helpers/functions.php';
-
-    function searchBarValue() {
-        $inputValue = "";
-        if($_SERVER["REQUEST_METHOD"]=="POST") {
-            $inputValue = $_POST['inputValue'];
-            $inputValue = htmlspecialchars($inputValue);
-        }else {
-            $inputValue = "Not found";
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +87,7 @@
                 
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                    <button class="account-button" title="Crear Cuenta"><a href="<?=SRC_PATH?>/views/createAccount.php"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
+                    <button class="account-button" title="Crear Cuenta"><a href="<?=SRC_PATH?>/views/loginAccount.php"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
                     <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/index.php"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>

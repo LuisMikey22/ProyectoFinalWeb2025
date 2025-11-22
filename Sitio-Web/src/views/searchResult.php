@@ -28,7 +28,6 @@
             }else {
                 echo '<h3 class="search-art-title">'.$foundQuantity.' resultado de “'.$searchValue.'“</h3>';
             }
-            
             $carouselClass = "search-art-carousel-visible";
         }else {
             echo '<h3 class="search-art-title">0 resultados</h3>';

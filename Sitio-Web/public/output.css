@@ -713,6 +713,9 @@
       }
     }
   }
+  .static {
+    position: static;
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -1181,6 +1184,9 @@ li:hover .nav-link-sub-list {
   flex-direction: column;
   flex: 1 1 0;
   text-align: center;
+}
+.search-art {
+  margin: 3% auto;
 }
 .best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title, .search-art-subtitle, .create-account-fieldset legend, .login-account-fieldset legend {
   display: flex;

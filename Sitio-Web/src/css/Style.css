@@ -384,6 +384,10 @@ li:hover .nav-link-sub-list {
     text-align: center;
 }
 
+.search-art {
+    margin: 3% auto;
+}
+
 .best-selling-art-title,
 .new-art-title,
 .seasonal-art-title,

@@ -1,18 +1,13 @@
 <?php 
+    require __DIR__.'/../config/database.php';
+
     $config = require __DIR__.'/../config/config.php';
     define('BASE_PATH', $config['base_url']);
     define('ASSETS_PATH', $config['assets_url']);
     define('SRC_PATH', $config['src_url']);
 
-    function getAllProducts() {
-        return [
-            getNewArt(),
-            getBestSellingArt(),
-            getSeasonalArt()
-        ];
-    }
 
-    function getParsedURL() {
+    /*function getParsedURL() {
         $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
         $url = $scheme . '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //url completa
         $parsedUrl = parse_url($url); //obtener componentes de la url
@@ -28,125 +23,87 @@
         $lastSegment = end($segments); //obtener último segmento
         $lastSegment = urldecode($lastSegment); //decodificar string dejando solo texto legible 
         return $lastSegment;
-    }
+    }*/
 
     function getNewArt() {
-        return [
-            [
-                'image' => 'newArtItem (1).png',
-                'description' => 'Bufanda delgada de ojos, Algodón.',
-                'price' => '$100.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (2).png',
-                'description' => 'Cajita organizadora, Algodón.',
-                'price' => '$55.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (3).png',
-                'description' => 'Moño pequeño azul, Algodón.',
-                'price' => '$40.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (4).png',
-                'description' => 'Sombrero con diseño, Algodón.',
-                'price' => '$70.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (5).png',
-                'description' => 'Rosa individual, Algodón.',
-                'price' => '$55.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (3).png',
-                'description' => 'Moño pequeño azul, Algodón.',
-                'price' => '$40.00 MXN'
-            ],
-            [
-                'image' => 'newArtItem (3).png',
-                'description' => 'Moño pequeño azul, Algodón.',
-                'price' => '$40.00 MXN'
-            ]
-        ];
+        $pdo = getPDO();
+
+        try {
+            $sql = "SELECT * FROM `newart` WHERE 1";
+
+            $stmt = $pdo->query($sql);
+
+            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $careers;
+        }catch(PDOException $e) {
+            error_log("Error al consultar la base de datos: ". $e->getMessage());
+            return [];
+        }
     }
 
     function getBestSellingArt() {
-        return [
-            [
-                'image' => 'bestSellingArt (1).png',
-                'description' => 'Set de guantes para horno, Algodón.',
-                'price' => '$70.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (2).png',
-                'description' => 'Amigurumi de Coraje, Algodón.',
-                'price' => '$72.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (3).png',
-                'description' => 'Organizador de cables de manzana, Algodón.',
-                'price' => '$45.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (4).png',
-                'description' => 'Amigurumi de Mike Wazowski, Algodón.',
-                'price' => '$78.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (5).png',
-                'description' => 'Porta botellas con lazo, Algodón.',
-                'price' => '$55.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (3).png',
-                'description' => 'Organizador de cables de manzana, Algodón.',
-                'price' => '$45.00 MXN'
-            ],
-            [
-                'image' => 'bestSellingArt (3).png',
-                'description' => 'Organizador de cables de manzana, Algodón.',
-                'price' => '$45.00 MXN'
-            ]
-        ];
+        $pdo = getPDO();
+
+        try {
+            $sql = "SELECT * FROM `bestsellingart` WHERE 1";
+
+            $stmt = $pdo->query($sql);
+
+            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $careers;
+        }catch(PDOException $e) {
+            error_log("Error al consultar la base de datos: ". $e->getMessage());
+            return [];
+        }
     }
 
     function getSeasonalArt() {
-        return [
-            [
-                'image' => 'seasonArtItem (1).png',
-                'description' => 'Ramo de tulipanes y flores, Algodón.',
-                'price' => '$85.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (2).png',
-                'description' => 'Bolsa de estrella de rayas, Algodón.',
-                'price' => '$150.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (3).png',
-                'description' => 'Bolsa cangurera, Algodón.',
-                'price' => '$60.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (4).png',
-                'description' => 'Funda de laptop, Algodón.',
-                'price' => '$50.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (5).png',
-                'description' => 'Bolsa tejida a rayas, Algodón.',
-                'price' => '$120.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (3).png',
-                'description' => 'Bolsa cangurera, Algodón.',
-                'price' => '$60.00 MXN'
-            ],
-            [
-                'image' => 'seasonArtItem (3).png',
-                'description' => 'Bolsa cangurera, Algodón.',
-                'price' => '$60.00 MXN'
-            ]
-        ];
+        $pdo = getPDO();
+
+        try {
+            $sql = "SELECT * FROM `seasonalart` WHERE 1";
+
+            $stmt = $pdo->query($sql);
+
+            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $careers;
+        }catch(PDOException $e) {
+            error_log("Error al consultar la base de datos: ". $e->getMessage());
+            return [];
+        }
+    }
+
+    function getProductDetails($productId = null) {
+        if($productId == null && isset($_GET['productId'])){
+            $productId = filter_input(INPUT_GET, 'productId', FILTER_SANITIZE_STRING);
+        }
+
+        //Si no se envió una carrera
+        if ($productId === null) {
+            return [];
+        }
+
+        $pdo = getPDO();
+
+        try {
+            $sql = "SELECT * FROM `newart` WHERE id = :id LIMIT 1
+                    UNION SELECT * FROM `bestsellingart` WHERE id = :id LIMIT 1
+                    UNION SELECT * FROM `seasonalart` WHERE id = :id LIMIT 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['id' => $productId]);
+            $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$productDetails) {
+                return []; // Producto no encontrada
+            }
+
+            return $productDetails;
+        } catch (PDOException $e) {
+            error_log("Error al consultar la base de datos: " . $e->getMessage());
+            return [];
+        }
     }
 ?>

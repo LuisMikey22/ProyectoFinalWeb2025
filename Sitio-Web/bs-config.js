@@ -1,5 +1,5 @@
 module.exports = {
-    proxy: "12.34.56.78",        // Servidor de XAMPP, agrega el puerto si tienes otro
+    proxy: "127.0.0.1",        // Servidor de XAMPP, agrega el puerto si tienes otro
     startPath: "/ProyectoFinalWeb2025/Sitio-Web/public", // Ruta del proyecto
     files: [
         "./public/*.css",      // CSS finales dentro de public
