@@ -1,19 +1,19 @@
 module.exports = {
-    proxy: "127.0.0.1",        // Servidor de XAMPP, agrega el puerto si tienes otro
-    startPath: "/ProyectoFinalWeb2025/Sitio-Web/public", // Ruta del proyecto
+    proxy: "localhost/ProyectoFinalWeb2025/Sitio-Web/public", 
     files: [
-        "./public/*.css",      // CSS finales dentro de public
-        "./public/scripts/*.js",    // JS finales dentro de public
-        
-        "./src/**/*.php",      // todos los PHP del proyecto
-        "./src/**/*.css",      // archivos fuente que tú editas
-        "./src/**/*.js"
+        "public/**/*.php",
+        "public/**/*.html", 
+        "public/output.css",
+        "src/**/*.php",
+        "src/css/**/*.css",
+        "src/scripts/**/*.js"
     ],
-
-    ignore: [
-        "./public/output.css"  // evita vigilar el build final si usas Tailwind
-    ],
-    reloadDelay: 300,
+    watchOptions: {
+        ignoreInitial: true
+    },
+    open: false,
     notify: false,
-    open: true
+    serveStatic: ['.'], 
+    baseDir: './', 
+    startPath: '/public/index.php'
 };

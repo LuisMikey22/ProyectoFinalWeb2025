@@ -3,7 +3,6 @@
 ?>
 
 <!DOCTYPE html>
-
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -12,18 +11,19 @@
         <meta name="description" content="EstaHambreQueAta desata la creatividad">
 
         <link rel="icon" href="<?=ASSETS_PATH?>/images/EHQALogoCropped2.svg" type="image/x-icon">
-        <link href="<?=BASE_PATH?>/output.css" rel="stylesheet">
-        <link href="<?=SRC_PATH?>/css/style.css" rel="stylesheet"> 
+        
+        <link href="output.css" rel="stylesheet">
+        <link href="<?=SRC_PATH?>/css/Style.css" rel="stylesheet"> 
 
         <title>EstaHambreQueAta</title>
     </head>
 
     <script> 
-        const SRC_PATH = "<?=SRC_PATH?>"; //constante para acceder a la ruta SRC en "script.js"
-        const ASSETS_PATH = "<?=ASSETS_PATH?>"; //constante para acceder a la ruta ASSETS en "script.js"
+        const SRC_PATH = "<?=SRC_PATH?>";
+        const ASSETS_PATH = "<?=ASSETS_PATH?>";
     </script> 
-    <script src="<?=BASE_PATH?>/scripts/script.js" defer></script>
-
+    
+    <script src="<?=SRC_PATH?>/scripts/Script.js" defer></script>
     <body>
         <header>
             <input type="checkbox" id="menu-toggle" class="menu-toggle">

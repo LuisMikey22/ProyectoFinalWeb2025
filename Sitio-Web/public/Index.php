@@ -3,8 +3,6 @@
     $newArts = getNewArt();
     $bestSellingArts = getBestSellingArt();
     $seasonalArts = getSeasonalArt();
-
-    require __DIR__ . '/vendor/autoload.php';
 ?>
 
 <section class="new-art">

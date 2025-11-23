@@ -1,11 +1,6 @@
 <?php 
-    require __DIR__.'/../config/database.php'; 
-    
-    $config = require __DIR__.'/../config/config.php';
-    define('BASE_PATH', $config['base_url']);
-    define('ASSETS_PATH', $config['assets_url']);
-    define('SRC_PATH', $config['src_url']);
-
+    require_once __DIR__ . '/../config/config.php';
+    require_once __DIR__ . '/../config/database.php';
 
     /*function getParsedURL() {
         $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
@@ -81,7 +76,6 @@
             $productId = filter_input(INPUT_GET, 'productId', FILTER_SANITIZE_STRING);
         }
 
-        //Si no se envió una carrera
         if ($productId === null) {
             return [];
         }
@@ -97,7 +91,7 @@
             $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$productDetails) {
-                return []; // Producto no encontrada
+                return []; 
             }
 
             return $productDetails;
