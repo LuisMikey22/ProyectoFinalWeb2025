@@ -12,8 +12,8 @@
 
         <link rel="icon" href="<?=ASSETS_PATH?>/images/EHQALogoCropped2.svg" type="image/x-icon">
         
-        <link href="output.css" rel="stylesheet">
-        <link href="<?=SRC_PATH?>/css/Style.css" rel="stylesheet"> 
+        <link href="<?=BASE_PATH?>/output.css" rel="stylesheet">
+        <link href="<?=SRC_PATH?>/css/style.css" rel="stylesheet"> 
 
         <title>EstaHambreQueAta</title>
     </head>
