@@ -9,8 +9,8 @@
 ### 👨‍💻 Autores
 
 - Luis Miguel Lucatero Peréz
-
 - Angel Gabriel Mendoza Villavicencio
+- Axdiael Trinidad Cárdenas
   
 - 5to Semestre · Turno Matutino · Grupo B
   
@@ -23,6 +23,8 @@
 - El sitio fue construido utilizando tecnologías esenciales del desarrollo web:
 
 - HTML5 – Estructura del contenido
+
+- PHP – Lado de servidor
 
 - CSS – Estilos y diseño visual
 
@@ -39,5 +41,3 @@
 - Desarrollar una propuesta atractiva para una empresa de tours.
 
 - Mostrar habilidades básicas de diseño, usabilidad y estructura web.
-
-### [> Sitio Web de EstaHambreQueAta](/Sitio-Web/public/index.php)
