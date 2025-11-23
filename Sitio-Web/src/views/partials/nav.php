@@ -23,7 +23,7 @@
         const ASSETS_PATH = "<?=ASSETS_PATH?>";
     </script> 
     
-    <script src="<?=SRC_PATH?>/scripts/Script.js" defer></script>
+    <script src="<?=BASE_PATH?>/scripts/script.js" defer></script>
     <body>
         <header>
             <input type="checkbox" id="menu-toggle" class="menu-toggle">

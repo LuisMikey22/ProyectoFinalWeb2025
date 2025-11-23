@@ -1,6 +1,6 @@
 <?php 
-    require_once __DIR__ . '/../config/config.php';
-    require_once __DIR__ . '/../config/database.php';
+    require_once __DIR__.'/../config/config.php';
+    require_once __DIR__.'/../config/database.php';
 
     /*function getParsedURL() {
         $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
@@ -24,13 +24,13 @@
         $pdo = getPDO();
 
         try {
-            $sql = "SELECT * FROM `newart` WHERE 1";
+            $sql = "SELECT * FROM newart";
 
             $stmt = $pdo->query($sql);
 
-            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $newart = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $careers;
+            return $newart;
         }catch(PDOException $e) {
             error_log("Error al consultar la base de datos: ". $e->getMessage());
             return [];
@@ -41,13 +41,13 @@
         $pdo = getPDO();
 
         try {
-            $sql = "SELECT * FROM `bestsellingart` WHERE 1";
+            $sql = "SELECT * FROM bestsellingart";
 
             $stmt = $pdo->query($sql);
 
-            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $bestsellingart = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $careers;
+            return $bestsellingart;
         }catch(PDOException $e) {
             error_log("Error al consultar la base de datos: ". $e->getMessage());
             return [];
@@ -58,13 +58,13 @@
         $pdo = getPDO();
 
         try {
-            $sql = "SELECT * FROM `seasonalart` WHERE 1";
+            $sql = "SELECT * FROM seasonalart";
 
             $stmt = $pdo->query($sql);
 
-            $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $seasonalart = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $careers;
+            return $seasonalart;
         }catch(PDOException $e) {
             error_log("Error al consultar la base de datos: ". $e->getMessage());
             return [];
