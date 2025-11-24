@@ -196,7 +196,7 @@
 }
 @layer utilities {
   .menu {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: flex;
       width: fit-content;
       flex-direction: column;
@@ -267,6 +267,22 @@
           box-shadow: 2px 2px inset;
           pointer-events: none;
         }
+      }
+      details {
+        overflow: hidden;
+        interpolate-size: allow-keywords;
+      }
+      details::details-content {
+        block-size: 0;
+        @media (prefers-reduced-motion: no-preference) {
+          transition-behavior: allow-discrete;
+          transition-property: block-size, content-visibility;
+          transition-duration: 0.2s;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+      details[open]::details-content {
+        block-size: auto;
       }
       :where(li > details[open] > summary):after, :where(li > .menu-dropdown-toggle.menu-dropdown-show):after {
         rotate: 45deg;
@@ -358,14 +374,11 @@
   }
   .btn {
     :where(&) {
-      @layer daisyui.component {
+      @layer daisyui.l1.l2.l3 {
         width: unset;
       }
     }
-    .prose & {
-      text-decoration-line: none;
-    }
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: inline-flex;
       flex-shrink: 0;
       cursor: pointer;
@@ -443,7 +456,7 @@
       }
       &:is(input[type="checkbox"], input[type="radio"]) {
         appearance: none;
-        &::after {
+        &[aria-label]::after {
           --tw-content: attr(aria-label);
           content: var(--tw-content);
         }
@@ -455,7 +468,7 @@
       }
     }
     &:disabled {
-      @layer daisyui.modifier {
+      @layer daisyui.l1.l2 {
         &:not(.btn-link, .btn-ghost) {
           background-color: var(--color-base-content);
           @supports (color: color-mix(in lab, red, red)) {
@@ -469,25 +482,11 @@
         --btn-fg: var(--color-base-content);
         @supports (color: color-mix(in lab, red, red)) {
           --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-        }
-        @media (hover: hover) {
-          &:hover {
-            pointer-events: none;
-            background-color: var(--color-neutral);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-            }
-            --btn-border: #0000;
-            --btn-fg: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-            }
-          }
         }
       }
     }
     &[disabled] {
-      @layer daisyui.modifier {
+      @layer daisyui.l1.l2 {
         &:not(.btn-link, .btn-ghost) {
           background-color: var(--color-base-content);
           @supports (color: color-mix(in lab, red, red)) {
@@ -501,26 +500,12 @@
         --btn-fg: var(--color-base-content);
         @supports (color: color-mix(in lab, red, red)) {
           --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-        }
-        @media (hover: hover) {
-          &:hover {
-            pointer-events: none;
-            background-color: var(--color-neutral);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-            }
-            --btn-border: #0000;
-            --btn-fg: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-            }
-          }
         }
       }
     }
   }
   .list {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: flex;
       flex-direction: column;
       font-size: 0.875rem;
@@ -551,7 +536,7 @@
         }
       }
     }
-    @layer daisyui.modifier {
+    @layer daisyui.l1.l2 {
       .list-row {
         &:has(.list-col-grow:nth-child(1)) {
           --list-grid-cols: 1fr;
@@ -579,7 +564,7 @@
     }
   }
   .checkbox {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       border: var(--border) solid var(--input-color, var(--color-base-content));
       @supports (color: color-mix(in lab, red, red)) {
         border: var(--border) solid var(--input-color, color-mix(in oklab, var(--color-base-content) 20%, #0000));
@@ -658,14 +643,14 @@
       }
     }
     &:disabled {
-      @layer daisyui.modifier {
+      @layer daisyui.l1.l2 {
         cursor: not-allowed;
         opacity: 20%;
       }
     }
   }
   .card {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -720,7 +705,7 @@
     margin-inline: auto;
   }
   .label {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: inline-flex;
       align-items: center;
       gap: calc(0.25rem * 1.5);
@@ -765,7 +750,7 @@
     margin-top: calc(var(--spacing) * 4);
   }
   .card-body {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: flex;
       flex: auto;
       flex-direction: column;
@@ -778,7 +763,7 @@
     }
   }
   .carousel {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: inline-flex;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
@@ -792,7 +777,7 @@
     }
   }
   .card-actions {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
@@ -800,7 +785,7 @@
     }
   }
   .card-title {
-    @layer daisyui.component {
+    @layer daisyui.l1.l2.l3 {
       display: flex;
       align-items: center;
       gap: calc(0.25rem * 2);
@@ -1576,7 +1561,7 @@ footer {
 }
 .age-range-container, .desc-container, .email-input-container, .name-input-container, .password-input-container, .techniques-options-container {
   display: block;
-  margin: 15px 5%;
+  margin: 10px 5%;
   height: auto;
   width: auto;
   text-align: justify;
@@ -1584,7 +1569,7 @@ footer {
 .action-container {
   display: flex;
   flex-direction: row;
-  margin: 15px 5% 5% 5%;
+  margin: 10px 5% 5% 5%;
   gap: 1.5rem;
 }
 .create-account-fieldset label, .login-account-fieldset label {
@@ -1600,7 +1585,7 @@ footer {
 .create-account-fieldset input, .login-account-fieldset input {
   display: flex;
   width: 100%;
-  margin: 5px 0 10px;
+  margin: 5px 0 0 0;
   padding: 8px;
   border: 1.7px solid var(--color-dark-blue);
   border-radius: var(--border-radius-16);
@@ -2009,12 +1994,28 @@ footer {
     opacity: 1;
   }
 }
+@keyframes rotator {
+  89.9999%, 100% {
+    --first-item-position: 0 0%;
+  }
+  90%, 99.9999% {
+    --first-item-position: 0 calc(var(--items) * 100%);
+  }
+  100% {
+    translate: 0 -100%;
+  }
+}
 @keyframes skeleton {
   0% {
     background-position: 150%;
   }
   100% {
     background-position: -50%;
+  }
+}
+@keyframes menu {
+  0% {
+    opacity: 0;
   }
 }
 @keyframes progress {

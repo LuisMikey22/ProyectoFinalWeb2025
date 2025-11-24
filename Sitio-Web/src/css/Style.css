@@ -871,7 +871,7 @@ footer {
 .password-input-container,
 .techniques-options-container {
     display: block;
-    margin: 15px 5%;
+    margin: 10px 5%;
     height: auto;
     width: auto;
     text-align: justify;
@@ -880,7 +880,7 @@ footer {
 .action-container {
     display: flex;
     flex-direction: row;
-    margin: 15px 5% 5% 5%;
+    margin: 10px 5% 5% 5%;
     gap: 1.5rem;
 }
 
@@ -900,7 +900,7 @@ footer {
 .login-account-fieldset input {
     display: flex;
     width: 100%;
-    margin: 5px 0 10px;
+    margin: 5px 0 0 0;
     padding: 8px;
     border: 1.7px solid var(--color-dark-blue);
     border-radius: var(--border-radius-16);

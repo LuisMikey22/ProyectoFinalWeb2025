@@ -8,9 +8,6 @@ const searchButton = document.getElementById("search-button");
 const menuToggle = document.getElementById("menu-toggle");
 const menuButtonImage = document.getElementById("menu-button-image");
 
-
-
-
 //por cada contenedor de tarjetas
 document.querySelectorAll('.item-container').forEach(container => {
     let currentIndex = 0;
@@ -49,6 +46,10 @@ searchButton.addEventListener('click', function() {
     searchBarCont.classList.replace("search-bar-container-hidden", "search-bar-container-visible");
     menuToggle.checked = false;
     menuButtonImage.src = `${ASSETS_PATH}/images/menuIcon.svg`;
+
+    if(searchBarCont.classList = "search-bar-container-visible") {
+        searchBarInput.focus();
+    }
 });
 
 searchBarButton.addEventListener('click', function() {
@@ -73,6 +74,28 @@ menuToggle.addEventListener('change', function() {
     }
 });
 
+searchBarInput.addEventListener('keydown', function(e) {
+    let pressedKey = e.key;
+    e.preventDefault();
+
+    switch(pressedKey) {
+        default:
+            searchBarInput.value += pressedKey;
+        break;
+
+        case 'Backspace':
+            //eliminar último caracter
+            let operation = searchBarInput.value.substring(0, searchBarInput.value.length-1); 
+            searchBarInput.value = operation;
+        break;
+        
+        case 'Enter':
+            if(searchBarInput.value!=="") {
+                window.location = `${SRC_PATH}/views/searchResult.php/?search=${searchBarInput.value}`;
+            }
+        break;
+    }
+});
 
 
 /*
