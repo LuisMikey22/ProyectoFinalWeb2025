@@ -46,7 +46,7 @@
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
 
                 <span class="svg-logo">
-                    <img  src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo">
+                    <button class="cart-button" title="Inicio"><a href="<?=BASE_PATH?>/index.php"><img src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo"></a></button>
                 </span>
 
                 <ul class="nav-link-list">
