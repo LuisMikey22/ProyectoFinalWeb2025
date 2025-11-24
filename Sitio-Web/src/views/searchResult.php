@@ -1,22 +1,13 @@
 <?php
     require __DIR__.'/partials/nav.php';
 
-    $searchValue = getLastSegmentURL();
-
     //3 categorías de artículos y todos sus productos en un arreglo
-    $allProducts = getAllProducts(); 
 
-    $foundProducts = [];
-    $foundQuantity = 0;
-    foreach($allProducts as $category) : 
-        foreach($category as $product) :
-            if((strpos(strtolower($product['description']), strtolower($searchValue)))!== false) { //si el valor buscado coincide con la descripción
-                array_push($foundProducts, $product);
-                $foundQuantity++;
-                break;
-            }
-        endforeach;
-    endforeach;
+    $result = getFoundArt();
+
+    $searchValue = $result[0];
+    $foundQuantity = $result[1];
+    $foundProducts = end($result);
 ?>
 
 <section class="search-art">
@@ -44,14 +35,14 @@
         <div class="search-art-item-container item-container">
             <?php foreach($foundProducts as $foundProductCard) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php/<?=$foundProductCard['description']?>">
+                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$foundProductCard['id']."-".$foundProductCard['category']?>">
                         <figure class="art-item-image-container">
                             <img src="<?=ASSETS_PATH?>/images/<?=$foundProductCard['image']?>">  
                         </figure>
 
                         <div class="card-body art-desc-container">
                             <p><h4 class="card-title art-desc"><?=$foundProductCard['description']?></h4></p>
-                            <p><h4 class="card-actions art-price"><?=$foundProductCard['price']?></h4></p> 
+                            <p><h4 class="card-actions art-price">$<?=$foundProductCard['price']?>.00 MXN</h4></p> 
                         </div>
                     </a>
                 </div>

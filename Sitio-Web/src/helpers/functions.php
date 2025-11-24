@@ -2,9 +2,9 @@
     require_once __DIR__.'/../config/config.php';
     require_once __DIR__.'/../config/database.php';
     
-    /*function getParsedURL() {
+    function getParsedURL() {
         $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on'?'https':'http';
-        $url = $scheme . '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //url completa
+        $url = $scheme.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //url completa
         $parsedUrl = parse_url($url); //obtener componentes de la url
         return $parsedUrl;
     }
@@ -18,7 +18,7 @@
         $lastSegment = end($segments); //obtener último segmento
         $lastSegment = urldecode($lastSegment); //decodificar string dejando solo texto legible 
         return $lastSegment;
-    }*/
+    }
 
     function getArt($category) {
         $pdo = getPDO();
@@ -68,5 +68,36 @@
             error_log("Error al consultar la base de datos: ".$e->getMessage());
             return [];
         }
+    }
+
+    function getFoundArt($searchValue = null) {
+        if($searchValue == null && isset($_GET['search'])){
+            $searchValue = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        }
+
+        //Si no se envió una carrera
+        if($searchValue === null) {
+            return [];
+        }
+
+        $newArts = getArt("newart");
+        $bestSellingArts = getArt("bestsellingart");
+        $seasonalArts = getArt("seasonalart");
+
+        $allProducts = [$newArts, $bestSellingArts, $seasonalArts];
+
+        $foundProducts = [];
+        $foundQuantity = 0;
+        foreach($allProducts as $category) : 
+            foreach($category as $product) :
+                if((strpos(strtolower($product['description']), strtolower($searchValue)))!== false) { //si el valor buscado coincide con la descripción
+                    array_push($foundProducts, $product);
+                    $foundQuantity++;
+                    break;
+                }
+            endforeach;
+        endforeach;
+
+        return [$searchValue, $foundQuantity, $foundProducts];
     }
 ?>

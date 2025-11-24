@@ -19,7 +19,7 @@
         <div class="new-art-item-container item-container">
             <?php foreach($newArts as $newest) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$newest['id']."-newart"?>">
+                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$newest['id']."-".$newest['category']?>">
                         <figure class="art-item-image-container">
                             <img src="<?=ASSETS_PATH?>/images/<?=$newest['image']?>">  
                         </figure>
@@ -53,7 +53,7 @@
         <div class="best-selling-art-item-container item-container">
             <?php foreach($bestSellingArts as $bestSeller) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$bestSeller['id']."-bestsellingart"?>">
+                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$bestSeller['id']."-".$bestSeller['category']?>">
                         <figure class="art-item-image-container">
                             <img src="<?=ASSETS_PATH?>/images/<?=$bestSeller['image']?>">  
                         </figure>
@@ -87,7 +87,7 @@
         <div class="seasonal-art-item-container item-container">
             <?php foreach($seasonalArts as $seasonal) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$seasonal['id']."-seasonalart"?>">
+                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$seasonal['id']."-".$seasonal['category']?>">
                         <figure class="art-item-image-container">
                             <img src="<?=ASSETS_PATH?>/images/<?=$seasonal['image']?>">  
                         </figure>
