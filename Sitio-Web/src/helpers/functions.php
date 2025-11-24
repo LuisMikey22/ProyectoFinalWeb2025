@@ -86,18 +86,23 @@
 
         $allProducts = [$newArts, $bestSellingArts, $seasonalArts];
 
-        $foundProducts = [];
+        $foundProducts = array();
         $foundQuantity = 0;
+        $lastPos = 0;
+        $positions = array();
+
         foreach($allProducts as $category) : 
             foreach($category as $product) :
-                if((strpos(strtolower($product['description']), strtolower($searchValue)))!== false) { //si el valor buscado coincide con la descripción
+                while(($lastPos = mb_strpos(strtolower($product['description']), strtolower($searchValue), $lastPos))!== false) { //si el valor buscado coincide con la descripción
                     array_push($foundProducts, $product);
-                    $foundQuantity++;
-                    break;
+                    $lastPos = $lastPos + strlen($searchValue);
                 }
             endforeach;
         endforeach;
 
-        return [$searchValue, $foundQuantity, $foundProducts];
+        $uniqueProducts = array_map('unserialize', array_unique(array_map('serialize', $foundProducts)));
+        $foundQuantity = count($uniqueProducts);
+
+        return [$searchValue, $foundQuantity, $uniqueProducts]; 
     }
 ?>
