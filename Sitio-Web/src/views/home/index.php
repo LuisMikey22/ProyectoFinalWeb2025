@@ -1,18 +1,23 @@
 <section class="hero min-h-[75vh]">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-md">
-        <h1 class="mb-5 text-5xl font-bold">Estambres de Calidad</h1>
-        <p class="mb-5">
+        <div class="bg-base-200 p-10">
+        <h2 class="new-art-title">Estambres de Calidad</h1>
+        <p class="art-desc">
             Encuentra los mejores estambres, colores vibrantes y texturas perfectas para tus proyectos de tejido.
         </p>
-        <p class="mb-5">
+        <p class="art-desc">
             Una gran variedad de colores con miles de tonos para tus creaciones.
         </p>
-        <p class="mb-5">
+        <p class="art-desc">
             Materiales premium con texturas suaves y duraderas.
         </p>
-        <a href="<?=BASE_PATH?>/products/products.index.php" class="btn btn-secondary">Ver Productos</a>
+
+        <div class="action-container">
+                <a href="<?=BASE_PATH?>/products/products.index.php">
+                <button class="create-account-button">Ver productos</button></a>
+        </div>
+
         </div>
     </div>
 </section>
