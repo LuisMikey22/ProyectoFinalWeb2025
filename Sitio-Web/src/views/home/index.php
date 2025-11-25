@@ -12,7 +12,7 @@
         <p class="mb-5">
             Materiales premium con texturas suaves y duraderas.
         </p>
-        <a href="<?=BASE_PATH?>/products/products.index.php" class="btn btn-secondary">Ver Productos</a>
+        <a href="<?=BASE_PATH?>/products" class="btn btn-secondary">Ver Productos</a>
         </div>
     </div>
 </section>

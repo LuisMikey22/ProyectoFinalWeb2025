@@ -41,7 +41,7 @@
 
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
                 
-                <a class="logo-link" href="<?=BASE_PATH?>/home/index.php">
+                <a class="logo-link" href="<?=BASE_PATH?>">
                     <span class="svg-logo">
                         <img src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo">
                     </span>
@@ -85,8 +85,8 @@
                 
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                    <button class="account-button" title="Crear Cuenta"><a href="<?=BASE_PATH?>/account/loginAccount.php"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
-                    <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/index.php"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
+                    <button class="account-button" title="Crear Cuenta"><a href="<?=BASE_PATH?>/account"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
+                    <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/products"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>
 

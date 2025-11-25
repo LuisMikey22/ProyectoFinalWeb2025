@@ -18,7 +18,7 @@
 
         // Vista solicitada
         require $viewsPath.$template.'.php';
-
+        
         // Footer
         require $partialPath.'footer.php';
     }

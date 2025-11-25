@@ -55,7 +55,7 @@ searchButton.addEventListener('click', function() {
 searchBarButton.addEventListener('click', function() {
     if(searchBarInput.value!=="") {
         const searchBarInput = document.getElementById("search-bar-input");
-        window.location = `${BASE_PATH}/products/searchResult.php/?search=${searchBarInput.value}`;
+        window.location = `${BASE_PATH}/search/${searchBarInput.value}`;
     }
     //window.location.pathname = `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`;
     //window.history.pushState(null, null, `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`);

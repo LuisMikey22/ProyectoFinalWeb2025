@@ -10,6 +10,14 @@
         return view('home/index');
     }
 
+    if($route === 'account') {
+        return view('account/account.register');
+    }
+
+     if($route === 'search') {
+        return view('search/search.index');
+    }
+
     if($route === 'products') {
         if($method === 'GET') {
             $productModel = new Product(getPDO());
