@@ -1,150 +1,32 @@
 <?php 
-    include '../src/views/partials/nav.php'; 
+    require __DIR__ . '/../src/helpers/functions.php';
+    include __DIR__.'/../src/Models/Product.php';
 
-    //mandar nombre de tabla
-    $allProducts = getProducts();
-?>
+    // Obtener ruta limpia desde $_GET['route']
+    $route = trim($_GET['route'] ?? '', '/');
+    $method = $_SERVER['REQUEST_METHOD'];
 
-<section class="new-art">
-    <h3 class="new-art-title">Nuevos artículos</h3>
+    if($route === '' || $route === 'home') {
+        return view('home/index');
+    }
 
-    <section class="new-art-carousel">
-        <span class="previous-element-button-container">
-            <button aria-label="previous" class="previous-element-button" alt="seeMore"></button>
-        </span>
+    if($route === 'products') {
+        if($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $products = $productModel->all(); 
+            return view('products/products.index', ['products' => $products]);
+        }
+    }
 
-        <!-- tarjetas -->
-        <div class="new-art-item-container item-container">
-            <?php foreach($allProducts as $product) : ?>
-                <?php if($product['category'] === 'newart'): ?>
-                    <div class="card bg-base-100 shadow-sm art-item item">
-                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
-                            <figure class="art-item-image-container">
-                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
-                            </figure>
+    if(preg_match('#^products/(\d+)$#', $route, $matches)) {
+        $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
 
-                            <div class="card-body art-desc-container">
-                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
-                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
-                            </div>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
+        if($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $product = $productModel->find($productId);
+            return view('products/products.details', ['product' => $product]);
+        }
+    }
 
-        <span class="next-element-button-container">
-            <button aria-label="next" class="next-element-button" alt="seeMore"></button>
-        </span>
-    </section>
-
-    <div role="tablist" class="carousel-indicator"></div>
-</section>
-
-<section class="best-selling-art">
-    <h3 class="best-selling-art-title">Mejor vendidos</h3>
-
-    <section class="best-selling-art-carousel">
-        <span class="previous-element-button-container">
-            <button aria-label="previous" class="previous-element-button" alt="seeMore"></button>
-        </span>
-
-        <!-- tarjetas -->
-        <div class="best-selling-art-item-container item-container">
-            <?php foreach($allProducts as $product) : ?>
-                <?php if($product['category'] === 'bestsellingart'): ?>
-                    <div class="card bg-base-100 shadow-sm art-item item">
-                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
-                            <figure class="art-item-image-container">
-                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
-                            </figure>
-
-                            <div class="card-body art-desc-container">
-                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
-                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
-                            </div>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-
-        <span class="next-element-button-container">
-            <button aria-label="next" class="next-element-button" alt="seeMore"></button>
-        </span>
-    </section>
-
-    <div role="tablist" class="carousel-indicator"></div>
-</section>
-
-<section class="seasonal-art">
-    <h3 class="seasonal-art-title">Artículos de temporada</h3>
-
-    <section class="seasonal-art-carousel">
-        <span class="previous-element-button-container">
-            <button aria-label="previous" class="previous-element-button" alt="seeMore"></button>
-        </span>
-
-        <!-- tarjetas -->
-        <div class="seasonal-art-item-container item-container">
-            <?php foreach($allProducts as $product) : ?>
-                <?php if($product['category'] === 'seasonalart'): ?>
-                    <div class="card bg-base-100 shadow-sm art-item item">
-                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
-                            <figure class="art-item-image-container">
-                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
-                            </figure>
-
-                            <div class="card-body art-desc-container">
-                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
-                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
-                            </div>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-
-        <span class="next-element-button-container">
-            <button aria-label="next" class="next-element-button" alt="seeMore"></button>
-        </span>
-    </section>
-
-    <div role="tablist" class="carousel-indicator"></div>
-</section>
-
-<section class="shipping-info-banner">
-    <div class="info-banner-statement">
-        <span class="star-review-icon">
-            <img src="<?=ASSETS_PATH?>/images/starIcon.svg" alt="star-review-icon">
-        </span>
-
-        <h4 class="banner-text">
-            4,000+ reseñas positivas
-        </h4>
-    </div>
-
-    <div class="info-banner-statement">
-        <span class="shipping-icon">
-            <img src="<?=ASSETS_PATH?>/images/truckIcon.svg" alt="shipping-icon">
-        </span>
-
-        <h4 class="banner-text"> 
-            Envío gratis en México en compras mayores a $500
-        </h4> 
-    </div>
-    
-    <div class="info-banner-statement">
-        <span class="return-icon">
-            <img src="<?=ASSETS_PATH?>/images/boxIcon.svg" alt="return-icon">
-        </span>
-
-        <h4 class="banner-text">
-            Cambios o devoluciones 
-        </h4> 
-    </div>
-</section>
-
-<?php 
-    include '../src/views/partials/footer.php';
-?>
+    http_response_code(404);
+    return view('errors/404');

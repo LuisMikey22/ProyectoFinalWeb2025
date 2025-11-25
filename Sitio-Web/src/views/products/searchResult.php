@@ -1,10 +1,4 @@
 <?php
-    require __DIR__.'/partials/nav.php';
-
-    //3 categorías de artículos y todos sus productos en un arreglo
-
-    $result = getFoundArt();
-
     $searchValue = $result[0];
     $foundQuantity = $result[1];
     $foundProducts = end($result);
@@ -36,14 +30,14 @@
         <div class="search-art-item-container item-container">
             <?php foreach($foundProducts as $foundProductCard) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$foundProductCard['id']?>">
+                    <a  class="image-link" href="<?=SRC_PATH?>/views/product.php?productId=<?=$foundProductCard->id?>">
                         <figure class="art-item-image-container">
-                            <img src="<?=ASSETS_PATH?>/images/<?=$foundProductCard['image']?>">  
+                            <img src="<?=ASSETS_PATH?>/images/<?=$foundProductCard->image?>">  
                         </figure>
 
                         <div class="card-body art-desc-container">
-                            <p><h4 class="card-title art-desc"><?=$foundProductCard['name']?></h4></p>
-                            <p><h4 class="card-actions art-price">$<?=$foundProductCard['price']?> MXN</h4></p> 
+                            <p><h4 class="card-title art-desc"><?=$foundProductCard->name?></h4></p>
+                            <p><h4 class="card-actions art-price">$<?=$foundProductCard->price?> MXN</h4></p> 
                         </div>
                     </a>
                 </div>
@@ -55,7 +49,3 @@
         </span>
     </section>  
 </section>
-
-<?php
-    include __DIR__.'/partials/footer.php';
-?>

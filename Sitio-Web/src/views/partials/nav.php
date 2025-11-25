@@ -1,7 +1,3 @@
-<?php 
-    require __DIR__.'/../../helpers/functions.php';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -13,13 +9,13 @@
         <link rel="icon" href="<?=ASSETS_PATH?>/images/EHQALogoCropped2.svg" type="image/x-icon">
         
         <link href="<?=BASE_PATH?>/output.css" rel="stylesheet">
-        <link href="<?=SRC_PATH?>/css/style.css" rel="stylesheet"> 
+        <link href="<?=BASE_PATH?>/css/style.css" rel="stylesheet"> 
 
         <title>EstaHambreQueAta</title>
     </head>
 
     <script> 
-        const SRC_PATH = "<?=SRC_PATH?>";
+        const BASE_PATH = "<?=BASE_PATH?>";
         const ASSETS_PATH = "<?=ASSETS_PATH?>";
     </script> 
     
@@ -45,7 +41,7 @@
 
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
                 
-                <a href="<?=BASE_PATH?>/index.php">
+                <a class="logo-link" href="<?=BASE_PATH?>/home/index.php">
                     <span class="svg-logo">
                         <img src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo">
                     </span>
@@ -89,7 +85,7 @@
                 
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                    <button class="account-button" title="Crear Cuenta"><a href="<?=SRC_PATH?>/views/loginAccount.php"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
+                    <button class="account-button" title="Crear Cuenta"><a href="<?=BASE_PATH?>/account/loginAccount.php"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
                     <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/index.php"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>

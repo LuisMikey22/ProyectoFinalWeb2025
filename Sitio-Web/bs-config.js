@@ -1,19 +1,19 @@
 module.exports = {
-    proxy: "localhost/ProyectoFinalWeb2025/Sitio-Web/public", 
+    proxy: "127.0.0.1.80", 
+    startPath: "/", // Ruta del proyecto
     files: [
-        "public/**/*.php",
-        "public/**/*.html", 
-        "public/output.css",
-        "src/**/*.php",
-        "src/css/**/*.css",
-        "src/scripts/**/*.js"
+        "./public/*.css",      // CSS finales dentro de public
+        "./public/scripts/*.js",    // JS finales dentro de public
+        "./public/*.php",
+        
+        "./src/**/*.php",      // todos los PHP del proyecto
+        "./src/**/*.css",      // archivos fuente que tú editas
+        "./src/**/*.js"
     ],
-    watchOptions: {
-        ignoreInitial: true
-    },
-    open: false,
+    ignore: [
+        "./public/output.css"  // evita vigilar el build final si usas Tailwind
+    ],
+    reloadDelay: 300,
     notify: false,
-    serveStatic: ['.'], 
-    baseDir: './', 
-    startPath: '/public/index.php'
+    open: true
 };

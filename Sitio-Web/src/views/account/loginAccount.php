@@ -1,7 +1,3 @@
-<?php 
-    require  __DIR__.'/partials/nav.php';
-?>
-
 <section class="login-account-section">
     <form class="login-account-form" action="<?=BASE_PATH?>/index.php" method="post">
         <fieldset class="login-account-fieldset">
@@ -26,7 +22,3 @@
         </fieldset>
     </form>
 </section>
-
-<?php 
-    include  __DIR__.'/partials/footer.php';
-?>

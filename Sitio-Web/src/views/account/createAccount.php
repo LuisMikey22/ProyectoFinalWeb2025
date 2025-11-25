@@ -1,7 +1,3 @@
-<?php
-    require __DIR__.'/partials/nav.php';
-?>
-
 <section class="create-account-section">
     <form class="create-account-form" action="<?=BASE_PATH?>/index.php" method="post">
         <fieldset class="create-account-fieldset">
@@ -79,7 +75,3 @@
         </fieldset>
     </form>
 </section>
-
-<?php 
-    include  __DIR__.'/partials/footer.php';
-?>
