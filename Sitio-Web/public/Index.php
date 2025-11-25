@@ -2,9 +2,7 @@
     include '../src/views/partials/nav.php'; 
 
     //mandar nombre de tabla
-    $newArts = getArt("newart");
-    $bestSellingArts = getArt("bestsellingart");
-    $seasonalArts = getArt("seasonalart");
+    $allProducts = getProducts();
 ?>
 
 <section class="new-art">
@@ -17,19 +15,21 @@
 
         <!-- tarjetas -->
         <div class="new-art-item-container item-container">
-            <?php foreach($newArts as $newest) : ?>
-                <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$newest['id']."-".$newest['category']?>">
-                        <figure class="art-item-image-container">
-                            <img src="<?=ASSETS_PATH?>/images/<?=$newest['image']?>">  
-                        </figure>
+            <?php foreach($allProducts as $product) : ?>
+                <?php if($product['category'] === 'newart'): ?>
+                    <div class="card bg-base-100 shadow-sm art-item item">
+                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
+                            <figure class="art-item-image-container">
+                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
+                            </figure>
 
-                        <div class="card-body art-desc-container">
-                            <p><h4 class="card-title art-desc"><?=$newest['description']?></h4></p>
-                            <p><h4 class="card-actions art-price">$<?=$newest['price']?>.00 MXN</h4></p> 
-                        </div>
-                    </a>
-                </div>
+                            <div class="card-body art-desc-container">
+                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
+                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
@@ -51,19 +51,21 @@
 
         <!-- tarjetas -->
         <div class="best-selling-art-item-container item-container">
-            <?php foreach($bestSellingArts as $bestSeller) : ?>
-                <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$bestSeller['id']."-".$bestSeller['category']?>">
-                        <figure class="art-item-image-container">
-                            <img src="<?=ASSETS_PATH?>/images/<?=$bestSeller['image']?>">  
-                        </figure>
+            <?php foreach($allProducts as $product) : ?>
+                <?php if($product['category'] === 'bestsellingart'): ?>
+                    <div class="card bg-base-100 shadow-sm art-item item">
+                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
+                            <figure class="art-item-image-container">
+                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
+                            </figure>
 
-                        <div class="card-body art-desc-container">
-                            <p><h4 class="card-title art-desc"><?=$bestSeller['description']?></h4></p>
-                            <p><h4 class="card-actions art-price">$<?=$bestSeller['price']?>.00 MXN</h4></p> 
-                        </div>
-                    </a>
-                </div>
+                            <div class="card-body art-desc-container">
+                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
+                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
@@ -85,19 +87,21 @@
 
         <!-- tarjetas -->
         <div class="seasonal-art-item-container item-container">
-            <?php foreach($seasonalArts as $seasonal) : ?>
-                <div class="card bg-base-100 shadow-sm art-item item">
-                    <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$seasonal['id']."-".$seasonal['category']?>">
-                        <figure class="art-item-image-container">
-                            <img src="<?=ASSETS_PATH?>/images/<?=$seasonal['image']?>">  
-                        </figure>
+            <?php foreach($allProducts as $product) : ?>
+                <?php if($product['category'] === 'seasonalart'): ?>
+                    <div class="card bg-base-100 shadow-sm art-item item">
+                        <a href="<?=SRC_PATH?>/views/product.php?productId=<?=$product['id']?>">
+                            <figure class="art-item-image-container">
+                                <img src="<?=ASSETS_PATH?>/images/<?=$product['image']?>">  
+                            </figure>
 
-                        <div class="card-body art-desc-container">
-                            <p><h4 class="card-title art-desc"><?=$seasonal['description']?></h4></p>
-                            <p><h4 class="card-actions art-price">$<?=$seasonal['price']?>.00 MXN</h4></p> 
-                        </div>
-                    </a>
-                </div>
+                            <div class="card-body art-desc-container">
+                                <p><h4 class="card-title art-desc"><?=$product['name']?></h4></p>
+                                <p><h4 class="card-actions art-price">$<?=$product['price']?> MXN</h4></p> 
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
 

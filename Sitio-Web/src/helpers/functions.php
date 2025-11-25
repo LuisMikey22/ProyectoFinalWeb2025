@@ -20,11 +20,11 @@
         return $lastSegment;
     }
 
-    function getArt($category) {
+    function getProducts() {
         $pdo = getPDO();
 
         try {
-            $sql = "SELECT * FROM $category";
+            $sql = "SELECT * FROM `products`";
 
             $stmt = $pdo->query($sql);
 
@@ -46,17 +46,12 @@
         if($productId === null) {
             return [];
         }
-
-        $urlArray = explode('-', $productId); //separar el string en '-', se crea un arreglo
-        $id = $urlArray[0]; //obtener primer elemento (id)
-        $category = end($urlArray); //obtener el último elemento (categoría)
-
         $pdo = getPDO();
 
         try {
-            $sql = "SELECT * FROM $category WHERE id LIKE :id LIMIT 1";
+            $sql = "SELECT * FROM `products` WHERE id = :id LIMIT 1";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(['id' => "%$id%"]);
+            $stmt->execute(['id' => $productId]);
             $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if(!$productDetails) {
@@ -80,24 +75,17 @@
             return [];
         }
 
-        $newArts = getArt("newart");
-        $bestSellingArts = getArt("bestsellingart");
-        $seasonalArts = getArt("seasonalart");
-
-        $allProducts = [$newArts, $bestSellingArts, $seasonalArts];
-
+        $allProducts = getProducts();
         $foundProducts = array();
-        $foundQuantity = 0;
+        
         $lastPos = 0;
         $positions = array();
 
-        foreach($allProducts as $category) : 
-            foreach($category as $product) :
-                while(($lastPos = mb_strpos(strtolower($product['description']), strtolower($searchValue), $lastPos))!== false) { //si el valor buscado coincide con la descripción
-                    array_push($foundProducts, $product);
-                    $lastPos = $lastPos + strlen($searchValue);
-                }
-            endforeach;
+        foreach($allProducts as $product) :
+            while(($lastPos = mb_strpos(strtolower($product['name']), strtolower($searchValue), $lastPos))!== false) { //si el valor buscado coincide con la descripción
+                array_push($foundProducts, $product);
+                $lastPos = $lastPos + strlen($searchValue);
+            }
         endforeach;
 
         $uniqueProducts = array_map('unserialize', array_unique(array_map('serialize', $foundProducts)));
