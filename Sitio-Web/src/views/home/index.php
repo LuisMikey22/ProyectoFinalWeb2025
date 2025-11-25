@@ -12,12 +12,7 @@
         <p class="art-desc">
             Materiales premium con texturas suaves y duraderas.
         </p>
-
-        <div class="action-container">
-                <a href="<?=BASE_PATH?>/products/products.index.php">
-                <button class="create-account-button">Ver productos</button></a>
-        </div>
-
+        <a href="<?=BASE_PATH?>/products/products.index.php" class="btn btn-secondary">Ver Productos</a>
         </div>
     </div>
 </section>

@@ -67,9 +67,8 @@
                     <option value="70"></option>
                 </datalist>
             </div>
-
             <div class="action-container">
-                <a class="small-link" href="<?=SRC_PATH?>/views/loginAccount.php">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+                <a class="small-link" href="<?=BASE_PATH?>/login">¿Ya tienes una cuenta? Inicia sesión aquí</a>
                 <button class="create-account-button" type="submit">Registrarme</button>
             </div>
         </fieldset>
