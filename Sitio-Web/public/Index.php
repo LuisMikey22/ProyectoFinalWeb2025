@@ -14,8 +14,8 @@
         return view('account/account.register');
     }
 
-     if($route === 'search') {
-        return view('search/search.index');
+    if($route === 'search') {
+        return view('search/index');
     }
 
     if($route === 'products') {
@@ -33,6 +33,16 @@
             $productModel = new Product(getPDO());
             $product = $productModel->find($productId);
             return view('products/products.details', ['product' => $product]);
+        }
+    }
+
+    if(preg_match('#^search/(\d+)$#', $route, $matches)) {
+        $searchId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
+
+        if($method === 'GET') {
+            $searchModel = new Product(getPDO());
+            $search = $searchModel->search($searchId);
+            return view('search/search.index', ['search' => $search]);
         }
     }
 

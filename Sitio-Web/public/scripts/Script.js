@@ -91,7 +91,7 @@ searchBarInput.addEventListener('keydown', function(e) {
         
         case 'Enter':
             if(searchBarInput.value!=="") {
-                window.location = `${SRC_PATH}/views/searchResult.php/?search=${searchBarInput.value}`;
+                window.location = `${BASE_PATH}/search/${searchBarInput.value}`;
             }
         break;
     }

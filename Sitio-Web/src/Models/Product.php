@@ -14,7 +14,7 @@
 
         public function all() {
             try {
-                $sql = "SELECT * FROM `products`";
+                $sql = "SELECT * FROM products";
 
                 $stmt = $this->pdo->query($sql);
 
@@ -46,13 +46,13 @@
             }
 
             try {
-                $sql = "SELECT * FROM `products` WHERE id = :id LIMIT 1";
+                $sql = "SELECT * FROM products WHERE id = :id LIMIT 1";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute(['id' => $id]);
                 $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if(!$productDetails) {
-                    return null; // Producto no encontrado
+                    return null; // Producto no encontrada
                 }
 
                 $this->id = $productDetails['id'];

@@ -43,10 +43,6 @@
     --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5 / 2.25);
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-semibold: 600;
@@ -715,42 +711,6 @@
   .static {
     position: static;
   }
-  .hero-content {
-    @layer daisyui.l1.l2.l3 {
-      isolation: isolate;
-      display: flex;
-      max-width: 80rem;
-      align-items: center;
-      justify-content: center;
-      gap: calc(0.25rem * 4);
-      padding: calc(0.25rem * 4);
-    }
-  }
-  .hero {
-    @layer daisyui.l1.l2.l3 {
-      display: grid;
-      width: 100%;
-      place-items: center;
-      background-size: cover;
-      background-position: center;
-      & > * {
-        grid-column-start: 1;
-        grid-row-start: 1;
-      }
-    }
-  }
-  .hero-overlay {
-    @layer daisyui.l1.l2.l3 {
-      grid-column-start: 1;
-      grid-row-start: 1;
-      height: 100%;
-      width: 100%;
-      background-color: var(--color-neutral);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-neutral) 50%, transparent);
-      }
-    }
-  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -805,14 +765,8 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
-  .mb-5 {
-    margin-bottom: calc(var(--spacing) * 5);
-  }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
-  }
-  .mb-8 {
-    margin-bottom: calc(var(--spacing) * 8);
   }
   .card-body {
     @layer daisyui.l1.l2.l3 {
@@ -864,9 +818,6 @@
   .h-full {
     height: 100%;
   }
-  .min-h-\[75vh\] {
-    min-height: 75vh;
-  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -912,9 +863,6 @@
   .bg-base-100 {
     background-color: var(--color-base-100);
   }
-  .bg-base-200 {
-    background-color: var(--color-base-200);
-  }
   .bg-blue-700 {
     background-color: var(--color-blue-700);
   }
@@ -927,14 +875,11 @@
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
+  .px-12 {
+    padding-inline: calc(var(--spacing) * 12);
   }
-  .px-6 {
-    padding-inline: calc(var(--spacing) * 6);
-  }
-  .py-3 {
-    padding-block: calc(var(--spacing) * 3);
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6);
   }
   .text-center {
     text-align: center;
@@ -946,14 +891,6 @@
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
-  }
-  .text-5xl {
-    font-size: var(--text-5xl);
-    line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
   .text-6xl {
     font-size: var(--text-6xl);
@@ -973,9 +910,6 @@
   }
   .text-gray-600 {
     color: var(--color-gray-600);
-  }
-  .text-neutral-content {
-    color: var(--color-neutral-content);
   }
   .text-red-600 {
     color: var(--color-red-600);
@@ -998,12 +932,6 @@
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .btn-secondary {
-    @layer daisyui.l1.l2.l3 {
-      --btn-color: var(--color-secondary);
-      --btn-fg: var(--color-secondary-content);
-    }
   }
   .hover\:bg-blue-800 {
     &:hover {
@@ -1304,7 +1232,7 @@ li:hover .nav-link-sub-list {
   clear: both;
   background-color: var(--color-white);
 }
-.best-selling-art, .new-art, .seasonal-art, .search-art {
+.home-info, .best-selling-art, .new-art, .seasonal-art, .search-art {
   display: flex;
   height: 100%;
   width: 95%;
@@ -1313,10 +1241,14 @@ li:hover .nav-link-sub-list {
   flex: 1 1 0;
   text-align: center;
 }
+.home-info {
+  width: 90%;
+  margin: 3% auto 0 auto;
+}
 .search-art {
   margin: 3% auto;
 }
-.best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title, .search-art-subtitle, .create-account-fieldset legend, .login-account-fieldset legend {
+.home-title, .home-subtitle, .best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title, .search-art-subtitle, .create-account-fieldset legend, .login-account-fieldset legend {
   display: flex;
   height: auto;
   margin: auto auto 1em auto;
@@ -1325,6 +1257,12 @@ li:hover .nav-link-sub-list {
   font-weight: bold;
   font-family: var(--font-main);
   color: var(--color-dark-blue);
+}
+.home-title {
+  font-size: 2rem;
+}
+.home-subtitle {
+  margin: 1em auto;
 }
 .search-art-subtitle {
   padding: 0 0 20% 0;
@@ -1466,7 +1404,7 @@ li:hover .nav-link-sub-list {
   width: 100%;
   max-width: calc(100%);
 }
-.art-desc {
+.home-desc, .art-desc {
   position: relative;
   display: flex;
   margin: auto;
@@ -1479,6 +1417,9 @@ li:hover .nav-link-sub-list {
   font-family: var(--font-secondary);
   color: var(--color-dark-blue);
   cursor: pointer;
+}
+.home-desc {
+  cursor: auto;
 }
 .art-price {
   display: flex;
@@ -1509,7 +1450,7 @@ li:hover .nav-link-sub-list {
   height: fit-content;
   width: 100%;
   padding: 2% 4%;
-  margin: 4% auto;
+  margin: auto auto 4% auto;
   align-items: center;
   justify-content: space-between;
   background-image: linear-gradient(to bottom, var(--color-wine-red), var(--color-wine-red), var(--color-coral));
@@ -1545,6 +1486,7 @@ footer {
   height: auto;
   width: 100%;
   max-width: 100%;
+  margin: 1.5% auto auto auto;
   background-color: var(--color-white);
 }
 .footer-links-bar {
@@ -1819,7 +1761,7 @@ footer {
   justify-content: center;
   align-content: center;
 }
-.create-account-button, .login-account-button {
+.products-page-button, .create-account-button, .login-account-button {
   display: block;
   height: auto;
   width: 55%;
@@ -1833,6 +1775,10 @@ footer {
   border-style: solid;
   border-color: var(--color-darker-blue);
   border-radius: var(--border-radius-16);
+}
+.products-page-button {
+  margin: 2em auto;
+  width: fit-content;
 }
 .create-account-button:hover, .login-account-button:hover {
   background-color: var(--color-lighter-blue);
@@ -1890,8 +1836,11 @@ footer {
   .best-selling-art, .new-art, .seasonal-art, .search-art {
     margin: 6% auto 3% auto;
   }
-  .best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title {
+  .home-subtitle, .best-selling-art-title, .new-art-title, .seasonal-art-title, .search-art-title {
     font-size: 1.2rem;
+  }
+  .home-title {
+    font-size: 1.6rem;
   }
   .search-art-subtitle {
     font-size: 0.8rem;
@@ -1909,13 +1858,14 @@ footer {
   .art-item-image-container {
     height: 10vh;
   }
-  .art-desc, .art-price {
+  .home-desc, .art-desc, .art-price {
     font-size: 1rem;
   }
   .shipping-info-banner {
     display: grid;
     font-size: 0.8rem;
     text-align: left;
+    margin: auto auto 8% auto;
     padding: 4%;
     justify-content: center;
   }

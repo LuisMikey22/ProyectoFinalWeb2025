@@ -12,8 +12,7 @@
         Por favor verifica la URL o regresa al inicio del sitio.
     </p>
 
-    <a href="/"
-        class="bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800 transition">
+    <a href="<?=BASE_PATH?>" class="bg-blue-700 text-white px-12 py-6 rounded-lg shadow hover:bg-blue-800 transition">
         Volver al inicio
     </a>
 </div>

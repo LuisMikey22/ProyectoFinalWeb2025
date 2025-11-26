@@ -376,7 +376,8 @@ li:hover .nav-link-sub-list {
     background-color: var(--color-white);
 }*/
 
-/*-------------CAROUSEL-------------*/
+/*-------------SECCIONES-------------*/
+.home-info,
 .best-selling-art,
 .new-art,
 .seasonal-art,
@@ -390,10 +391,17 @@ li:hover .nav-link-sub-list {
     text-align: center;
 }
 
+.home-info {
+    width: 90%;
+    margin: 3% auto 0 auto;
+}
+
 .search-art {
     margin: 3% auto;
 }
 
+.home-title,
+.home-subtitle,
 .best-selling-art-title,
 .new-art-title,
 .seasonal-art-title,
@@ -411,11 +419,20 @@ li:hover .nav-link-sub-list {
     color: var(--color-dark-blue);
 }
 
+.home-title {
+    font-size: 2rem;
+}
+
+.home-subtitle {
+    margin: 1em auto;
+}
+
 .search-art-subtitle {
     padding: 0 0 20% 0;
     font-size: 1rem;
 }
 
+/*-------------CAROUSEL-------------*/
 .best-selling-art-carousel,
 .new-art-carousel,
 .seasonal-art-carousel, 
@@ -584,6 +601,7 @@ li:hover .nav-link-sub-list {
     max-width: calc(100%);
 }
 
+.home-desc,
 .art-desc {
     position: relative;
     display: flex;
@@ -597,6 +615,10 @@ li:hover .nav-link-sub-list {
     font-family: var(--font-secondary);
     color: var(--color-dark-blue);
     cursor: pointer;
+}
+
+.home-desc {
+    cursor: auto;
 }
 
 .art-price {
@@ -634,7 +656,7 @@ li:hover .nav-link-sub-list {
     height: fit-content;
     width: 100%;
     padding: 2% 4%;
-    margin: 4% auto;
+    margin: auto auto 4% auto;
     align-items: center;
     justify-content: space-between;
     background-image: linear-gradient(to bottom, var(--color-wine-red), var(--color-wine-red), var(--color-coral));
@@ -679,6 +701,7 @@ footer {
     height: auto;
     width: 100%;
     max-width: 100%;
+    margin: 1.5% auto auto auto;
     background-color: var(--color-white);
 }
 
@@ -1007,6 +1030,7 @@ footer {
     align-content: center;
 }
 
+.products-page-button,
 .create-account-button, 
 .login-account-button {
     display: block;
@@ -1023,6 +1047,12 @@ footer {
     border-color: var(--color-darker-blue);
     border-radius: var(--border-radius-16);
 }
+
+.products-page-button{
+    margin: 2em auto;
+    width: fit-content;
+}
+
 .create-account-button:hover,
 .login-account-button:hover {
     background-color: var(--color-lighter-blue);
@@ -1057,6 +1087,7 @@ footer {
         margin: 5%;
     }
 }
+
 @media only screen and (max-width: 768px) {
     nav { 
         padding: 3% 5%;
@@ -1095,11 +1126,16 @@ footer {
         margin: 6% auto 3% auto;
     }
     
+    .home-subtitle,
     .best-selling-art-title,
     .new-art-title,
     .seasonal-art-title,
     .search-art-title {
         font-size: 1.2rem;
+    }
+
+    .home-title {
+        font-size: 1.6rem;
     }
 
     .search-art-subtitle {
@@ -1126,6 +1162,7 @@ footer {
         height: 10vh;
     }
 
+    .home-desc,
     .art-desc,
     .art-price {
         font-size: 1rem;
@@ -1135,6 +1172,7 @@ footer {
         display: grid;
         font-size: 0.8rem;
         text-align: left;
+        margin: auto auto 8% auto;
         padding: 4%;
         justify-content: center;
     }
