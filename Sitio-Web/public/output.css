@@ -514,65 +514,6 @@
       }
     }
   }
-  .list {
-    @layer daisyui.l1.l2.l3 {
-      display: flex;
-      flex-direction: column;
-      font-size: 0.875rem;
-      .list-row {
-        --list-grid-cols: minmax(0, auto) 1fr;
-        position: relative;
-        display: grid;
-        grid-auto-flow: column;
-        gap: calc(0.25rem * 4);
-        border-radius: var(--radius-box);
-        padding: calc(0.25rem * 4);
-        word-break: break-word;
-        grid-template-columns: var(--list-grid-cols);
-      }
-      & > :not(:last-child) {
-        &.list-row, .list-row {
-          &:after {
-            content: "";
-            border-bottom: var(--border) solid;
-            inset-inline: var(--radius-box);
-            position: absolute;
-            bottom: calc(0.25rem * 0);
-            border-color: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              border-color: color-mix(in oklab, var(--color-base-content) 5%, transparent);
-            }
-          }
-        }
-      }
-    }
-    @layer daisyui.l1.l2 {
-      .list-row {
-        &:has(.list-col-grow:nth-child(1)) {
-          --list-grid-cols: 1fr;
-        }
-        &:has(.list-col-grow:nth-child(2)) {
-          --list-grid-cols: minmax(0, auto) 1fr;
-        }
-        &:has(.list-col-grow:nth-child(3)) {
-          --list-grid-cols: minmax(0, auto) minmax(0, auto) 1fr;
-        }
-        &:has(.list-col-grow:nth-child(4)) {
-          --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
-        }
-        &:has(.list-col-grow:nth-child(5)) {
-          --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
-        }
-        &:has(.list-col-grow:nth-child(6)) {
-          --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto)
-          minmax(0, auto) 1fr;
-        }
-        > :not(.list-col-wrap) {
-          grid-row-start: 1;
-        }
-      }
-    }
-  }
   .checkbox {
     @layer daisyui.l1.l2.l3 {
       border: var(--border) solid var(--input-color, var(--color-base-content));
@@ -713,45 +654,6 @@
   }
   .mx-auto {
     margin-inline: auto;
-  }
-  .label {
-    @layer daisyui.l1.l2.l3 {
-      display: inline-flex;
-      align-items: center;
-      gap: calc(0.25rem * 1.5);
-      white-space: nowrap;
-      color: currentcolor;
-      @supports (color: color-mix(in lab, red, red)) {
-        color: color-mix(in oklab, currentcolor 60%, transparent);
-      }
-      &:has(input) {
-        cursor: pointer;
-      }
-      &:is(.input > *, .select > *) {
-        display: flex;
-        height: calc(100% - 0.5rem);
-        align-items: center;
-        padding-inline: calc(0.25rem * 3);
-        white-space: nowrap;
-        font-size: inherit;
-        &:first-child {
-          margin-inline-start: calc(0.25rem * -3);
-          margin-inline-end: calc(0.25rem * 3);
-          border-inline-end: var(--border) solid currentColor;
-          @supports (color: color-mix(in lab, red, red)) {
-            border-inline-end: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-          }
-        }
-        &:last-child {
-          margin-inline-start: calc(0.25rem * 3);
-          margin-inline-end: calc(0.25rem * -3);
-          border-inline-start: var(--border) solid currentColor;
-          @supports (color: color-mix(in lab, red, red)) {
-            border-inline-start: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-          }
-        }
-      }
-    }
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
@@ -1245,6 +1147,12 @@ li:hover .nav-link-sub-list {
   width: 90%;
   margin: 3% auto 0 auto;
 }
+.home-info a {
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  margin: 2em auto;
+}
 .search-art {
   margin: 3% auto;
 }
@@ -1404,7 +1312,7 @@ li:hover .nav-link-sub-list {
   width: 100%;
   max-width: calc(100%);
 }
-.home-desc, .art-desc {
+.home-desc, .art-desc, .profile-label {
   position: relative;
   display: flex;
   margin: auto;
@@ -1618,7 +1526,7 @@ footer {
   height: auto;
   width: 100%;
 }
-.create-account-form, .login-account-form {
+.profile-section, .create-account-form, .login-account-form {
   display: flex;
   height: auto;
   width: 28rem;
@@ -1629,6 +1537,14 @@ footer {
   border-color: var(--color-dark-blue);
   border-width: 2.5px;
   border-radius: var(--border-radius-24);
+}
+.profile-section {
+  flex-direction: column;
+  padding: 1em;
+  height: 100%;
+  width: 38rem;
+  max-width: 100%;
+  text-align: justify;
 }
 .create-account-fieldset, .login-account-fieldset {
   display: flex;
@@ -1675,7 +1591,7 @@ footer {
   font-family: var(--font-secondary);
   color: var(--color-dark-blue);
 }
-.create-account-fieldset input, .login-account-fieldset input {
+.profile-section input, .create-account-fieldset input, .login-account-fieldset input {
   display: flex;
   width: 100%;
   margin: 5px 0 0 0;
@@ -1714,6 +1630,9 @@ footer {
 .desc-container textarea:hover {
   box-shadow: 2px 2px 4px var(--color-lighter-blue);
   cursor: pointer;
+}
+.profile-section input, .profile-section textarea {
+  font-size: 16px;
 }
 .techniques-options-container select {
   height: auto;
@@ -1777,8 +1696,9 @@ footer {
   border-radius: var(--border-radius-16);
 }
 .products-page-button {
-  margin: 2em auto;
+  margin: auto;
   width: fit-content;
+  cursor: pointer;
 }
 .create-account-button:hover, .login-account-button:hover {
   background-color: var(--color-lighter-blue);
@@ -1799,7 +1719,7 @@ footer {
     min-width: 68%;
     padding: 4%;
   }
-  .create-account-form, .login-account-form {
+  .profile-section, .create-account-form, .login-account-form {
     width: 90%;
     max-width: 90%;
     margin: 7% auto;

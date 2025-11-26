@@ -396,6 +396,13 @@ li:hover .nav-link-sub-list {
     margin: 3% auto 0 auto;
 }
 
+.home-info a {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    margin: 2em auto;
+}
+
 .search-art {
     margin: 3% auto;
 }
@@ -602,7 +609,8 @@ li:hover .nav-link-sub-list {
 }
 
 .home-desc,
-.art-desc {
+.art-desc,
+.profile-label {
     position: relative;
     display: flex;
     margin: auto;
@@ -861,6 +869,7 @@ footer {
     width: 100%;
 }
 
+.profile-section,
 .create-account-form,
 .login-account-form {
     display: flex;
@@ -873,6 +882,15 @@ footer {
     border-color: var(--color-dark-blue);
     border-width: 2.5px;
     border-radius: var(--border-radius-24);
+}
+
+.profile-section {
+    flex-direction: column;
+    padding: 1em;
+    height: 100%;
+    width: 38rem;
+    max-width: 100%;
+    text-align: justify;
 }
 
 .create-account-fieldset,
@@ -934,6 +952,7 @@ footer {
     color: var(--color-dark-blue);
 }
 
+.profile-section input,
 .create-account-fieldset input,
 .login-account-fieldset input {
     display: flex;
@@ -978,6 +997,11 @@ footer {
 .desc-container textarea:hover {
     box-shadow: 2px 2px 4px var(--color-lighter-blue);
     cursor: pointer;
+}
+
+.profile-section input, 
+.profile-section textarea {
+    font-size: 16px;
 }
 
 .techniques-options-container select {
@@ -1049,8 +1073,9 @@ footer {
 }
 
 .products-page-button{
-    margin: 2em auto;
+    margin: auto;
     width: fit-content;
+    cursor: pointer;
 }
 
 .create-account-button:hover,
@@ -1076,6 +1101,7 @@ footer {
         padding: 4%;
     }
 
+    .profile-section,
     .create-account-form, 
     .login-account-form {
         width: 90%;

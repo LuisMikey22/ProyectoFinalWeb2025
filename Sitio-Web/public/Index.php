@@ -11,7 +11,7 @@
     }
 
     if($route === 'account') {
-        return view('account/account.register');
+        return view('account/account.profile');
     }
 
     if($route === 'search') {
