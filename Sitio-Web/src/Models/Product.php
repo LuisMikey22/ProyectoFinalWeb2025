@@ -92,5 +92,73 @@
 
             return [$searchValue, $foundQuantity, $uniqueProducts]; 
         }
+
+        public function deleteProduct($id) {
+            if (!is_numeric($id) || $id <= 0) {
+                return false;
+            }
+
+            try {
+                $sql = "DELETE FROM products WHERE id = :id LIMIT 1";
+                $stmt = $this->pdo->prepare($sql);
+                return $stmt->execute(['id' => $id]);
+
+            } catch (PDOException $e) {
+                error_log("Error al eliminar producto: " . $e->getMessage());
+                return false;
+            }
+        }
+
+        public function addProduct($data) {
+            try {
+                $sql = "INSERT INTO products (category, image, name, description, price) 
+                        VALUES (:category, :image, :name, :description, :price)";
+
+                $stmt = $this->pdo->prepare($sql);
+
+                return $stmt->execute([
+                'category'     => $data['category'],
+                'image'        => $data['image'],
+                'name'         => $data['name'],
+                'description'  => $data['description'],
+                'price'        => $data['price']
+                ]);
+
+            } catch (PDOException $e) {
+                error_log("Error al agregar producto: " . $e->getMessage());
+                return false;
+            }
+        }
+
+        public function updateProduct($id, $data) {
+            if (!is_numeric($id) || $id <= 0) {
+                return false;
+            }
+
+            try {
+                $sql = "UPDATE products 
+                        SET category = :category, 
+                            image = :image, 
+                            name = :name, 
+                            description = :description, 
+                            price = :price
+                        WHERE id = :id";
+
+                $stmt = $this->pdo->prepare($sql);
+
+                return $stmt->execute([
+                    'category'    => $data['category'],
+                    'image'       => $data['image'],
+                    'name'        => $data['name'],
+                    'description' => $data['description'],
+                    'price'       => $data['price'],
+                    'id'          => $id
+                ]);
+
+            } catch (PDOException $e) {
+                error_log("Error al actualizar producto: " . $e->getMessage());
+                return false;
+            }
+        }
     }
 ?>
