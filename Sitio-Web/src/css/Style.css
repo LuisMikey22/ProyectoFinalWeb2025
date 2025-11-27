@@ -453,7 +453,6 @@ li:hover .nav-link-sub-list {
     align-items: center;
     justify-content: space-evenly;
     overflow: visible;
-    transform-style: flat;
 }
 
 .search-art-carousel-hidden {
@@ -516,7 +515,7 @@ li:hover .nav-link-sub-list {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;*/
     height: 100%;
-    width: 90%;
+    width: 100;
     margin: auto;
     padding: 1% 1% 1% 0;
     border-width: 0.5em 1.5em;
