@@ -30,7 +30,7 @@
                     $product->name = $row['name'];
                     $product->description = $row['description'];
                     $product->price = $row['price'];
-                    $products[] = $product;
+                    array_push($products, $product);
                 }
 
                 return $products;
@@ -69,16 +69,11 @@
             }
         }
 
-        public function search($id) {
-            if(!is_numeric($id) || $id <= 0) {
-                return null;
-            }
-
-            $allProducts = all();
-            $foundProducts = array();
+        /*public function search($searchValue, $allProducts) {
+            $foundProducts = [];
             
             $lastPos = 0;
-            $positions = array();
+            $positions = [];
 
             foreach($allProducts as $product) :
                 while(($lastPos = mb_strpos(strtolower($product['name']), strtolower($searchValue), $lastPos))!== false) { //si el valor buscado coincide con la descripción
@@ -91,7 +86,7 @@
             $foundQuantity = count($uniqueProducts);
 
             return [$searchValue, $foundQuantity, $uniqueProducts]; 
-        }
+        }*/
 
         public function deleteProduct($id) {
             if (!is_numeric($id) || $id <= 0) {

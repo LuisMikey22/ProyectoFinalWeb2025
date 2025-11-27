@@ -91,10 +91,14 @@ searchBarInput.addEventListener('keydown', function(e) {
         
         case 'Enter':
             if(searchBarInput.value!=="") {
-                window.location = `${BASE_PATH}/search/${searchBarInput.value}`;
+                window.location = `${BASE_PATH}/search/${encodeURIComponent(searchBarInput.value)}`;
             }
         break;
     }
+});
+
+searchBarCont.addEventListener('submit', function(e) {
+    this.action = "<?=BASE_PATH?>/search/" + encodeURIComponent(searchBarInput.value);
 });
 
 

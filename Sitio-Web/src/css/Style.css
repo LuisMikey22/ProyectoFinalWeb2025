@@ -378,6 +378,7 @@ li:hover .nav-link-sub-list {
 
 /*-------------SECCIONES-------------*/
 .home-info,
+.error-info,
 .best-selling-art,
 .new-art,
 .seasonal-art,
@@ -391,7 +392,7 @@ li:hover .nav-link-sub-list {
     text-align: center;
 }
 
-.home-info {
+.home-info, .error-info {
     width: 90%;
     margin: 3% auto 0 auto;
 }
@@ -409,6 +410,7 @@ li:hover .nav-link-sub-list {
 
 .home-title,
 .home-subtitle,
+.error-title,
 .best-selling-art-title,
 .new-art-title,
 .seasonal-art-title,
@@ -424,6 +426,12 @@ li:hover .nav-link-sub-list {
     font-weight: bold;
     font-family: var(--font-main);
     color: var(--color-dark-blue);
+}
+
+.error-title {
+    display: flex;
+    width: fit-content;
+    margin: 1em auto;
 }
 
 .home-title {
@@ -608,6 +616,7 @@ li:hover .nav-link-sub-list {
     max-width: calc(100%);
 }
 
+.error-desc,
 .home-desc,
 .art-desc,
 .profile-label {
@@ -623,6 +632,11 @@ li:hover .nav-link-sub-list {
     font-family: var(--font-secondary);
     color: var(--color-dark-blue);
     cursor: pointer;
+}
+
+.error-desc {
+    margin: 0 auto 1em auto;
+    cursor: auto;
 }
 
 .home-desc {
@@ -1055,6 +1069,7 @@ footer {
 }
 
 .products-page-button,
+.error-home-button,
 .create-account-button, 
 .login-account-button {
     display: block;
@@ -1072,7 +1087,7 @@ footer {
     border-radius: var(--border-radius-16);
 }
 
-.products-page-button{
+.products-page-button, .error-home-button{
     margin: auto;
     width: fit-content;
     cursor: pointer;
@@ -1153,6 +1168,7 @@ footer {
     }
     
     .home-subtitle,
+    .error-title,
     .best-selling-art-title,
     .new-art-title,
     .seasonal-art-title,
@@ -1188,6 +1204,7 @@ footer {
         height: 10vh;
     }
 
+    .error-desc,
     .home-desc,
     .art-desc,
     .art-price {

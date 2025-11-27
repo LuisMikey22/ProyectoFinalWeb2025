@@ -26,17 +26,17 @@
                         
             <nav>
                 <div id="search-bar-container" class="search-bar-container-hidden">
-                    <div class="search-bar-input-container">
-                        <button id="search-bar-button" class="search-bar-button" type="submit" name="submit" title="Buscar">
+                    <form class="search-bar-input-container" action="<?=BASE_PATH?>/products" method="get">
+                        <button id="search-bar-button" class="search-bar-button" type="submit" title="Buscar">
                             <img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search">
                         </button>
 
-                        <input id="search-bar-input" class="search-bar-input" type="text" name="inputValue" placeholder="Buscar" focus required>
+                        <input id="search-bar-input" class="search-bar-input" type="text" placeholder="Buscar" required>
 
                         <button id="close-button" class="close-button" type="button" name="close" title="Cerrar">
                             <img src="<?=ASSETS_PATH?>/images/closeIconDark.svg" alt="close">
-                        </button>  
-                    </div>
+                        </button>
+                    </form>
                 </div>
 
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
