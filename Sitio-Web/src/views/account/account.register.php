@@ -1,5 +1,5 @@
 <section class="create-account-section">
-    <form class="create-account-form" action="<?=BASE_PATH?>/index.php" method="post">
+    <form class="create-account-form" action="?route=account" method="post">
         <fieldset class="create-account-fieldset">
             <legend>Por favor complete todos los campos: </legend>
 
