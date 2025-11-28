@@ -18,6 +18,10 @@
         Ver Productos
     </button></a>
 
+    <a href="<?= BASE_PATH ?>/products/add">
+        <button class="products-page-button">Añadir Producto</button>
+    </a>
+
     <h2 class="home-subtitle">¿Por qué elegirnos?</h2>
 </section>
 

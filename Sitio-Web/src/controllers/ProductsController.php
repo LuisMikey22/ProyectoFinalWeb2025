@@ -79,4 +79,36 @@ class ProductsController
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
         }
     }
+
+    public function add()
+    {
+        include ROOT_PATH . "/Sitio-Web/views/products/products.add.php";
+    }
+
+    public function create()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $mensaje = "Método no permitido.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+            return;
+        }
+
+        $data = [
+            'category'    => $_POST['category'] ?? '',
+            'image'       => $_POST['image'] ?? '',
+            'name'        => $_POST['name'] ?? '',
+            'description' => $_POST['description'] ?? '',
+            'price'       => $_POST['price'] ?? ''
+        ];
+
+        $result = $this->model->addProduct($data);
+
+        if ($result) {
+            $mensaje = "Producto agregado correctamente.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+        } else {
+            $mensaje = "Error al agregar producto.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+        }
+    }
 }

@@ -132,5 +132,47 @@
         }
     }
 
+    if ($route === 'products/add' && $method === 'GET') {
+        return view('products/products.add');
+    }
+
+    if ($route === 'products/create' && $method === 'POST') {
+
+        $productModel = new Product(getPDO());
+
+        $name        = $_POST['name'] ?? '';
+        $category    = $_POST['category'] ?? '';
+        $price       = $_POST['price'] ?? '';
+        $description = $_POST['description'] ?? '';
+
+        $imageName = null;
+
+        if (!empty($_FILES['image']['name'])) {
+            
+            $uploadsDir = __DIR__ . "/assets/images/";
+
+            if (!is_dir($uploadsDir)) {
+                mkdir($uploadsDir, 0777, true);
+            }
+
+            $imageName = time() . "_" . basename($_FILES['image']['name']);
+
+            $destino = $uploadsDir . $imageName;
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $destino);
+        }
+
+        $productModel->addProduct([
+            'name'        => $name,
+            'category'    => $category,
+            'price'       => $price,
+            'description' => $description,
+            'image'       => $imageName
+        ]);
+
+        header("Location: " . BASE_PATH . "/products");
+        exit;
+    }
+
     http_response_code(404);
     return view('errors/404');
