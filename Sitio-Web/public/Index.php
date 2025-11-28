@@ -46,5 +46,70 @@
         }
     }
 
+    if (preg_match('#^products/mod/(\d+)$#', $route, $matches)) {
+        $id = (int)$matches[1];
+
+        if ($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $product = $productModel->find($id);
+            return view('products/products.mod', ['product' => $product]);
+        }
+    }
+
+    if (preg_match('#^products/update/(\d+)$#', $route, $matches)) {
+    $id = (int)$matches[1];
+
+        if ($method === 'POST') {
+
+            $pdo = getPDO();
+            $productModel = new Product($pdo);
+
+            // Verificar producto existente
+            $product = $productModel->find($id);
+            if (!$product) {
+                die("Producto no encontrado");
+            }
+
+            // Datos recibidos
+            $name        = $_POST['name'] ?? '';
+            $category    = $_POST['category'] ?? '';
+            $price       = $_POST['price'] ?? 0;
+            $description = $_POST['description'] ?? '';
+            $image       = $product->image;
+
+            // Procesar imagen nueva
+            if (!empty($_FILES['image']['name'])) {
+                $tmp       = $_FILES['image']['tmp_name'];
+                $fileName  = time() . "_" . basename($_FILES['image']['name']);
+                $destino   = __DIR__ . "/assets/images/" . $fileName;
+
+                if (move_uploaded_file($tmp, $destino)) {
+                    $image = $fileName;
+                }
+            }
+
+            // Actualizar datos
+            $ok = $productModel->updateProduct($id, [
+                'name'        => $name,
+                'category'    => $category,
+                'price'       => $price,
+                'description' => $description,
+                'image'       => $image
+            ]);
+
+            if (!$ok) {
+                die("Error al actualizar el producto.");
+            }
+
+            // Volver a consultar el producto actualizado
+            $updatedProduct = $productModel->find($id);
+
+            // Renderizar la vista update
+            return view('products/products.update', [
+                'product' => $updatedProduct
+            ]);
+        }
+    }
+
     http_response_code(404);
     return view('errors/404');

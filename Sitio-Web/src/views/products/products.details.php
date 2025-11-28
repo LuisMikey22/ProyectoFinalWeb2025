@@ -19,6 +19,11 @@
 
             <button class="btn bg-teal-950 text-white w-full max-w-xs mt-2 rounded-2xl">Añadir al carrito</button>
 
+            <a href="<?= BASE_PATH ?>/products/mod/<?= $product->id ?>"
+                class="btn bg-teal-950 text-white w-full max-w-xs mt-2 rounded-2xl">
+                Modificar producto
+            </a>
+
             <p class="text-teal-950 font-semibold mt-4">
                 <?=$product->description?>
             </p>
