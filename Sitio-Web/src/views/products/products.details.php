@@ -24,6 +24,12 @@
                 Modificar producto
             </a>
 
+            <a href="<?= BASE_PATH ?>/products/delete/<?= $product->id ?>"
+                class="btn bg-teal-950 text-white w-full max-w-xs mt-2 rounded-2xl"
+                onclick="return confirm('¿Seguro que quieres eliminar este producto?')">
+                Eliminar producto
+            </a>
+
             <p class="text-teal-950 font-semibold mt-4">
                 <?=$product->description?>
             </p>

@@ -47,7 +47,6 @@ class ProductsController
             'image'       => $_POST['old_image'] ?? ''
         ];
 
-        // Si subió nueva imagen
         if (!empty($_FILES['image']['name'])) {
             $filename = time() . "_" . basename($_FILES['image']['name']);
             $path = __DIR__ . "/../../public/assets/images/" . $filename;
@@ -60,5 +59,24 @@ class ProductsController
 
         header("Location: " . BASE_PATH . "/products/$id");
         exit;
+    }
+
+    public function delete($id)
+    {
+        if (!is_numeric($id) || $id <= 0) {
+            $mensaje = "ID inválido.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+            return;
+        }
+
+        $result = $this->model->deleteProduct($id);
+
+        if ($result) {
+            $mensaje = "Producto eliminado correctamente.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+        } else {
+            $mensaje = "Error al eliminar el producto.";
+            include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
+        }
     }
 }
