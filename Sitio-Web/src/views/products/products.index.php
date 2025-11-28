@@ -12,7 +12,7 @@
                 <?php if($product->category === 'newart'): ?>
                     <div class="card bg-base-100 shadow-sm art-item item">
                         <a class="image-link" href="<?=BASE_PATH?>/products/<?=$product->id?>">
-                            <figure class="art-item-image-container">
+                            <figure class="art-item-image-container" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
                                 <img src="<?=ASSETS_PATH?>/images/<?=$product->image?>">  
                             </figure>
 

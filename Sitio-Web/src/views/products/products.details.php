@@ -5,7 +5,7 @@
 
 <section class="bg-base-100 rounded-3xl product">
     <div class="max-w-6xl mx-auto bg-base-100 p-6 flex flex-col lg:flex-row gap-8 product-container">
-        <figure class="lg:w-1/2 w-full">
+        <figure class="lg:w-1/2 w-full" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); border-radius: var(--border-radius-24);">
             <img class="w-full h-full rounded-2xl object-cover" src="<?=ASSETS_PATH?>/images/<?=$product->image?>" alt="product">
         </figure>
 
