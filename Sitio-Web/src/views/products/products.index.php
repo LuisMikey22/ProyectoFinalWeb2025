@@ -105,3 +105,7 @@
 
     <div role="tablist" class="carousel-indicator"></div>
 </section>
+
+<a href="<?= BASE_PATH ?>/products/add">
+    <button class="action-button">Añadir Producto</button>
+</a>

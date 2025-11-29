@@ -14,14 +14,9 @@
         Materiales premium con texturas suaves y duraderas.
     </h4>
 
-    <a href="<?=BASE_PATH?>/products"><button class="products-page-button">
-        Ver Productos
-    </button></a>
-
-    <a href="<?= BASE_PATH ?>/products/add">
-        <button class="products-page-button">Añadir Producto</button>
+    <a href="<?=BASE_PATH?>/products">
+        <button class="action-button">Ver Productos</button>
     </a>
-
     <h2 class="home-subtitle">¿Por qué elegirnos?</h2>
 </section>
 

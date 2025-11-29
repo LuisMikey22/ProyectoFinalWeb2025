@@ -12,7 +12,7 @@
         Por favor verifica la URL o regresa al inicio del sitio.
     </p>
 
-    <a href="<?=BASE_PATH?>" class="error-home-button">
+    <a href="<?=BASE_PATH?>" class="action-button">
         Volver al inicio
     </a>
 </div>

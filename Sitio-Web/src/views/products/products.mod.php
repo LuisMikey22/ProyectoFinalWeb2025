@@ -3,65 +3,53 @@
 // NO volver a incluir modelos ni base de datos.
 ?>
 
-<section class="bg-base-100 rounded-3xl p-8 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold text-teal-950 mb-6">Modificar producto</h2>
+<section class="product-section">
+    <h3 class="product-title">Modificar producto</h3>
 
-    <form action="<?= BASE_PATH ?>/products/update/<?= $product->id ?>" 
-          method="POST" enctype="multipart/form-data" 
-          class="flex flex-col gap-6">
+    <form action="<?= BASE_PATH ?>/products/update/<?= $product->id ?>" method="POST" enctype="multipart/form-data" class="create-product-form">
+        <fieldset class="product-fieldset">
+            <!-- Nombre -->
+            <div class="name-input-container">
+                <label class="input-label" for="name">Nombre</label>
+                <input class="bordered-input" type="text" name="name" value="<?= htmlspecialchars($product->name) ?>" required>
+            </div>
 
-        <!-- Nombre -->
-        <div>
-            <label class="text-teal-950 font-semibold">Nombre</label>
-            <input type="text" 
-                   name="name" 
-                   class="input input-bordered w-full"
-                   value="<?= htmlspecialchars($product->name) ?>" required>
-        </div>
+            <!-- Categoría -->
+            <div class="text-input-container">
+                <label class="input-label" for="category">Categoría</label>
+                <input class="bordered-input" type="text" name="category" value="<?= htmlspecialchars($product->category) ?>" required>
+            </div>
 
-        <!-- Categoría -->
-        <div>
-            <label class="text-teal-950 font-semibold">Categoría</label>
-            <input type="text" 
-                   name="category" 
-                   class="input input-bordered w-full"
-                   value="<?= htmlspecialchars($product->category) ?>" required>
-        </div>
+            <!-- Precio -->
+            <div class="text-input-container">
+                <label class="input-label" for="price">Precio</label>
+                <input class="bordered-input" type="number" step="0.01" name="price" value="<?= htmlspecialchars($product->price) ?>" required>
+            </div>
 
-        <!-- Precio -->
-        <div>
-            <label class="text-teal-950 font-semibold">Precio</label>
-            <input type="number" 
-                   step="0.01" 
-                   name="price" 
-                   class="input input-bordered w-full"
-                   value="<?= htmlspecialchars($product->price) ?>" required>
-        </div>
+            <!-- Descripción -->
+             <div class="desc-container">
+                <label class="input-label" for="description">Descripción</label>
+                <textarea class="bordered-input" name="description" required><?= htmlspecialchars($product->description) ?></textarea>
+            </div>
 
-        <!-- Descripción -->
-        <div>
-            <label class="text-teal-950 font-semibold">Descripción</label>
-            <textarea name="description" 
-                      class="textarea textarea-bordered w-full h-28"
-                      required><?= htmlspecialchars($product->description) ?></textarea>
-        </div>
+            <!-- Imagen actual -->
+            <div class="desc-container">
+                <label class="input-label" for="image">Imagen actual</label>
+                <figure class="art-item-image-container" name="image" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
+                    <img src="<?= ASSETS_PATH ?>/images/<?= $product->image ?>" >  
+                </figure>
+            </div>
 
-        <!-- Imagen actual -->
-        <div>
-            <label class="text-teal-950 font-semibold">Imagen actual</label>
-            <img src="<?= ASSETS_PATH ?>/images/<?= $product->image ?>" 
-                 class="w-40 rounded-xl mt-2">
-        </div>
+            <!-- Nueva imagen -->
+             <div class="file-input-container">
+                <label class="input-label" for="image">Cambiar imagen (opcional)</label>
+                <input class="bordered-input" type="file" name="image">
+            </div>
 
-        <!-- Nueva imagen -->
-        <div>
-            <label class="text-teal-950 font-semibold">Cambiar imagen (opcional)</label>
-            <input type="file" name="image" class="file-input w-full">
-        </div>
-
-        <!-- Botón -->
-        <button class="btn bg-teal-950 text-white rounded-2xl w-full">
-            Guardar cambios
-        </button>
+            <!-- Botón -->
+            <div class="action-container">
+                <button class="action-button" type="submit">Guardar cambios</button>
+            </div>
+        </fieldset>
     </form>
 </section>

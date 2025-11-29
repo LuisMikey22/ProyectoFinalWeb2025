@@ -10,6 +10,12 @@
     --color-electric-blue: #44D5E5;
     --color-wine-red: #C50000;
 
+    --color-danger: #D73A49;
+    --color-success: #28A745;
+    --color-neutral: #DBAB09;
+    --color-accent: #478be6;
+
+
     --font-main: Verdana, sans-serif;
     --font-secondary: Geneva, sans-serif;
 
@@ -413,6 +419,7 @@ li:hover .nav-link-sub-list {
 .error-title,
 .best-selling-art-title,
 .new-art-title,
+.product-title,
 .seasonal-art-title,
 .search-art-title,
 .search-art-subtitle,
@@ -426,6 +433,11 @@ li:hover .nav-link-sub-list {
     font-weight: bold;
     font-family: var(--font-main);
     color: var(--color-dark-blue);
+}
+
+.product-title {
+    margin: 2% auto 0 auto;
+    width: fit-content;
 }
 
 .error-title {
@@ -879,19 +891,20 @@ footer {
     width: 100%;
 }
 
+.product-section,
 .create-account-section,
 .login-account-section {
     height: auto;
     width: 100%;
 }
 
-.profile-section,
+.create-product-form,
 .create-account-form,
 .login-account-form {
     display: flex;
     height: auto;
     width: 28rem;
-    margin: 4% auto;
+    margin: 2% auto;
     border-style: none;
     background-color: var(--color-white);
     border-style: solid;
@@ -909,6 +922,7 @@ footer {
     text-align: justify;
 }
 
+.product-fieldset,
 .create-account-fieldset,
 .login-account-fieldset {
     display: flex;
@@ -940,6 +954,8 @@ footer {
 .desc-container,
 .email-input-container,
 .name-input-container,
+.text-input-container,
+.file-input-container,
 .password-input-container,
 .techniques-options-container {
     display: block;
@@ -956,43 +972,44 @@ footer {
     gap: 1.5rem;
 }
 
-.create-account-fieldset label,
-.login-account-fieldset label {
+.input-label {
     display: flex;
     height: auto;
     width: 100%;
     margin: auto;
     text-align: justify;
-    font-size: 14px;
+    font-size: 16px;
     font-family: var(--font-secondary);
     color: var(--color-dark-blue);
 }
 
-.profile-section input,
-.create-account-fieldset input,
-.login-account-fieldset input {
+.bordered-input {
     display: flex;
     width: 100%;
     margin: 5px 0 0 0;
-    padding: 8px;
+    padding: 10px;
     border: 1.7px solid var(--color-dark-blue);
     border-radius: var(--border-radius-16);
     font-size: 12px;
+    color: var(--color-darker-blue);
 }
 
-.create-account-fieldset input:hover,
-.login-account-fieldset input:hover {
-    box-shadow: 2px 2px 4px var(--color-lighter-blue);
+.file-input-container .bordered-input {
+    border-style: dashed;
+}
+
+.bordered-input:hover {
+    box-shadow: 0 2px 10px rgba(80, 130, 133, 0.5);
     cursor: pointer;
 }
-.create-account-fieldset input:focus,
-.login-account-fieldset input:focus {
+
+.bordered-input:focus {
     outline: var(--color-electric-blue);
     border: 1.7px solid var(--color-electric-blue);
     border-radius: var(--border-radius-16);
 }
 
-.desc-container textarea {
+.desc-container .bordered-input {
     display: block;
     height: 100px;
     width: 100%;
@@ -1005,39 +1022,10 @@ footer {
     border-radius: var(--border-radius-16);
     resize: none;
 }
-.desc-container textarea:focus {
-    outline: var(--color-electric-blue);
-    border: 1.7px solid var(--color-electric-blue);
-    border-radius: var(--border-radius-16);
-}
-.desc-container textarea:hover {
-    box-shadow: 2px 2px 4px var(--color-lighter-blue);
-    cursor: pointer;
-}
 
-.profile-section input, 
-.profile-section textarea {
+.product-section .bordered-input,
+.profile-section .bordered-input {
     font-size: 16px;
-}
-
-.techniques-options-container select {
-    height: auto;
-    width: 100%;
-    margin: 5px 0 0;
-    padding: 8px;
-    color: var(--color-darker-blue);
-    border: 2px solid var(--color-dark-blue);
-    border-radius: var(--border-radius-16);
-    font-size: 12px;
-}
-.techniques-options-container select:focus {
-    outline: var(--color-electric-blue);
-    border: 1.7px solid var(--color-electric-blue);
-    border-radius: var(--border-radius-16);
-}
-.techniques-options-container select:hover {
-    box-shadow: 2px 2px 4px var(--color-lighter-blue);
-    cursor: pointer;
 }
 
 .small-link {
@@ -1070,14 +1058,14 @@ footer {
     align-content: center;
 }
 
-.products-page-button,
-.error-home-button,
-.create-account-button, 
-.login-account-button {
+.add-button,
+.delete-button,
+.edit-button,
+.action-button {
     display: block;
     height: auto;
-    width: 55%;
-    margin: auto 0 auto auto;
+    width: 60%;
+    margin: auto;
     padding: 15px 30px;
     text-align: center;
     font-size: 16px;
@@ -1087,18 +1075,48 @@ footer {
     border-style: solid;
     border-color: var(--color-darker-blue);
     border-radius: var(--border-radius-16);
-}
-
-.products-page-button, .error-home-button{
-    margin: auto;
-    width: fit-content;
     cursor: pointer;
 }
 
-.create-account-button:hover,
-.login-account-button:hover {
+.action-button {
+    width: fit-content;
+}
+.action-button:hover {
     background-color: var(--color-lighter-blue);
     border-color: var(--color-lighter-blue);
+}
+
+.add-button,
+.delete-button,
+.edit-button  {
+    margin: auto auto auto 0;
+}
+
+.add-button {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+}
+
+.delete-button {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+}
+
+.edit-button {
+    background-color: var(--color-neutral);
+    border-color: var(--color-neutral);
+}
+
+.add-button:hover,
+.delete-button:hover,
+.edit-button:hover {
+    opacity: 70%;
+}
+
+.login-account-section .action-button,
+.create-account-section .action-button {
+    width: 55%;
+    margin: auto 0 auto auto;
 }
 
 .product-container {
@@ -1119,6 +1137,7 @@ footer {
     }
 
     .profile-section,
+    .product-section,
     .create-account-form, 
     .login-account-form {
         width: 90%;
@@ -1126,8 +1145,19 @@ footer {
         margin: 7% auto;
     }
 
+    .create-product-form {
+        width: auto;
+        margin: 7% 0;
+    }
+
     .product {
         margin: 5%;
+    }
+
+    .add-button,
+    .delete-button,
+    .edit-button {
+        width: 100%;
     }
 }
 
@@ -1173,6 +1203,7 @@ footer {
     .error-title,
     .best-selling-art-title,
     .new-art-title,
+    .product-title,
     .seasonal-art-title,
     .search-art-title {
         font-size: 1.2rem;
