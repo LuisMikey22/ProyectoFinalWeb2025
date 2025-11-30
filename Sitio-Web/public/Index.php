@@ -1,6 +1,8 @@
 <?php 
     require __DIR__ . '/../src/helpers/functions.php';
+    include __DIR__.'/../src/controllers/UsersController.php';
     include __DIR__.'/../src/Models/Product.php';
+    include __DIR__.'/../src/Models/User.php';
 
     // Obtener ruta limpia desde $_GET['route']
     $route = trim($_GET['route'] ?? '', '/');
@@ -8,10 +10,6 @@
 
     if($route === '' || $route === 'home') {
         return view('home/index');
-    }
-
-    if($route === 'account') {
-        return view('account/account.register');
     }
 
     if($route === 'search') {
@@ -172,6 +170,29 @@
 
         header("Location: " . BASE_PATH . "/products");
         exit;
+    }
+
+    if($route === 'account') {
+        return view('account/account.register');
+    }
+
+    if ($route === 'account/register' && $method === 'GET') {
+        $controller = new UsersController(getPDO());
+        return $controller->showRegisterForm();
+    }
+
+    if ($route === 'account/register' && $method === 'POST') {
+        $controller = new UsersController(getPDO());
+        return $controller->register();
+    }
+
+    if (preg_match('#^account/profile/(\d+)$#', $route, $matches)) {
+        $id = (int)$matches[1];
+
+        $pdo = getPDO();
+        $controller = new UsersController($pdo);
+
+        return $controller->profile($id);
     }
 
     http_response_code(404);

@@ -3,16 +3,16 @@
 
     <div class="name-input-container">
         <label class="input-label" for="name">Nombre de usuario</label>
-        <input id="name" type="text" name="name" value="usuario" required>
+        <input id="name" type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
     </div>
     
     <div class="email-input-container">
-        <label class="input-label" for="email">Correo electrónico</label>
-        <input id="email" type="email" name="email" value="llucatero_23@alu.uabcs.mx" required>
+        <label class="input-label" for="correo">Correo electrónico</label>
+        <input id="correo" type="email" name="correo" value="<?= htmlspecialchars($user['correo']) ?>" required>
     </div>
 
     <div class="desc-container">
         <label class="input-label" for="description">Descripción</label>
-        <textarea name="description">hola soy un estudiante muy estudiantoso</textarea>
+        <textarea name="description"><?= htmlspecialchars($user['description']) ?></textarea>
     </div>
 </section>

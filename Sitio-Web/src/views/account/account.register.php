@@ -1,7 +1,7 @@
 <section class="create-account-section">
     <h3 class="product-title">🧶Por favor complete todos los campos:</h3>
 
-    <form class="create-account-form" action="?route=account" method="post">
+    <form class="create-account-form" action="<?= BASE_PATH ?>/account/register" method="post">
         <fieldset class="create-account-fieldset">
             <div class="name-input-container">
                 <label class="input-label" for="name">Nombre de usuario</label>
@@ -9,13 +9,18 @@
             </div>
             
             <div class="email-input-container">
-                <label class="input-label" for="email">Correo electrónico</label>
-                <input class="bordered-input" id="email" type="email" name="email" placeholder="Ejemplo@gmail.com" required>
+                <label class="input-label" for="correo">Correo electrónico</label>
+                <input class="bordered-input" id="correo" type="email" name="correo" placeholder="Ejemplo@gmail.com" required>
             </div>
             
             <div class="password-input-container">
                 <label class="input-label" for="password">Contraseña</label>
                 <input class="bordered-input" id="password" type="password" name="password" placeholder="Contraseña" required>
+            </div>
+
+            <div class="rol-input-container">
+                <label class="input-label" for="rol">Rol</label>
+                <input class="bordered-input" id="rol" type="text" name="rol" placeholder="Cliente" required>
             </div>
 
             <div class="desc-container">

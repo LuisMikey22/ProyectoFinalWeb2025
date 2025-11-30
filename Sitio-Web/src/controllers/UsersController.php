@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../Models/Users.php';
+require_once __DIR__ . '/../helpers/functions.php';
 
 class UsersController {
 
@@ -13,27 +14,30 @@ class UsersController {
         return view('account/account.register');
     }
 
-    public function store() {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: ?route=account');
-            exit;
-        }
-
+    public function register() {
         $data = [
             'user'        => $_POST['user'] ?? '',
             'correo'      => $_POST['correo'] ?? '',
-            'password'    => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT),
-            'rol'         => 'user',
+            'password'    => $_POST['password'] ?? '',
+            'rol'         => $_POST['rol'] ?? '',
             'description' => $_POST['description'] ?? ''
         ];
 
         $ok = $this->users->addUser($data);
 
-        if ($ok) {
-            header('Location: ?route=login&success=1');
-        } else {
-            header('Location: ?route=account&error=1');
+        if(!$ok){
+            return view("errors/500", ["msg"=>"Error al registrar usuario"]);
         }
-        exit;
+
+        return view("account/account.profile", ["user" => $data]);
     }
+
+    public function profile($id) {
+    $user = $this->users->view($id);
+
+    return view('account/account.profile', [
+        'user' => $user
+    ]);
+}
+
 }
