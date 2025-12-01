@@ -607,6 +607,11 @@ li:hover .nav-link-sub-list {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+.figure-shadow {
+    margin: auto 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  
+}
+
 .art-item-image-container img,
 .art-product-image-container img {
     display: inline;
@@ -624,6 +629,8 @@ li:hover .nav-link-sub-list {
     opacity: 70%;
     cursor: pointer;
 }
+
+
 
 .art-desc-container {
     width: 100%;
@@ -950,14 +957,9 @@ footer {
     content: "🧶";
 }
 
-.age-range-container,
-.desc-container,
-.email-input-container,
-.name-input-container,
 .text-input-container,
-.file-input-container,
-.password-input-container,
-.techniques-options-container {
+.file-input-container, 
+.desc-container {
     display: block;
     margin: 10px 5%;
     height: auto;
@@ -990,23 +992,12 @@ footer {
     padding: 10px;
     border: 1.7px solid var(--color-dark-blue);
     border-radius: var(--border-radius-16);
-    font-size: 12px;
+    font-size: 14px;
     color: var(--color-darker-blue);
 }
 
 .file-input-container .bordered-input {
     border-style: dashed;
-}
-
-.bordered-input:hover {
-    box-shadow: 0 2px 10px rgba(80, 130, 133, 0.5);
-    cursor: pointer;
-}
-
-.bordered-input:focus {
-    outline: var(--color-electric-blue);
-    border: 1.7px solid var(--color-electric-blue);
-    border-radius: var(--border-radius-16);
 }
 
 .desc-container .bordered-input {
@@ -1015,7 +1006,7 @@ footer {
     width: 100%;
     margin: 10px 0 0;
     padding: 8px;
-    font-size: 12px;
+    font-size: 14px;
     font-family: var(--font-secondary);
     columns: 50;
     border: 1.7px solid var(--color-dark-blue);
@@ -1023,10 +1014,23 @@ footer {
     resize: none;
 }
 
-.product-section .bordered-input,
-.profile-section .bordered-input {
-    font-size: 16px;
+.bordered-input:hover {
+    box-shadow: 0 2px 10px rgba(80, 130, 133, 0.5);
+    cursor: pointer;
 }
+
+.bordered-input:focus, .desc-container .bordered-input:focus {
+    outline: var(--color-electric-blue);
+    border: 1.7px solid var(--color-electric-blue);
+    border-radius: var(--border-radius-16);
+}
+
+.file-input-container .bordered-input:focus {
+    outline: var(--color-electric-blue);
+    border: 1.7px dashed var(--color-electric-blue);
+    border-radius: var(--border-radius-16);
+}
+
 
 .small-link {
     display: flex;

@@ -9,7 +9,7 @@
     <form action="<?= BASE_PATH ?>/products/update/<?= $product->id ?>" method="POST" enctype="multipart/form-data" class="create-product-form">
         <fieldset class="product-fieldset">
             <!-- Nombre -->
-            <div class="name-input-container">
+            <div class="text-input-container">
                 <label class="input-label" for="name">Nombre</label>
                 <input class="bordered-input" type="text" name="name" value="<?= htmlspecialchars($product->name) ?>" required>
             </div>
@@ -23,7 +23,7 @@
             <!-- Precio -->
             <div class="text-input-container">
                 <label class="input-label" for="price">Precio</label>
-                <input class="bordered-input" type="number" step="0.01" name="price" value="<?= htmlspecialchars($product->price) ?>" required>
+                <input class="bordered-input" type="number" step="0.01" min="0" name="price" value="<?= htmlspecialchars($product->price) ?>" required>
             </div>
 
             <!-- Descripción -->

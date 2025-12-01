@@ -3,7 +3,7 @@
 
     <form action="<?= BASE_PATH ?>/products/create"method="POST" enctype="multipart/form-data" class="create-product-form">
         <fieldset class="product-fieldset">
-            <div class="name-input-container">
+            <div class="text-input-container">
                 <label class="input-label" for="name">Nombre</label>
                 <input class="bordered-input" type="text" name="name" required>
             </div>
@@ -15,8 +15,8 @@
 
             <div class="text-input-container"> 
                 <label class="input-label" for="price">Precio</label>
-                <input class="bordered-input" type="number" step="0.01" name="price" class="input input-bordered w-full" required>
-            </div class="name-input-container">
+                <input class="bordered-input" type="number" step="0.01" min="0" name="price" class="input input-bordered w-full" required>
+            </div>
 
             <div class="desc-container">
                 <label class="input-label" for="description">Descripción</label>

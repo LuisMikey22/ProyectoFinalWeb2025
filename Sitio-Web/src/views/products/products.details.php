@@ -8,9 +8,8 @@
             gap-12 lg:gap-20 p-8 product-container">
 
         <figure class="flex items-center justify-center 
-                lg:w-[50%] w-fit h-fit mx-auto lg:mx-0 
-                shadow-lg rounded-3xl bg-white"
-                style="margin: auto 0;">
+                lg:w-[50%] w-fit h-fit mx-auto lg:mx-0
+                rounded-3xl bg-white figure-shadow">
             
             <img class="w-full h-full object-contain rounded-3xl" 
                 src="<?=ASSETS_PATH?>/images/<?=$product->image?>" 
