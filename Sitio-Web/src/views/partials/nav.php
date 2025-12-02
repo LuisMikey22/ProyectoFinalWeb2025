@@ -99,7 +99,7 @@
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
                     <button class="account-button" title="Perfil"><a href="<?= $urlDestino ?>"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
-                    <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/products"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
+                    <button class="cart-button" title="Bolsa de compras"><a href="<?=BASE_PATH?>/products"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>
 
