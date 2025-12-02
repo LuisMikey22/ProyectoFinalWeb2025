@@ -1,9 +1,3 @@
-<?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-?>
-
 <?php 
     $urlDestino = isset($_SESSION['user_id']) 
         ? BASE_PATH . "/account/profile/" . $_SESSION['user_id']   // manda al perfil

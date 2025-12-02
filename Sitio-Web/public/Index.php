@@ -1,4 +1,8 @@
-<?php 
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     require __DIR__ . '/../src/helpers/functions.php';
     include __DIR__.'/../src/controllers/UsersController.php';
     include __DIR__.'/../src/Models/Product.php';
@@ -206,6 +210,11 @@
     if ($route === 'login' && $method === 'POST') {
         $controller = new UsersController(getPDO());
         return $controller->logIn();
+    }
+
+    if ($route === 'logout' && $method === 'GET') {
+        $controller = new UsersController(getPDO());
+        return $controller->logout();
     }
 
     http_response_code(404);

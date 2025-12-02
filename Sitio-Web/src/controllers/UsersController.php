@@ -33,10 +33,21 @@ class UsersController {
             return view("errors/500", ["msg"=>"Error al registrar usuario"]);
         }
 
-        return view("account/account.profile", ["user" => $data]);
+        $user = $this->users->findByEmail($data['correo']);
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['user_id'] = $user->id;
+
+        return view("account/account.profile", ["user" => $user]);
     }
 
     public function logIn() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $correo = $_POST['correo'] ?? '';
         $password = $_POST['password'] ?? '';
 
@@ -49,6 +60,23 @@ class UsersController {
         $_SESSION['user_id'] = $user->id;
 
         return view('account/account.profile', ["user" => $user]);
+    }
+
+    public function logout() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        $_SESSION = array();
+        
+        if (isset($_COOKIE[session_name()])) {
+            setcookie(session_name(), '', time()-3600, '/');
+        }
+        
+        session_destroy();
+        
+        header('Location: ' . BASE_PATH);
+        exit();
     }
 
     public function profile($id) {
