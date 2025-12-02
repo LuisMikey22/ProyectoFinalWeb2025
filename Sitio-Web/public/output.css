@@ -1701,6 +1701,9 @@ footer {
   flex-direction: row;
   margin: auto auto auto 0;
 }
+.product-action-container .image-link:hover {
+  opacity: 70%;
+}
 .operation-container {
   display: flex;
   width: 50%;

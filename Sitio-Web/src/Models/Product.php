@@ -78,10 +78,9 @@
 
                 $sql = "
                     SELECT * FROM products 
-                    WHERE 
+                        WHERE 
                         LOWER(name)        LIKE :search OR
                         LOWER(description) LIKE :search OR
-                        LOWER(category)    LIKE :search
                      ";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute(['search' => $search]);
