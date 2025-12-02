@@ -16,7 +16,7 @@
         <textarea name="description"><?= isset($user->description) ? htmlspecialchars($user->description) : '' ?></textarea>
     </div>
 
-    <a href="<?=BASE_PATH?>logout">
+    <a href="<?=BASE_PATH?>/logout">
         <button class="action-button" type= "button">Cerrar sesión</button>
     </a>
 </section>
