@@ -33,6 +33,6 @@
 
     <!-- Botón para volver al detalle normal -->
     <a href="<?= BASE_PATH ?>/products/<?= $product->id ?>">
-        <button class="action-button" type="submit">Volver a vista de detalles</button>
+        <button class="action-button" type="submit">Ir a vista de detalles</button>
     </a>
 </section>

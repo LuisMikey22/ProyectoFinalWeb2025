@@ -26,4 +26,5 @@
             <p class="text-teal-950 font-semibold mt-4"><?=$product->description?></p>
         </div>
     </div>
+
 </section>

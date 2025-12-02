@@ -16,6 +16,14 @@
         return view('search/index');
     }
 
+    if($route === 'admin') {
+        if($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $products = $productModel->all(); 
+            return view('admin/products.index', ['products' => $products]);
+        }
+    }
+
     if($route === 'products') {
         if($method === 'GET') {
             $productModel = new Product(getPDO());

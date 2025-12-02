@@ -81,6 +81,13 @@
                             <li><a>Vidrio</a></li>
                         </ul>
                     </li>
+
+                    <li><a><b>Admin</b></a>
+                        <ul class="nav-link-sub-list">
+                            <li><a href="<?=BASE_PATH?>/admin">Productos</a></li>
+                            <li><a>Usuarios</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 
                 <div class="nav-button-bar">
@@ -91,4 +98,6 @@
             </nav>
 
             <div class="nav-decoration-line"></div>
+
+            <div class="breadcrumbs max-w-xs text-sm">
         </header>
