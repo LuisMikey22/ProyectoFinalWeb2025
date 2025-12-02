@@ -2,7 +2,6 @@
     require __DIR__ . '/../src/helpers/functions.php';
     include __DIR__.'/../src/controllers/UsersController.php';
     include __DIR__.'/../src/Models/Product.php';
-    include __DIR__.'/../src/Models/User.php';
 
     // Obtener ruta limpia desde $_GET['route']
     $route = trim($_GET['route'] ?? '', '/');
@@ -201,6 +200,16 @@
         $controller = new UsersController($pdo);
 
         return $controller->profile($id);
+    }
+
+    if ($route === 'login' && $method === 'GET') {
+        $controller = new UsersController(getPDO());
+        return $controller->showLoginForm();
+    }
+
+    if ($route === 'login' && $method === 'POST') {
+        $controller = new UsersController(getPDO());
+        return $controller->logIn();
     }
 
     http_response_code(404);

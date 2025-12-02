@@ -4,8 +4,8 @@
     <form class="create-account-form" action="<?= BASE_PATH ?>/account/register" method="post">
         <fieldset class="create-account-fieldset">
             <div class="text-input-container">
-                <label class="input-label" for="name">Nombre de usuario</label>
-                <input class="bordered-input" id="name" type="text" name="name" placeholder="Usuario" required>
+                <label class="input-label" for="user">Nombre de usuario</label>
+                <input class="bordered-input" id="user" type="text" name="user" placeholder="Usuario" required>
             </div>
             
             <div class="text-input-container">
