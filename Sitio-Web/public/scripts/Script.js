@@ -1,4 +1,6 @@
 const searchBarCont = document.getElementById("search-bar-container");
+const searchBarForm = document.getElementById("search-bar-form");
+
 const searchBarButton = document.getElementById("search-bar-button");
 const searchBarInput = document.getElementById("search-bar-input");
 const closeButton = document.getElementById("close-button");
@@ -25,7 +27,7 @@ document.querySelectorAll('.item-container').forEach(container => {
             currentIndex = 0;
         }
 
-        updateTransform(carouselCards, currentIndex, container);
+        updateTransform(carouselCards, currentIndex);
     });
 
     previousElButton.addEventListener('click', () => {
@@ -35,12 +37,12 @@ document.querySelectorAll('.item-container').forEach(container => {
             currentIndex = totalCarouselCards - 1;
         }
 
-        updateTransform(carouselCards, currentIndex, container);
+        updateTransform(carouselCards, currentIndex);
     });
 });
 
-function updateTransform(cards, currentIndex, container) {
-    cards.forEach((card, index) => {
+function updateTransform(cards, currentIndex) {
+    cards.forEach((card) => {
         const offset = -currentIndex * card.offsetWidth;
         card.style.transform = `translateX(${offset}px)`;
     });
@@ -52,19 +54,13 @@ searchButton.addEventListener('click', function() {
     menuToggle.checked = false;
     menuButtonImage.src = `${ASSETS_PATH}/images/menuIcon.svg`;
 
-    if(searchBarCont.classList = "search-bar-container-visible") {
-        searchBarInput.focus();
-    }
+    searchBarInput.focus();
 });
 
-searchBarButton.addEventListener('click', function() {
-    if(searchBarInput.value!=="") {
-        const searchBarInput = document.getElementById("search-bar-input");
-        window.location = `${BASE_PATH}/search/${searchBarInput.value}`;
-    }
-    //window.location.pathname = `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`;
-    //window.history.pushState(null, null, `${SRC_PATH}/views/searchResult.php/${searchBarInput.value}`);
-    //$(window).bind("popstate", function(e) { alert("location changed"); });
+
+searchBarButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Evita el envío normal
+    redirect();
 });
 
 closeButton.addEventListener('click', function() {
@@ -79,33 +75,30 @@ menuToggle.addEventListener('change', function() {
     }
 });
 
-searchBarInput.addEventListener('keydown', function(e) {
+searchBarForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita el envío normal
+    redirect();
+});
+
+
+searchBarInput.addEventListener('keydown', function(event) {
     let pressedKey = e.key;
     e.preventDefault();
 
-    switch(pressedKey) {
-        default:
-            searchBarInput.value += pressedKey;
-        break;
-
-        case 'Backspace':
-            //eliminar último caracter
-            let operation = searchBarInput.value.substring(0, searchBarInput.value.length-1); 
-            searchBarInput.value = operation;
-        break;
-        
-        case 'Enter':
-            if(searchBarInput.value!=="") {
-                window.location = `${BASE_PATH}/search/${encodeURIComponent(searchBarInput.value)}`;
-            }
-        break;
+    if(pressedKey === 'Enter') {
+        event.preventDefault(); // Evita el envío normal
+        redirect();
     }
 });
 
-searchBarCont.addEventListener('submit', function(e) {
-    this.action = "<?=BASE_PATH?>/search/" + encodeURIComponent(searchBarInput.value);
-});
+function redirect() {
+    const q = searchBarInput.value.trim();
 
+    if(q!=="") {
+        // Redirige con la URL deseada
+        window.location.href = `${BASE_PATH}/search/${encodeURIComponent(q)}`;
+    }
+}
 
 /*
 window.addEventListener('load', () => {

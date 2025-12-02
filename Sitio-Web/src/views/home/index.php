@@ -1,4 +1,3 @@
-
 <section class="home-info">
     <h1 class="home-title">Estambres de Calidad</h1>
     

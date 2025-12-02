@@ -38,12 +38,12 @@
                         
             <nav>
                 <div id="search-bar-container" class="search-bar-container-hidden">
-                    <form class="search-bar-input-container" action="<?=BASE_PATH?>/products" method="get">
+                    <form id="search-bar-form" class="search-bar-form" action="<?=BASE_PATH?>/search" method="get">
                         <button id="search-bar-button" class="search-bar-button" type="submit" title="Buscar">
                             <img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search">
                         </button>
 
-                        <input id="search-bar-input" class="search-bar-input" type="text" placeholder="Buscar" required>
+                        <input id="search-bar-input" class="search-bar-input" name="q" type="text" placeholder="Buscar" required>
 
                         <button id="close-button" class="close-button" type="button" name="close" title="Cerrar">
                             <img src="<?=ASSETS_PATH?>/images/closeIconDark.svg" alt="close">

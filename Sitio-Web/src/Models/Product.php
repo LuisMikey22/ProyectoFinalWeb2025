@@ -15,9 +15,7 @@
         public function all() {
             try {
                 $sql = "SELECT * FROM products";
-
                 $stmt = $this->pdo->query($sql);
-
                 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 $products = [];
@@ -69,6 +67,44 @@
             }
         }
 
+        public function search($searchValue) {
+            if(trim($searchValue) === '') {
+                return [];
+            }
+
+            try {
+                // Preparar la búsqueda con comodines
+                $search = '%' . $searchValue . '%';
+
+                $sql = "
+                    SELECT * FROM products 
+                    WHERE 
+                        LOWER(name)        LIKE :search OR
+                        LOWER(description) LIKE :search OR
+                        LOWER(category)    LIKE :search
+                     ";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute(['search' => $search]);
+
+                // Devolver objetos Product automáticamente
+                $stmt->setFetchMode(PDO::FETCH_CLASS, Product::class);
+                $foundProducts = $stmt->fetchAll();
+
+                $foundQuantity = count($foundProducts);
+
+                return [
+                    'query' => $searchValue,
+                    'count' => $foundQuantity,
+                    'products' => $foundProducts
+                ];
+
+            }catch(PDOException $e) {
+                error_log("Error en search(): " . $e->getMessage());
+                return [];
+            }
+        }
+
+
         /*public function search($id) {
             if(!is_numeric($id) || $id <= 0) {
                 return null;
@@ -94,7 +130,7 @@
         }*/
 
         public function deleteProduct($id) {
-            if (!is_numeric($id) || $id <= 0) {
+            if(!is_numeric($id) || $id <= 0) {
                 return false;
             }
 
@@ -103,7 +139,7 @@
                 $stmt = $this->pdo->prepare($sql);
                 return $stmt->execute(['id' => $id]);
 
-            } catch (PDOException $e) {
+            }catch(PDOException $e) {
                 error_log("Error al eliminar producto: " . $e->getMessage());
                 return false;
             }
@@ -124,14 +160,14 @@
                 'price'        => $data['price']
                 ]);
 
-            } catch (PDOException $e) {
+            }catch(PDOException $e) {
                 error_log("Error al agregar producto: " . $e->getMessage());
                 return false;
             }
         }
 
         public function updateProduct($id, $data) {
-            if (!is_numeric($id) || $id <= 0) {
+            if(!is_numeric($id) || $id <= 0) {
                 return false;
             }
 
@@ -155,7 +191,7 @@
                     'id'          => $id
                 ]);
 
-            } catch (PDOException $e) {
+            }catch(PDOException $e) {
                 error_log("Error al actualizar producto: " . $e->getMessage());
                 return false;
             }

@@ -11,10 +11,6 @@
         return view('home/index');
     }
 
-    if($route === 'search') {
-        return view('search/index');
-    }
-
     if($route === 'admin') {
         if($method === 'GET') {
             $productModel = new Product(getPDO());
@@ -31,6 +27,16 @@
         }
     }
 
+    if(preg_match('#^search/(.+)$#', $route, $matches)) {
+        $searchQuery = filter_var($matches[1], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $searchResult = $productModel->search($searchQuery);
+            return view('search/products.search', ['search' => $searchResult]);
+        }
+    }
+
     if(preg_match('#^products/(\d+)$#', $route, $matches)) {
         $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
 
@@ -38,16 +44,6 @@
             $productModel = new Product(getPDO());
             $product = $productModel->find($productId);
             return view('products/products.details', ['product' => $product]);
-        }
-    }
-
-    if(preg_match('#^search/(\d+)$#', $route, $matches)) {
-        $searchId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
-
-        if($method === 'GET') {
-            $searchModel = new Product(getPDO());
-            $search = $searchModel->search($searchId);
-            return view('search/search.index', ['search' => $search]);
         }
     }
 
