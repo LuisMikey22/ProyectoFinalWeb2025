@@ -1,7 +1,7 @@
 <section class="login-account-section">
     <h3 class="product-title">Iniciar sesión</h3>
 
-    <form class="login-account-form" action="<?=BASE_PATH?>/products" method="post">
+    <form class="login-account-form" action="<?=BASE_PATH?>/login" method="post">
         <fieldset class="login-account-fieldset">
            <div class="email-input-container">
                 <label class="input-label" for="email">Email</label>
@@ -16,7 +16,7 @@
             <a class="small-link" href="#">¿Olvidaste tu contraseña?</a>
 
             <div class="action-container">
-                <a class="small-link" href="<?=BASE_PATH?>/products/account.register.php">¿Aún no te has registrado? Crea una cuenta</a>
+                <a class="small-link" href="<?=BASE_PATH?>/account/account.register.php">¿Aún no te has registrado? Crea una cuenta</a>
                 <button class="action-button" type="submit">Iniciar sesión</button>
             </div>
         </fieldset>

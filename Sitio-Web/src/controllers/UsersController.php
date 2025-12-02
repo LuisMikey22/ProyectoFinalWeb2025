@@ -14,6 +14,10 @@ class UsersController {
         return view('account/account.register');
     }
 
+    public function showLoginForm(){
+        return view('account/account.login');
+    }
+
     public function register() {
         $data = [
             'user'        => $_POST['user'] ?? '',
@@ -32,12 +36,27 @@ class UsersController {
         return view("account/account.profile", ["user" => $data]);
     }
 
-    public function profile($id) {
-    $user = $this->users->view($id);
+    public function logIn() {
+        $correo = $_POST['correo'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-    return view('account/account.profile', [
-        'user' => $user
-    ]);
-}
+        $user = $this->users->findByEmail($correo);
+
+        if(!$user || $user->password !== $password){
+            return view('account/account.login', ["error" => "Credenciales incorrectas"]);
+        }
+
+        $_SESSION['user_id'] = $user->id;
+
+        return view('account/account.profile', ["user" => $user]);
+    }
+
+    public function profile($id) {
+        $user = $this->users->view($id);
+
+        return view('account/account.profile', [
+            'user' => $user
+        ]);
+    }
 
 }

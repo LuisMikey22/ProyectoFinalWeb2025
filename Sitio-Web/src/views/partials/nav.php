@@ -1,3 +1,15 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
+<?php 
+    $urlDestino = isset($_SESSION['user_id']) 
+        ? BASE_PATH . "/account/profile" . $_SESSION['user_id']   // manda al perfil
+        : BASE_PATH . "/account/register";                    // manda al registro o login
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -92,7 +104,7 @@
                 
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                    <button class="account-button" title="Crear Cuenta"><a href="<?=BASE_PATH?>/account"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
+                    <button class="account-button" title="Perfil"><a href="<?= $urlDestino ?>"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
                     <button class="cart-button" title="Tienda"><a href="<?=BASE_PATH?>/products"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>

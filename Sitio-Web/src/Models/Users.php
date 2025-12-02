@@ -69,6 +69,25 @@
             }
         }
 
+        public function findByEmail($correo) {
+            $sql = "SELECT * FROM users WHERE correo = :correo LIMIT 1";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['correo' => $correo]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row) return null;
+
+            $user = new Users($this->pdo);
+            $user->id = $row['id'];
+            $user->user = $row['user'];
+            $user->correo = $row['correo'];
+            $user->password = $row['password'];
+            $user->rol = $row['rol'];
+            $user->description = $row['description'];
+
+            return $user;
+        }
+
         public function deleteUser($id) {
             if (!is_numeric($id) || $id <= 0) {
                 return false;
