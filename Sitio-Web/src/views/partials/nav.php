@@ -6,7 +6,7 @@
 
 <?php 
     $urlDestino = isset($_SESSION['user_id']) 
-        ? BASE_PATH . "/account/profile" . $_SESSION['user_id']   // manda al perfil
+        ? BASE_PATH . "/account/profile/" . $_SESSION['user_id']   // manda al perfil
         : BASE_PATH . "/account/register";                    // manda al registro o login
 ?>
 
