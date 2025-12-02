@@ -1,7 +1,12 @@
-<?php 
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     require __DIR__ . '/../src/helpers/functions.php';
     include __DIR__.'/../src/controllers/UsersController.php';
     include __DIR__.'/../src/Models/Product.php';
+    require __DIR__ . '/../src/helpers/auth.php';
 
     // Obtener ruta limpia desde $_GET['route']
     $route = trim($_GET['route'] ?? '', '/');
@@ -12,6 +17,8 @@
     }
 
     if($route === 'admin') {
+        requireAdmin();
+
         if($method === 'GET') {
             $productModel = new Product(getPDO());
             $products = $productModel->all(); 
@@ -48,6 +55,8 @@
     }
 
     if (preg_match('#^products/mod/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
         $id = (int)$matches[1];
 
         if ($method === 'GET') {
@@ -58,7 +67,9 @@
     }
 
     if (preg_match('#^products/update/(\d+)$#', $route, $matches)) {
-    $id = (int)$matches[1];
+        requireAdmin();
+    
+        $id = (int)$matches[1];
 
         if ($method === 'POST') {
 
@@ -107,6 +118,8 @@
     }
 
     if (preg_match('#^products/delete/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
         $id = (int)$matches[1];
 
         if ($method === 'GET') {
@@ -134,10 +147,12 @@
     }
 
     if ($route === 'products/add' && $method === 'GET') {
+        requireAdmin();
         return view('products/products.add');
     }
 
     if ($route === 'products/create' && $method === 'POST') {
+        requireAdmin();
 
         $productModel = new Product(getPDO());
 
@@ -190,6 +205,8 @@
     }
 
     if (preg_match('#^account/profile/(\d+)$#', $route, $matches)) {
+        requireLogin();
+        
         $id = (int)$matches[1];
 
         $pdo = getPDO();
@@ -206,6 +223,11 @@
     if ($route === 'login' && $method === 'POST') {
         $controller = new UsersController(getPDO());
         return $controller->logIn();
+    }
+
+    if ($route === 'logout' && $method === 'GET') {
+        $controller = new UsersController(getPDO());
+        return $controller->logout();
     }
 
     http_response_code(404);

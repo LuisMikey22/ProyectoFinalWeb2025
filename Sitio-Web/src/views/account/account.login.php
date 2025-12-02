@@ -3,11 +3,11 @@
 
     <form class="login-account-form" action="<?=BASE_PATH?>/login" method="post">
         <fieldset class="login-account-fieldset">
-           <div class="text-input-container">
+            <div class="text-input-container">
                 <label class="input-label" for="email">Email</label>
                 <input class="bordered-input" id="email" type="email" name="email" placeholder="Ejemplo@gmail.com" required>
             </div>
-
+            
             <div class="text-input-container">
                 <label class="input-label" for="password">Contraseña</label>
                 <input class="bordered-input" id="password" type="password" name="password" placeholder="Contraseña" required>
