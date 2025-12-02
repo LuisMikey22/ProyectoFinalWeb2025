@@ -1016,7 +1016,7 @@ nav {
   top: 0;
   left: 0;
 }
-.search-bar-input-container {
+.search-bar-form {
   position: relative;
   display: flex;
   height: auto;
@@ -1876,7 +1876,7 @@ footer {
   nav {
     padding: 3% 5%;
   }
-  .search-bar-input-container {
+  .search-bar-form {
     width: 80%;
     height: 70%;
     margin: auto auto 0.3rem auto;

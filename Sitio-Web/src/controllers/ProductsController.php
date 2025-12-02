@@ -3,10 +3,8 @@
 require_once __DIR__ . '/../Models/Product.php';
 require_once __DIR__ . '/../helpers/functions.php';
 
-class ProductsController
-{
-    public function index()
-    {
+class ProductsController {
+    public function index() {
         $productModel = new Product(getPDO());
         $products = $productModel->all();
 
@@ -15,8 +13,7 @@ class ProductsController
         ]);
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         $productModel = new Product(getPDO());
         $product = $productModel->find($id);
 
@@ -25,8 +22,7 @@ class ProductsController
         ]);
     }
 
-    public function mod($id)
-    {
+    public function mod($id) {
         $productModel = new Product(getPDO());
         $product = $productModel->find($id);
 
@@ -35,8 +31,7 @@ class ProductsController
         ]);
     }
 
-    public function update($id)
-    {
+    public function update($id) {
         $productModel = new Product(getPDO());
 
         $data = [
@@ -47,7 +42,7 @@ class ProductsController
             'image'       => $_POST['old_image'] ?? ''
         ];
 
-        if (!empty($_FILES['image']['name'])) {
+        if(!empty($_FILES['image']['name'])) {
             $filename = time() . "_" . basename($_FILES['image']['name']);
             $path = __DIR__ . "/../../public/assets/images/" . $filename;
 
@@ -61,9 +56,8 @@ class ProductsController
         exit;
     }
 
-    public function delete($id)
-    {
-        if (!is_numeric($id) || $id <= 0) {
+    public function delete($id) {
+        if(!is_numeric($id) || $id <= 0) {
             $mensaje = "ID inválido.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
             return;
@@ -71,23 +65,21 @@ class ProductsController
 
         $result = $this->model->deleteProduct($id);
 
-        if ($result) {
+        if($result) {
             $mensaje = "Producto eliminado correctamente.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
-        } else {
+        }else {
             $mensaje = "Error al eliminar el producto.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
         }
     }
 
-    public function add()
-    {
+    public function add() {
         include ROOT_PATH . "/Sitio-Web/views/products/products.add.php";
     }
 
-    public function create()
-    {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    public function create() {
+        if($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $mensaje = "Método no permitido.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
             return;
@@ -103,10 +95,10 @@ class ProductsController
 
         $result = $this->model->addProduct($data);
 
-        if ($result) {
+        if($result) {
             $mensaje = "Producto agregado correctamente.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
-        } else {
+        }else {
             $mensaje = "Error al agregar producto.";
             include ROOT_PATH . "/Sitio-Web/views/products/products.update.php";
         }
