@@ -1,7 +1,7 @@
 <?php
-    $searchValue = $searchResult->query;
-    $foundQuantity = $searchResult->count;
-    $foundProducts = $searchResult->products;
+    $searchValue = $searchResult[0];
+    $foundQuantity = $searchResult[1];
+    $foundProducts = end($searchResult);
 ?>
 
 <section class="search-art">

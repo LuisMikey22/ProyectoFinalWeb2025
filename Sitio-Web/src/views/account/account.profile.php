@@ -7,8 +7,8 @@
     </div>
     
     <div class="email-input-container">
-        <label class="input-label" for="correo">Correo electrónico</label>
-        <input id="correo" type="email" name="correo" value="<?= htmlspecialchars($user->correo ?? '') ?>" required>
+        <label class="input-label" for="email">Email</label>
+        <input id="email" type="email" name="email" value="<?= htmlspecialchars($user->email ?? '') ?>" required>
     </div>
 
     <div class="desc-container">

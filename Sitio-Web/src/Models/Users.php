@@ -3,7 +3,7 @@
         private PDO $pdo;
         public $id;
         public $user;
-        public $correo;
+        public $email;
         public $password;
         public $rol;
         public $description;
@@ -26,7 +26,7 @@
                     $user = new Users($this->pdo);
                     $user->id = $row['id'];
                     $user->user = $row['user'];
-                    $user->correo = $row['correo'];
+                    $user->email = $row['email'];
                     $user->password = $row['password'];
                     $user->rol = $row['rol'];
                     $user->description = $row['description'];
@@ -57,7 +57,7 @@
 
                 $this->id = $userDetails['id'];
                 $this->user = $userDetails['user'];
-                $this->correo = $userDetails['correo'];
+                $this->email = $userDetails['email'];
                 $this->password = $userDetails['password'];
                 $this->rol = $userDetails['rol'];
                 $this->description = $userDetails['description'];
@@ -69,10 +69,10 @@
             }
         }
 
-        public function findByEmail($correo) {
-            $sql = "SELECT * FROM users WHERE correo = :correo LIMIT 1";
+        public function findByEmail($email) {
+            $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['correo' => $correo]);
+            $stmt->execute(['email' => $email]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if(!$row) return null;
@@ -80,7 +80,7 @@
             $user = new Users($this->pdo);
             $user->id = $row['id'];
             $user->user = $row['user'];
-            $user->correo = $row['correo'];
+            $user->email = $row['email'];
             $user->password = $row['password'];
             $user->rol = $row['rol'];
             $user->description = $row['description'];
@@ -106,14 +106,14 @@
 
         public function addUser($data) {
             try {
-                $sql = "INSERT INTO users (user, correo, password, rol, description) 
-                        VALUES (:user, :correo, :password, :rol, :description)";
+                $sql = "INSERT INTO users (user, email, password, rol, description) 
+                        VALUES (:user, :email, :password, :rol, :description)";
 
                 $stmt = $this->pdo->prepare($sql);
 
                 return $stmt->execute([
                 'user'        => $data['user'],
-                'correo'      => $data['correo'],
+                'email'      => $data['email'],
                 'password'    => $data['password'],
                 'rol'         => $data['rol'],
                 'description' => $data['description']
@@ -133,7 +133,7 @@
             try {
                 $sql = "UPDATE users 
                         SET user = :user, 
-                            correo = :correo, 
+                            email = :email, 
                             password = :password, 
                             rol = :rol, 
                             description = :description
@@ -143,7 +143,7 @@
 
                 return $stmt->execute([
                     'user'        => $data['user'],
-                    'correo'      => $data['correo'],
+                    'email'      => $data['email'],
                     'password'    => $data['password'], // puedes usar password_hash() si quieres
                     'rol'         => $data['rol'],
                     'description' => $data['description'],

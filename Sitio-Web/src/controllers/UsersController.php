@@ -21,7 +21,7 @@ class UsersController {
     public function register() {
         $data = [
             'user'        => $_POST['user'] ?? '',
-            'correo'      => $_POST['correo'] ?? '',
+            'email'      => $_POST['email'] ?? '',
             'password'    => $_POST['password'] ?? '',
             'rol'         => $_POST['rol'] ?? '',
             'description' => $_POST['description'] ?? ''
@@ -33,7 +33,7 @@ class UsersController {
             return view("errors/500", ["msg"=>"Error al registrar usuario"]);
         }
 
-        $user = $this->users->findByEmail($data['correo']);
+        $user = $this->users->findByEmail($data['email']);
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -48,10 +48,10 @@ class UsersController {
             session_start();
         }
 
-        $correo = $_POST['correo'] ?? '';
+        $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $user = $this->users->findByEmail($correo);
+        $user = $this->users->findByEmail($email);
 
         if(!$user || $user->password !== $password){
             return view('account/account.login', ["error" => "Credenciales incorrectas"]);
@@ -114,7 +114,7 @@ class UsersController {
     public function createUser() {
         $data = [
             'user'        => $_POST['user'] ?? '',
-            'correo'      => $_POST['correo'] ?? '',
+            'email'      => $_POST['email'] ?? '',
             'password'    => $_POST['password'] ?? '',
             'rol'         => $_POST['rol'] ?? 'user',
             'description' => $_POST['description'] ?? ''
@@ -151,7 +151,7 @@ class UsersController {
 
         $data = [
             'user'        => $_POST['user'] ?? $user->user,
-            'correo'      => $_POST['correo'] ?? $user->correo,
+            'email'      => $_POST['email'] ?? $user->email,
             'rol'         => $_POST['rol'] ?? $user->rol,
             'description' => $_POST['description'] ?? $user->description,
             'password'    => $user->password

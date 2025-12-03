@@ -10,8 +10,8 @@
         <label>Nombre:</label>
         <input type="text" name="user" value="<?= $user['user'] ?>" style="display:block; margin-bottom:20px; padding:8px;">
 
-        <label>Correo:</label>
-        <input type="email" name="correo" value="<?= $user['correo'] ?>" style="display:block; margin-bottom:20px; padding:8px;">
+        <label>Email:</label>
+        <input type="email" name="email" value="<?= $user['email'] ?>" style="display:block; margin-bottom:20px; padding:8px;">
 
         <button type="submit">Guardar</button>
 

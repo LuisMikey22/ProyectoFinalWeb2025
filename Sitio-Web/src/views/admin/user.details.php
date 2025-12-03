@@ -18,8 +18,8 @@
             
             <div class="flex flex-col gap-4">
                 <div>
-                    <p class="text-sm text-teal-700 font-semibold">Correo Electrónico:</p>
-                    <p class="text-lg text-teal-950"><?=$user->correo?></p>
+                    <p class="text-sm text-teal-700 font-semibold">Email:</p>
+                    <p class="text-lg text-teal-950"><?=$user->email?></p>
                 </div>
 
                 <?php if(isset($user->password)) : ?>
