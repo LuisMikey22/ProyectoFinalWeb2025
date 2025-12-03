@@ -16,20 +16,14 @@
         return view('home/index');
     }
 
-    if($route === 'admin') {
+    if($route === 'admin/products') {
         requireAdmin();
 
         if($method === 'GET') {
             $productModel = new Product(getPDO());
             $products = $productModel->all(); 
-            return view('admin/products.index', ['products' => $products]);
+            return view('admin/products.index', compact('products'));
         }
-    }
-
-    if ($route === 'admin/products') {
-        $controller = new ProductsController();
-        $products = $controller->index();
-        return view('admin/products.index', compact('products'));
     }
 
 
@@ -47,7 +41,7 @@
         if($method === 'GET') {
             $productModel = new Product(getPDO());
             $searchResult = $productModel->search($searchQuery);
-            return view('search/products.search', ['searchResult' => $searchResult]);
+            return view('search/products.search', compact('searchResult'));
         }
     }
 
