@@ -53,7 +53,7 @@ class UsersController {
 
         $user = $this->users->findByEmail($email);
 
-        if(!$user || $user->password !== $password){
+        if(!$user || !password_verify($password, $user->password)){
             return view('account/account.login', ["error" => "Credenciales incorrectas"]);
         }
 

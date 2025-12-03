@@ -47,7 +47,7 @@
         if($method === 'GET') {
             $productModel = new Product(getPDO());
             $searchResult = $productModel->search($searchQuery);
-            return view('search/products.search', ['search' => $searchResult]);
+            return view('search/products.search', ['searchResult' => $searchResult]);
         }
     }
 
