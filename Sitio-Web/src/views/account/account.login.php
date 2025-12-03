@@ -1,3 +1,14 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION['login_error'])) {
+        echo '<div class="alert alert-danger">'.$_SESSION['login_error'].'</div>';
+        unset($_SESSION['login_error']);
+    }
+?>
+
 <section class="login-account-section">
     <h3 class="product-title">Iniciar sesión</h3>
 

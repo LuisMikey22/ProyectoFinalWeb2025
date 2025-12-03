@@ -9,8 +9,8 @@
             </div>
             
             <div class="text-input-container">
-                <label class="input-label" for="correo">Correo electrónico</label>
-                <input class="bordered-input" id="correo" type="email" name="correo" placeholder="Ejemplo@gmail.com" required>
+                <label class="input-label" for="email">Correo electrónico</label>
+                <input class="bordered-input" id="email" type="email" name="email" placeholder="Ejemplo@gmail.com" required>
             </div>
             
             <div class="text-input-container">
