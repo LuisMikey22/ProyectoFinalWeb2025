@@ -43,24 +43,33 @@ class UsersController {
         return view("account/account.profile", ["user" => $user]);
     }
 
-    public function logIn() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+    public function logIn(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            $user = $this->users->findByEmail($email);
+
+            if ($user && password_verify($password, $user->password)) {
+
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                $_SESSION['user_id'] = $user->id;
+                $_SESSION['rol'] = $user->rol;
+
+                header("Location: " . BASE_PATH . "/account/profile/" . $user->id);
+                exit();
+            }
+
+            $_SESSION['login_error'] = "Credenciales incorrectas.";
+
+            header("Location: " . BASE_PATH . "/login");
+            exit();
         }
-
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        $user = $this->users->findByEmail($email);
-
-        if(!$user || !password_verify($password, $user->password)){
-            return view('account/account.login', ["error" => "Credenciales incorrectas"]);
-        }
-
-        $_SESSION['user_id'] = $user->id;
-
-        return view('account/account.profile', ["user" => $user]);
     }
+
 
     public function logout() {
         if (session_status() === PHP_SESSION_NONE) {
@@ -116,7 +125,7 @@ class UsersController {
             'user'        => $_POST['user'] ?? '',
             'email'      => $_POST['email'] ?? '',
             'password'    => $_POST['password'] ?? '',
-            'rol'         => $_POST['rol'] ?? 'user',
+            'rol'         => $_POST['rol'] ?? 'cliente',
             'description' => $_POST['description'] ?? ''
         ];
 

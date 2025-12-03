@@ -49,10 +49,10 @@
                 $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute(['id' => $id]);
-                $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);   //hacer la vista de los usuarios
+                $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if(!$userDetails) {
-                    return null; // Usuario no encontrada
+                    return null;
                 }
 
                 $this->id = $userDetails['id'];
