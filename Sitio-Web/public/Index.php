@@ -5,7 +5,7 @@
 
     require __DIR__ . '/../src/helpers/functions.php';
     include __DIR__.'/../src/controllers/UsersController.php';
-    include __DIR__.'/../src/Models/Product.php';
+    include __DIR__.'/../src/controllers/ProductsController.php';
     require __DIR__ . '/../src/helpers/auth.php';
 
     // Obtener ruta limpia desde $_GET['route']
@@ -25,6 +25,13 @@
             return view('admin/products.index', ['products' => $products]);
         }
     }
+
+    if ($route === 'admin/products') {
+        $controller = new ProductsController();
+        $products = $controller->index();
+        return view('admin/products.index', compact('products'));
+    }
+
 
     if($route === 'products') {
         if($method === 'GET') {
@@ -228,6 +235,75 @@
     if ($route === 'logout' && $method === 'GET') {
         $controller = new UsersController(getPDO());
         return $controller->logout();
+    }
+
+    if($route === 'admin/users') {
+        requireAdmin();
+
+        if($method === 'GET') {
+            $controller = new UsersController(getPDO());
+            return $controller->listUsers();
+        }
+    }
+
+    if(preg_match('#^admin/users/details/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
+        $userId = (int)$matches[1];
+
+        if($method === 'GET') {
+            $controller = new UsersController(getPDO());
+            return $controller->showUserDetails($userId);
+        }
+    }
+
+    if($route === 'admin/users/add') {
+        requireAdmin();
+
+        if($method === 'GET') {
+            $controller = new UsersController(getPDO());
+            return $controller->showAddUserForm();
+        }
+    }
+
+    if($route === 'admin/users/create' && $method === 'POST') {
+        requireAdmin();
+        
+        $controller = new UsersController(getPDO());
+        return $controller->createUser();
+    }
+
+    if(preg_match('#^admin/users/mod/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
+        $userId = (int)$matches[1];
+
+        if($method === 'GET') {
+            $controller = new UsersController(getPDO());
+            return $controller->showModUserForm($userId);
+        }
+    }
+
+    if(preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
+        $userId = (int)$matches[1];
+
+        if($method === 'POST') {
+            $controller = new UsersController(getPDO());
+            return $controller->updateUser($userId);
+        }
+    }
+
+    if(preg_match('#^admin/users/delete/(\d+)$#', $route, $matches)) {
+        requireAdmin();
+        
+        $userId = (int)$matches[1];
+
+        if($method === 'GET') {
+            $controller = new UsersController(getPDO());
+            return $controller->deleteUser($userId);
+        }
     }
 
     http_response_code(404);

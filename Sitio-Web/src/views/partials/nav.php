@@ -90,8 +90,8 @@
 
                     <li><a><b>Admin</b></a>
                         <ul class="nav-link-sub-list">
-                            <li><a href="<?=BASE_PATH?>/admin">Productos</a></li>
-                            <li><a>Usuarios</a></li>
+                            <li><a href="<?=BASE_PATH?>/admin/products">Productos</a></li>
+                            <li><a href="<?=BASE_PATH?>/admin/users">Usuarios</a></li>
                         </ul>
                     </li>
                 </ul>

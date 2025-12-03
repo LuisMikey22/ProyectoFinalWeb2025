@@ -87,4 +87,112 @@ class UsersController {
         ]);
     }
 
+    public function listUsers() {
+        $allUsers = $this->users->all();
+        
+        return view('admin/user.index', [
+            'users' => $allUsers
+        ]);
+    }
+
+    public function showUserDetails($id) {
+        $user = $this->users->view($id);
+
+        if (!$user) {
+            return view('errors/404');
+        }
+
+        return view('admin/user.details', [
+            'user' => $user
+        ]);
+    }
+
+    public function showAddUserForm() {
+        return view('admin/user.add');
+    }
+
+    public function createUser() {
+        $data = [
+            'user'        => $_POST['user'] ?? '',
+            'correo'      => $_POST['correo'] ?? '',
+            'password'    => $_POST['password'] ?? '',
+            'rol'         => $_POST['rol'] ?? 'user',
+            'description' => $_POST['description'] ?? ''
+        ];
+
+        $ok = $this->users->addUser($data);
+
+        if(!$ok){
+            return view("errors/500", ["msg"=>"Error al crear usuario"]);
+        }
+
+        header('Location: ' . BASE_PATH . '/admin/users');
+        exit();
+    }
+
+    public function showModUserForm($id) {
+        $user = $this->users->view($id);
+
+        if (!$user) {
+            return view('errors/404');
+        }
+
+        return view('admin/user.mod', [
+            'user' => $user
+        ]);
+    }
+
+    public function updateUser($id) {
+        $user = $this->users->view($id);
+
+        if (!$user) {
+            return view('errors/404');
+        }
+
+        $data = [
+            'user'        => $_POST['user'] ?? $user->user,
+            'correo'      => $_POST['correo'] ?? $user->correo,
+            'rol'         => $_POST['rol'] ?? $user->rol,
+            'description' => $_POST['description'] ?? $user->description,
+            'password'    => $user->password
+        ];
+    
+        if (!empty($_POST['password'])) {
+            $data['password'] = $_POST['password'];
+        }
+
+        $ok = $this->users->updateUser($id, $data);
+
+        if (!$ok) {
+            return view("errors/500", ["msg"=>"Error al actualizar usuario"]);
+        }
+
+        header('Location: ' . BASE_PATH . '/admin/users/' . $id);
+        exit();
+    }
+
+    public function deleteUser($id) {
+        $user = $this->users->view($id);
+
+        if (!$user) {
+            return view('errors/404');
+        }
+
+        // evita que eliminarse a si mismo
+        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $id) {
+            return view("errors/500", ["msg"=>"No puedes eliminarte a ti mismo"]);
+        }
+
+        $ok = $this->users->deleteUser($id);
+
+        if (!$ok) {
+            return view("errors/500", ["msg"=>"Error al eliminar usuario"]);
+        }
+
+        return view('admin/user.delete', [
+            'name' => $user->user,
+            'id' => $id
+        ]);
+    }
+
 }
