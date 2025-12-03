@@ -1,7 +1,7 @@
 <section class="create-account-section">
-    <h3 class="product-title">🧶Por favor complete todos los campos:</h3>
+    <h3 class="product-title">🧶Añadir Nuevo Usuario</h3>
 
-    <form class="create-account-form" action="<?= BASE_PATH ?>/account/register" method="post">
+    <form class="create-account-form" action="<?= BASE_PATH ?>/admin/users/create" method="post">
         <fieldset class="create-account-fieldset">
             <div class="text-input-container">
                 <label class="input-label" for="user">Nombre de usuario</label>
@@ -9,8 +9,8 @@
             </div>
             
             <div class="text-input-container">
-                <label class="input-label" for="email">Email</label>
-                <input class="bordered-input" id="email" type="email" name="email" placeholder="Ejemplo@gmail.com" required>
+                <label class="input-label" for="correo">Correo electrónico</label>
+                <input class="bordered-input" id="correo" type="email" name="correo" placeholder="Ejemplo@gmail.com" required>
             </div>
             
             <div class="text-input-container">
@@ -20,18 +20,21 @@
 
             <div class="text-input-container">
                 <label class="input-label" for="rol">Rol</label>
-                <input class="bordered-input" id="rol" type="text" value="Cliente" readonly style="background-color: #f0f0f0; cursor: not-allowed; opacity: 0.7;">
-                <input type="hidden" name="rol" value="cliente">
+                <select class="bordered-input" id="rol" name="rol" required>
+                    <option value="">Selecciona un rol</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="admin">Administrador</option>
+                </select>
             </div>
 
             <div class="desc-container">
                 <label class="input-label" for="description">Descripción de perfil</label>
-                <textarea class="bordered-input" name="description" placeholder="Descripción"></textarea>
+                <textarea class="bordered-input" name="description" placeholder="Descripción opcional"></textarea>
             </div>
             
             <div class="action-container">
-                <a class="small-link" href="<?=BASE_PATH?>/login">¿Ya tienes una cuenta? Inicia sesión aquí</a>
-                <button class="action-button" type="submit">Registrarme</button>
+                <a class="small-link" href="<?=BASE_PATH?>/admin/users">Volver a lista de usuarios</a>
+                <button class="action-button" type="submit">Crear Usuario</button>
             </div>
         </fieldset>
     </form>
