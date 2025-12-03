@@ -106,17 +106,19 @@
 
         public function addUser($data) {
             try {
+                $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+
                 $sql = "INSERT INTO users (user, correo, password, rol, description) 
                         VALUES (:user, :correo, :password, :rol, :description)";
 
                 $stmt = $this->pdo->prepare($sql);
 
                 return $stmt->execute([
-                'user'        => $data['user'],
-                'correo'      => $data['correo'],
-                'password'    => $data['password'],
-                'rol'         => $data['rol'],
-                'description' => $data['description']
+                    'user'        => $data['user'],
+                    'correo'      => $data['correo'],
+                    'password'    => $hashedPassword,
+                    'rol'         => $data['rol'],
+                    'description' => $data['description']
                 ]);
 
             } catch (PDOException $e) {
@@ -131,20 +133,28 @@
             }
 
             try {
-                $sql = "UPDATE users 
-                        SET user = :user, 
-                            correo = :correo, 
-                            password = :password, 
-                            rol = :rol, 
-                            description = :description
-                        WHERE id = :id";
+               if (isset($data['password']) && !empty($data['password'])) {
+                $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+                } else {
+                    
+                    $current = $this->view($id);
+                    $hashedPassword = $current->password;
+                }
 
-                $stmt = $this->pdo->prepare($sql);
+                $sql = "UPDATE users 
+                    SET user = :user, 
+                        correo = :correo, 
+                        password = :password, 
+                        rol = :rol, 
+                        description = :description
+                    WHERE id = :id";
+
+                 $stmt = $this->pdo->prepare($sql);
 
                 return $stmt->execute([
                     'user'        => $data['user'],
                     'correo'      => $data['correo'],
-                    'password'    => $data['password'], // puedes usar password_hash() si quieres
+                    'password'    => $hashedPassword,
                     'rol'         => $data['rol'],
                     'description' => $data['description'],
                     'id'          => $id
