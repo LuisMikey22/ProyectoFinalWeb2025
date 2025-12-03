@@ -69,64 +69,58 @@
 
         public function search($searchValue) {
             if(trim($searchValue) === '') {
-                return [];
+                return (object)[
+                    'query' => '',
+                    'count' => 0,
+                    'products' => []
+                ];
             }
 
             try {
-                // Preparar la búsqueda con comodines
-                $search = '%' . $searchValue . '%';
+                $search = '%' . strtolower($searchValue) . '%';
 
                 $sql = "
                     SELECT * FROM products 
-                        WHERE 
-                        LOWER(name)        LIKE :search OR
+                    WHERE 
+                        LOWER(name) LIKE :search OR
                         LOWER(description) LIKE :search OR
-                     ";
+                        LOWER(category) LIKE :search
+                ";
+                
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute(['search' => $search]);
 
-                // Devolver objetos Product automáticamente
-                $stmt->setFetchMode(PDO::FETCH_CLASS, Product::class);
-                $foundProducts = $stmt->fetchAll();
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                $foundProducts = [];
+                foreach($rows as $row) {
+                    $product = new Product($this->pdo);
+                    $product->id = $row['id'];
+                    $product->category = $row['category'];
+                    $product->image = $row['image'];
+                    $product->name = $row['name'];
+                    $product->description = $row['description'];
+                    $product->price = $row['price'];
+                    $foundProducts[] = $product;
+                }
 
                 $foundQuantity = count($foundProducts);
 
-                return [
+                return (object)[
                     'query' => $searchValue,
                     'count' => $foundQuantity,
                     'products' => $foundProducts
                 ];
 
-            }catch(PDOException $e) {
+            } catch(PDOException $e) {
                 error_log("Error en search(): " . $e->getMessage());
-                return [];
+                return (object)[
+                    'query' => $searchValue,
+                    'count' => 0,
+                    'products' => []
+                ];
             }
         }
-
-
-        /*public function search($id) {
-            if(!is_numeric($id) || $id <= 0) {
-                return null;
-            }
-
-            $allProducts = all();
-            $foundProducts = array();
-            
-            $lastPos = 0;
-            $positions = array();
-
-            foreach($allProducts as $product) :
-                while(($lastPos = mb_strpos(strtolower($product['name']), strtolower($searchValue), $lastPos))!== false) { //si el valor buscado coincide con la descripción
-                    array_push($foundProducts, $product);
-                    $lastPos = $lastPos + strlen($searchValue);
-                }
-            endforeach;
-
-            $uniqueProducts = array_map('unserialize', array_unique(array_map('serialize', $foundProducts)));
-            $foundQuantity = count($uniqueProducts);
-
-            return [$searchValue, $foundQuantity, $uniqueProducts]; 
-        }*/
 
         public function deleteProduct($id) {
             if(!is_numeric($id) || $id <= 0) {
