@@ -106,19 +106,11 @@
 
                 $foundQuantity = count($foundProducts);
 
-                return (object)[
-                    'query' => $searchValue,
-                    'count' => $foundQuantity,
-                    'products' => $foundProducts
-                ];
+                return [$searchValue, $foundQuantity, $foundProducts];
 
-            } catch(PDOException $e) {
+            }catch(PDOException $e) {
                 error_log("Error en search(): " . $e->getMessage());
-                return (object)[
-                    'query' => $searchValue,
-                    'count' => 0,
-                    'products' => []
-                ];
+                return [$searchValue, 0, []];
             }
         }
 

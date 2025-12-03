@@ -23,14 +23,10 @@
     ?>
     
     <section class="<?=$carouselClass?>">
-        <span class="previous-element-button-container">
-            <button aria-label="previous" class="previous-element-button" alt="seeMore"></button>
-        </span>
-
         <div class="search-art-item-container item-container">
             <?php foreach($foundProducts as $foundProductCard) : ?>
                 <div class="card bg-base-100 shadow-sm art-item item">
-                    <a  class="image-link" href="<?=SRC_PATH?>/views/product.php?productId=<?=$foundProductCard->id?>">
+                    <a class="image-link" href="<?=BASE_PATH?>/products/<?=$foundProductCard->id?>">
                         <figure class="art-item-image-container">
                             <img src="<?=ASSETS_PATH?>/images/<?=$foundProductCard->image?>">  
                         </figure>
@@ -43,9 +39,5 @@
                 </div>
             <?php endforeach; ?>
         </div>
-
-        <span class="next-element-button-container">
-            <button aria-label="next" class="next-element-button" alt="seeMore"></button>
-        </span>
     </section>  
 </section>
