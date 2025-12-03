@@ -21,24 +21,28 @@ document.querySelectorAll('.item-container').forEach(container => {
     const nextElButton = carousel.querySelector('.next-element-button');
     const previousElButton = carousel.querySelector('.previous-element-button');
 
-    nextElButton.addEventListener('click', () => {
+    if(nextElButton) { //si existe botón en la página
+        nextElButton.addEventListener('click', () => {
         currentIndex++;
         if (currentIndex >= totalCarouselCards) {
             currentIndex = 0;
         }
 
         updateTransform(carouselCards, currentIndex);
-    });
+        });
+    }
 
-    previousElButton.addEventListener('click', () => {
-        currentIndex--;
+    if(previousElButton) { //si existe botón en la página
+        previousElButton.addEventListener('click', () => {
+            currentIndex--;
 
-        if (currentIndex < 0) {
-            currentIndex = totalCarouselCards - 1;
-        }
+            if (currentIndex < 0) {
+                currentIndex = totalCarouselCards - 1;
+            }
 
-        updateTransform(carouselCards, currentIndex);
-    });
+            updateTransform(carouselCards, currentIndex);
+        });
+    }
 });
 
 function updateTransform(cards, currentIndex) {
