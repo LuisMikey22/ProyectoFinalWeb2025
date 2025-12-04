@@ -22,13 +22,6 @@
                     <p class="text-lg text-teal-950"><?=$user->email?></p>
                 </div>
 
-                <?php if(isset($user->password)) : ?>
-                <div>
-                    <p class="text-sm text-teal-700 font-semibold">Contraseña:</p>
-                    <p class="text-lg text-teal-950"><?=ucfirst($user->password)?></p>
-                </div>
-                <?php endif; ?>
-
                 <?php if(isset($user->rol)) : ?>
                 <div>
                     <p class="text-sm text-teal-700 font-semibold">Rol:</p>
@@ -42,14 +35,13 @@
                     <p class="text-lg text-teal-950"><?=ucfirst($user->description)?></p>
                 </div>
                 <?php endif; ?>
-
             </div>
 
             <div class="flex gap-4 mt-4">
                 <a href="<?= BASE_PATH ?>/admin/users/mod/<?= $user->id ?>" class="edit-button flex-1 text-center">
                     Modificar Usuario
                 </a>
-                <a href="<?= BASE_PATH ?>/admin/users" class="action-button flex-1 text-center">
+                <a href="<?= BASE_PATH ?>/admin/users/" class="action-button flex-1 text-center">
                     Volver a Usuarios
                 </a>
             </div>

@@ -1928,6 +1928,7 @@ nav {
   list-style: none;
   width: inherit;
   flex: inherit;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
   background-color: var(--color-white);
@@ -1941,6 +1942,7 @@ nav {
   height: auto;
   width: 12rem;
   flex: 0 1 12rem;
+  padding: 1rem 1rem 1rem 0;
   text-align: center;
   align-self: flex-start;
   background-color: var(--color-white);
@@ -1953,6 +1955,7 @@ nav {
   align-self: flex-start;
   width: 100%;
   flex: 1 1 0;
+  padding: 1.2rem;
   background-color: var(--color-white);
   border-width: 2px 0 0 0;
   border-style: solid;
@@ -1967,24 +1970,25 @@ nav {
   background-color: var(--color-light-grey);
   cursor: pointer;
 }
-.nav-link-list li a {
+.nav-link-list b {
   display: flex;
-  padding: 1rem 1.2rem;
   color: var(--color-darker-blue);
   font-size: 1.4rem;
   font-family: var(--font-main);
   justify-content: center;
   cursor: pointer;
 }
-.nav-link-sub-list li a {
+.nav-link-sub-list a {
   display: inline-block;
+  height: 100%;
+  width: 100%;
   color: var(--color-dark-blue);
   font-size: 1rem;
   font-weight: bold;
   font-family: var(--font-secondary);
   cursor: pointer;
 }
-.nav-link-list li a:hover, .nav-link-sub-list li a:hover {
+.nav-link-list a:hover, .nav-link-sub-list a:hover {
   text-decoration: underline;
   text-decoration-thickness: 0.08rem;
 }
@@ -1992,7 +1996,6 @@ li:hover .nav-link-sub-list {
   display: flex;
   position: absolute;
   z-index: 100;
-  flex-direction: column;
 }
 .nav-decoration-line {
   height: 0.3rem;
@@ -2839,20 +2842,21 @@ footer {
     z-index: 30;
     transform: translateX(-100%);
   }
-  .nav-link-list li:first-child, .nav-link-list li:last-child {
+  .nav-link-list > li {
     border-radius: 0;
   }
   .nav-link-list li {
     display: flex;
     flex: 0 1 0;
     width: 100%;
+    padding: 1rem;
   }
-  .nav-link-list li a {
+  .nav-link-list b {
     color: var(--color-dark-blue);
     font-size: 1em;
     text-align: left;
   }
-  .nav-link-sub-list li a {
+  .nav-link-sub-list a {
     color: var(--color-dark-blue);
     font-size: 0.8em;
   }
@@ -2865,7 +2869,7 @@ footer {
     background-color: transparent;
   }
   .nav-link-sub-list {
-    transform: translate(96%);
+    transform: translate(88%);
     border-width: 1px;
     transition: transform 0.2s ease-in;
     z-index: 35;

@@ -54,44 +54,44 @@
                 </a>
 
                 <ul class="nav-link-list">
-                    <li><a><b>Estambres</b></a>
+                    <li><b>Estambres</b>
                         <ul class="nav-link-sub-list">
-                            <li><a>Algodón</a></li>
-                            <li><a>Lana</a></li>
-                            <li><a>Lana merino</a></li>
-                            <li><a>Lino</a></li>
+                            <a><li>Algodón</li></a>
+                            <a><li>Lana</li></a>
+                            <a><li>Lana merino</li></a>
+                            <a><li>Lino</li></a>
                         </ul>
                     </li>
 
-                    <li><a><b>Patrones</b></a>
+                    <li><b>Patrones</b>
                         <ul class="nav-link-sub-list">
-                            <li><a>Principiantes</a></li>
-                            <li><a>Intermedios</a></li>
-                            <li><a>Avanzados</a></li>
+                            <a><li>Principiantes</li></a>
+                            <a><li>Intermedios</li></a>
+                            <a><li>Avanzados</li></a>
                         </ul>
                     </li>
 
-                    <li><a><b>Accesorios</b></a>
+                    <li><b>Accesorios</b>
                         <ul class="nav-link-sub-list">
-                            <li><a>Recién agregados</a></li>
-                            <li><a>Mejor vendidos</a></li>
-                            <li><a>De temporada</a></li>
+                            <a><li>Recién agregados</li></a>
+                            <a><li>Mejor vendidos</li></a>
+                            <a><li>De temporada</li></a>
                         </ul>
                     </li>
 
-                    <li><a><b>Ganchos</b></a>
+                    <li><b>Ganchos</b>
                         <ul class="nav-link-sub-list">
-                            <li><a>Metal</a></li>
-                            <li><a>Bambú</a></li>
-                            <li><a>Plástico</a></li>
-                            <li><a>Vidrio</a></li>
+                            <a><li>Metal</li></a>
+                            <a><li>Bambú</li></a>
+                            <a><li>Plástico</li></a>
+                            <a><li>Vidrio</li></a>
                         </ul>
                     </li>
 
-                    <li><a><b>Admin</b></a>
+                    <li><b>Admin</b>
                         <ul class="nav-link-sub-list">
-                            <li><a href="<?=BASE_PATH?>/admin/products">Productos</a></li>
-                            <li><a href="<?=BASE_PATH?>/admin/users">Usuarios</a></li>
+                            <a href="<?=BASE_PATH?>/admin/products"><li>Productos</li></a>
+                            <a href="<?=BASE_PATH?>/admin/users"><li>Usuarios</li></a>
                         </ul>
                     </li>
                 </ul>

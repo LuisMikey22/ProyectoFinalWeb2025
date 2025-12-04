@@ -1,19 +1,22 @@
-<section class="profile-section">
-    <h3 class="seasonal-art-title">Información del Perfil</h3>
+<section class="home-info">
+    <div class="home-info" style="width: auto; margin: auto;">
 
-    <div class="name-input-container">
-        <label class="input-label" for="name">Nombre de usuario</label>
-        <input id="name" type="text" name="name" value="<?= htmlspecialchars($user->user ?? '') ?>" required>
-    </div>
-    
-    <div class="email-input-container">
-        <label class="input-label" for="email">Email</label>
-        <input id="email" type="email" name="email" value="<?= htmlspecialchars($user->email ?? '') ?>" required>
-    </div>
+        <h3 class="new-art-title">Información del Perfil</h2>
 
-    <div class="desc-container">
-        <label class="input-label" for="description">Descripción</label>
-        <textarea name="description"><?= isset($user->description) ? htmlspecialchars($user->description) : '' ?></textarea>
+        <div class="text-input-container">
+            <label class="input-label"><b>Nombre de usuario:</b></label> 
+            <label class="input-label"><?= htmlspecialchars($user->user ?? '') ?></label>
+        </div>
+
+        <div class="text-input-container">
+            <label class="input-label"><b>Email:</b></label> 
+            <label class="input-label"><?= htmlspecialchars($user->email ?? '') ?></label>
+        </div>
+
+        <div class="desc-container">
+            <label class="input-label"><b>Descripción:</b></label>
+            <textarea class="bordered-input" disabled><?= isset($user->description) ? htmlspecialchars($user->description) : '' ?></textarea>
+        </div>
     </div>
 
     <a href="<?=BASE_PATH?>/logout">

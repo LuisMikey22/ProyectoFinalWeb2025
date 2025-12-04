@@ -7,7 +7,7 @@
 
     <?php foreach($users as $user) : ?>
         <div class="product-action-container">
-            <a class="image-link" href="<?=BASE_PATH?>/admin/users/<?=$user->id?>">
+            <a class="image-link" href="<?=BASE_PATH?>/admin/users/details/<?=$user->id?>">
                 <div class="user-info-container">
                     <h4 class="card-title art-desc"><?=$user->user?></h4>
                     <p class="user-email"><?=$user->email?></p>
