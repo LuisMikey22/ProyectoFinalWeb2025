@@ -52,11 +52,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <script>
 function showAddedMessage(event) {
-    event.preventDefault(); // Evita que el formulario se envíe inmediatamente
+    event.preventDefault();
     
     alert('✓ Producto añadido al carrito exitosamente!');
     
-    // Después de mostrar el mensaje, envía el formulario
     document.getElementById('addToCartForm').submit();
     
     return false;
