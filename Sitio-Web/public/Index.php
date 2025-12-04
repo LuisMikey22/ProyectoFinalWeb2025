@@ -61,6 +61,16 @@
         }
     }
 
+    if(preg_match('#^admin/products/(\d+)$#', $route, $matches)) {
+        $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
+
+        if($method === 'GET') {
+            $productModel = new Product(getPDO());
+            $product = $productModel->find($productId);
+            return view('admin/products.details', ['product' => $product]);
+        }
+    }
+
     if (preg_match('#^admin/products/mod/(\d+)$#', $route, $matches)) {
         requireAdmin();
         
