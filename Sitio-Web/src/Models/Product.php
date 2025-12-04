@@ -69,11 +69,7 @@
 
         public function search($searchValue) {
             if(trim($searchValue) === '') {
-                return (object)[
-                    'query' => '',
-                    'count' => 0,
-                    'products' => []
-                ];
+                return [ '', 0, []];
             }
 
             try {

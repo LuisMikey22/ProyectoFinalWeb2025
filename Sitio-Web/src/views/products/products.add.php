@@ -10,7 +10,12 @@
 
             <div class="text-input-container">
                 <label class="input-label" for="category">Categoría</label>
-                <input class="bordered-input" type="text" name="category" class="input input-bordered w-full" required>
+                <select class="bordered-input" id="category" name="category" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="newart">Artículo nuevo</option>
+                    <option value="bestsellingart">Artículo mejor vendido</option>
+                    <option value="seasonalart">Artículo de temporada</option>
+                </select>
             </div>
 
             <div class="text-input-container"> 

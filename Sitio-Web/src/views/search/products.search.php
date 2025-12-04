@@ -33,6 +33,7 @@
 
                         <div class="card-body art-desc-container">
                             <p><h4 class="card-title art-desc"><?=$foundProductCard->name?></h4></p>
+                            <p><h4 class="card-title art-desc"><?=$foundProductCard->description?></h4></p>
                             <p><h4 class="card-actions art-price">$<?=$foundProductCard->price?> MXN</h4></p> 
                         </div>
                     </a>

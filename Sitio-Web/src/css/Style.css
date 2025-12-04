@@ -526,7 +526,8 @@ li:hover .nav-link-sub-list {
 
 .best-selling-art-item-container,
 .new-art-item-container,
-.seasonal-art-item-container {
+.seasonal-art-item-container,
+.search-art-item-container {
     position: relative;
     display: flex;
     overflow-x: hidden;
@@ -566,21 +567,12 @@ li:hover .nav-link-sub-list {
 }
 
 .search-art-item-container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;        
-    overflow-x: hidden;
+    flex-wrap: wrap;      
     height: 100%;
-    width: fit-content;       
-    margin: auto;
+    width: fit-content;   
     padding: 1%;
-    border-width: 0.5em 1.5em;
-    border-style: solid;
-    align-items: start;
-    flex-direction: row;    
+    border-width: 0.5em;  
     flex: 2 1 auto;
-    gap: 1.5em;
-    justify-content: start;
 }
 
 
@@ -608,6 +600,28 @@ li:hover .nav-link-sub-list {
 
 .search-art-item-container .art-item {
     height: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.search-art-item-container .image-link {
+    width: 100%;
+    flex-direction: row;
+    gap: 3em;
+}
+
+.search-art-item-container .image-link figure {
+    margin: auto 0;
+}
+
+.search-art-item-container .image-link .art-desc-container {
+    width: 80%;
+    max-width: 80%;
+}
+
+.search-art-item-container .image-link .art-desc-container h4 {
+    margin: auto auto auto 0;
 }
 
 .image-link {
@@ -1404,6 +1418,10 @@ footer {
     .new-art .add-button {
         width: fit-content;
         margin: auto auto 6% auto;
+    }
+
+    .search-art-item-container .image-link {
+        gap: 1em;
     }
 }
 

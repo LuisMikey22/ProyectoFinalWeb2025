@@ -35,7 +35,7 @@
 </section>
 
 <section class="best-selling-art">
-    <h3 class="best-selling-art-title">Mejor vendidos</h3>
+    <h3 class="best-selling-art-title">Artículos mejor vendidos</h3>
 
     <section class="best-selling-art-carousel">
         <span class="previous-element-button-container">
