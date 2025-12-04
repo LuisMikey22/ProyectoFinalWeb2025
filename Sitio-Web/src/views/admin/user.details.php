@@ -22,13 +22,6 @@
                     <p class="text-lg text-teal-950"><?=$user->email?></p>
                 </div>
 
-                <?php if(isset($user->password)) : ?>
-                <div>
-                    <p class="text-sm text-teal-700 font-semibold">Contraseña:</p>
-                    <p class="text-lg text-teal-950"><?=ucfirst($user->password)?></p>
-                </div>
-                <?php endif; ?>
-
                 <?php if(isset($user->rol)) : ?>
                 <div>
                     <p class="text-sm text-teal-700 font-semibold">Rol:</p>
