@@ -198,7 +198,7 @@ class UsersController {
             return view("errors/500", ["msg"=>"Error al eliminar usuario"]);
         }
 
-        return view('admin/user.delete', [
+        return view('admin/user.deleted', [
             'name' => $user->user,
             'id' => $id
         ]);
