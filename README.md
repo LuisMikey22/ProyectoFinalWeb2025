@@ -41,3 +41,15 @@
 - Desarrollar una propuesta atractiva para una empresa de tours.
 
 - Mostrar habilidades básicas de diseño, usabilidad y estructura web.
+
+### 📄 Link de la página web
+
+- https://anuies.net/ehqa/public/
+
+### Usuarios
+
+- Administrador: Correo -> axtc@gmail.com Contraseña -> 1234
+- - Cliente: Correo -> prueba@gmail.com Contraseña -> 1234
+
+
+
