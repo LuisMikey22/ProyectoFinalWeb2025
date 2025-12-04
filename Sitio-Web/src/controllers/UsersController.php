@@ -160,14 +160,14 @@ class UsersController {
 
         $data = [
             'user'        => $_POST['user'] ?? $user->user,
-            'email'      => $_POST['email'] ?? $user->email,
+            'email'       => $_POST['email'] ?? $user->email,
             'rol'         => $_POST['rol'] ?? $user->rol,
             'description' => $_POST['description'] ?? $user->description,
             'password'    => $user->password
         ];
-    
+
         if (!empty($_POST['password'])) {
-            $data['password'] = $_POST['password'];
+            $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
         }
 
         $ok = $this->users->updateUser($id, $data);
@@ -176,9 +176,12 @@ class UsersController {
             return view("errors/500", ["msg"=>"Error al actualizar usuario"]);
         }
 
-        header('Location: ' . BASE_PATH . '/admin/users/' . $id);
-        exit();
+        return view('admin/user.update', [
+            'name' => $data['user'],
+            'id'   => $id
+        ]);
     }
+
 
     public function deleteUser($id) {
         $user = $this->users->view($id);
