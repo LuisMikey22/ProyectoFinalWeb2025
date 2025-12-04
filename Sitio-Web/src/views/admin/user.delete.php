@@ -5,8 +5,8 @@
 
     <div class="product-action-container">
         <div class="art-item-image-container">
-            <h4 class="card-title art-desc"><?= htmlspecialchars($user['user']) ?></h4>
-            <p><?= htmlspecialchars($user['email']) ?></p>
+            <h4 class="card-title art-desc"><?= htmlspecialchars($user->user ?? '') ?></h4>
+            <p><?= htmlspecialchars($user->email ?? '') ?></p>
         </div>
 
         <div class="operation-container">

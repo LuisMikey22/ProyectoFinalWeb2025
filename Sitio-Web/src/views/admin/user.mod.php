@@ -8,10 +8,10 @@
         <input type="hidden" name="id" value="<?= $user['id'] ?>">
 
         <label>Nombre:</label>
-        <input type="text" name="user" value="<?= $user['user'] ?>" style="display:block; margin-bottom:20px; padding:8px;">
+        <input type="text" name="user" value="<?= htmlspecialchars($user->user ?? '') ?>" style="display:block; margin-bottom:20px; padding:8px;">
 
         <label>Email:</label>
-        <input type="email" name="email" value="<?= $user['email'] ?>" style="display:block; margin-bottom:20px; padding:8px;">
+        <input type="email" name="email" value="<?= htmlspecialchars($user->email ?? '') ?>" style="display:block; margin-bottom:20px; padding:8px;">
 
         <button type="submit">Guardar</button>
 
