@@ -36,15 +36,10 @@
                 </div>
                 <?php endif; ?>
             </div>
-
-            <div class="flex gap-4 mt-4">
-                <a href="<?= BASE_PATH ?>/admin/users/mod/<?= $user->id ?>" class="edit-button flex-1 text-center">
-                    Modificar Usuario
-                </a>
-                <a href="<?= BASE_PATH ?>/admin/users/" class="action-button flex-1 text-center">
-                    Volver a Usuarios
-                </a>
-            </div>
         </div>
     </div>
+
+     <a class="action-button" style="margin: auto;" href="<?=BASE_PATH?>/admin/users">
+        Volver a Usuarios
+    </a>
 </section>

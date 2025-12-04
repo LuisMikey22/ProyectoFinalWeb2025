@@ -12,7 +12,7 @@
         Por favor verifica la URL o regresa al inicio del sitio.
     </p>
 
-    <a href="<?=BASE_PATH?>" class="action-button">
+    <a href="<?=BASE_PATH?>" class="action-button" style="margin: auto;">
         Volver al inicio
     </a>
 </div>

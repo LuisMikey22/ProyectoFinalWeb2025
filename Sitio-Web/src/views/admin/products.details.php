@@ -18,7 +18,7 @@
             
             <img class="w-full h-full object-contain rounded-3xl" 
                 src="<?=ASSETS_PATH?>/images/<?=$product->image?>" 
-                alt="product">
+                alt="<?=$product->name?>">
         </figure>
 
         <div class="w-[320px] flex flex-col justify-center gap-8 lg:w-2/3 w-full">
@@ -47,4 +47,11 @@
             <p class="text-teal-950 font-semibold mt-4"><?=$product->description?></p>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <a class="action-button" style="margin: auto;" href="<?=BASE_PATH?>/admin/products">
+        Volver a lista de productos
+    </a>
+>>>>>>> 9bb7c2e503fe13d20436badaea83aad67d5817c3
 </section>

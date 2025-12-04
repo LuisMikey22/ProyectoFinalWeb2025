@@ -18,7 +18,9 @@
 
             <div class="action-container">
                 <button class="action-button" type="submit">Guardar</button>
-                <button class="delete-button" href="<?= BASE_PATH ?>/admin/users">Cancelar</button>
+                <a class="delete-button" style="width: fit-content; margin: 0;" href="<?=BASE_PATH?>/admin/users">
+                    Cancelar
+                </a>
             </div>
         </fieldset>
     </form>

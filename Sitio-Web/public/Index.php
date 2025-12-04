@@ -61,7 +61,7 @@
         }
     }
 
-    if (preg_match('#^products/mod/(\d+)$#', $route, $matches)) {
+    if (preg_match('#^admin/products/mod/(\d+)$#', $route, $matches)) {
         requireAdmin();
         
         $id = (int)$matches[1];
@@ -69,11 +69,11 @@
         if ($method === 'GET') {
             $productModel = new Product(getPDO());
             $product = $productModel->find($id);
-            return view('products/products.mod', ['product' => $product]);
+            return view('admin/products.mod', ['product' => $product]);
         }
     }
 
-    if (preg_match('#^products/update/(\d+)$#', $route, $matches)) {
+    if (preg_match('#^admin/products/update/(\d+)$#', $route, $matches)) {
         requireAdmin();
     
         $id = (int)$matches[1];
@@ -118,13 +118,13 @@
 
             $updatedProduct = $productModel->find($id);
 
-            return view('products/products.update', [
+            return view('admin/products.update', [
                 'product' => $updatedProduct
             ]);
         }
     }
 
-    if (preg_match('#^products/delete/(\d+)$#', $route, $matches)) {
+    if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
         requireAdmin();
         
         $id = (int)$matches[1];
@@ -146,19 +146,19 @@
                 die("Error al eliminar producto.");
             }
 
-            return view("products/products.delete", [
+            return view("admin/products.delete", [
                 "name" => $product->name,
                 "id"   => $id
             ]);
         }
     }
 
-    if ($route === 'products/add' && $method === 'GET') {
+    if ($route === 'admin/products/add' && $method === 'GET') {
         requireAdmin();
-        return view('products/products.add');
+        return view('admin/products.add');
     }
 
-    if ($route === 'products/create' && $method === 'POST') {
+    if ($route === 'admin/products/create' && $method === 'POST') {
         requireAdmin();
 
         $productModel = new Product(getPDO());
