@@ -7,13 +7,13 @@
             <input class="bordered-input" type="hidden" name="id" value="<?= $user->id ?>">
 
             <div class="text-input-container">
-                <label class="input-label" for="name">Nombre</label>
-                <input class="bordered-input" type="text" name="name" value="<?= htmlspecialchars($user->user) ?>" required>
+                <label class="input-label" for="user">Nombre</label>
+                <input class="bordered-input" id="user" type="text" name="user" value="<?= htmlspecialchars($user->user) ?>" required>
             </div>
 
             <div class="text-input-container">
-                <label class="input-label" for="category">Email</label>
-                <input class="bordered-input" type="text" name="category" value="<?= htmlspecialchars($user->email) ?>" required>
+                <label class="input-label" for="email">Email</label>
+                <input class="bordered-input" id="email" type="text" name="email" value="<?= htmlspecialchars($user->email) ?>" required>
             </div>
 
             <div class="action-container">
