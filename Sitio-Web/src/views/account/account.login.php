@@ -4,7 +4,7 @@
     }
 
     if (isset($_SESSION['login_error'])) {
-        echo '<div class="alert alert-danger">'.$_SESSION['login_error'].'</div>';
+        echo '<div class="home-desc" style="padding: 1em 0 0 0;">'.$_SESSION['login_error'].'</div>';
         unset($_SESSION['login_error']);
     }
 ?>
@@ -23,8 +23,6 @@
                 <label class="input-label" for="password">Contraseña</label>
                 <input class="bordered-input" id="password" type="password" name="password" placeholder="Contraseña" required>
             </div>
-
-            <a class="small-link" href="#">¿Olvidaste tu contraseña?</a>
 
             <div class="action-container">
                 <a class="small-link" href="<?=BASE_PATH?>/account/register">¿Aún no te has registrado? Crea una cuenta</a>

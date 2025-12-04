@@ -13,7 +13,7 @@
 
             <div class="text-input-container">
                 <label class="input-label" for="email">Email</label>
-                <input class="bordered-input" id="email" type="text" name="email" value="<?= htmlspecialchars($user->email) ?>" required>
+                <input class="bordered-input" id="email" type="email" name="email" value="<?= htmlspecialchars($user->email) ?>" required>
             </div>
 
             <div class="action-container">

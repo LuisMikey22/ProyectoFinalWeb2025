@@ -47,11 +47,8 @@
             <p class="text-teal-950 font-semibold mt-4"><?=$product->description?></p>
         </div>
     </div>
-<<<<<<< HEAD
-=======
 
     <a class="action-button" style="margin: auto;" href="<?=BASE_PATH?>/admin/products">
         Volver a lista de productos
     </a>
->>>>>>> 9bb7c2e503fe13d20436badaea83aad67d5817c3
 </section>
