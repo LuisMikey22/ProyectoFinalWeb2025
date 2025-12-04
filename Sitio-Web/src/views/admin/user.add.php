@@ -19,10 +19,10 @@
             </div>
 
             <div class="text-input-container">
-                <label class="input-label" for="rol">Rol</label>
-                <select class="bordered-input" id="rol" name="rol" required>
+                <label class="input-label" for="role">Rol</label>
+                <select class="bordered-input" id="role" name="role" required>
                     <option value="">Selecciona un rol</option>
-                    <option value="cliente">Cliente</option>
+                    <option value="client">Cliente</option>
                     <option value="admin">Administrador</option>
                 </select>
             </div>

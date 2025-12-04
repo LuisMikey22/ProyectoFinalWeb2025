@@ -608,7 +608,11 @@ li:hover .nav-link-sub-list {
 .search-art-item-container .image-link {
     width: 100%;
     flex-direction: row;
-    gap: 1.5em;
+    gap: 3em;
+}
+
+.search-art-item-container .image-link figure {
+    margin: auto 0;
 }
 
 .search-art-item-container .image-link .art-desc-container {
@@ -616,7 +620,7 @@ li:hover .nav-link-sub-list {
     max-width: 80%;
 }
 
-.search-art-item-container .image-link .art-desc-container > h4 {
+.search-art-item-container .image-link .art-desc-container h4 {
     margin: auto auto auto 0;
 }
 
@@ -1414,6 +1418,10 @@ footer {
     .new-art .add-button {
         width: fit-content;
         margin: auto auto 6% auto;
+    }
+
+    .search-art-item-container .image-link {
+        gap: 1em;
     }
 }
 
