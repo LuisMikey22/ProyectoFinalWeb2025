@@ -1,19 +1,25 @@
-<section style="padding: 40px;">
-    <h2>Modificar Usuario</h2>
+<section class="product-section">
+    <h3 class="product-title">Modificar Usuario</h3>
 
-    <form action="<?= BASE_PATH ?>/admin/users/update/<?= $user->id ?>" method="POST"
-         style="background:#f2f2f2; padding:20px; border-radius:10px;">
+    <form action="<?= BASE_PATH ?>/admin/users/update/<?= $user->id ?>" method="POST" class="create-product-form">
+        <fieldset class="product-fieldset">
 
-        <input type="hidden" name="id" value="<?= $user->id ?>">
+            <input class="bordered-input" type="hidden" name="id" value="<?= $user->id ?>">
 
-        <label>Nombre:</label>
-        <input type="text" name="user" value="<?= htmlspecialchars($user->user) ?>" style="display:block; margin-bottom:20px; padding:8px;">
+            <div class="text-input-container">
+                <label class="input-label" for="name">Nombre</label>
+                <input class="bordered-input" type="text" name="name" value="<?= htmlspecialchars($user->user) ?>" required>
+            </div>
 
-        <label>Email:</label>
-        <input type="email" name="email" value="<?= htmlspecialchars($user->email) ?>" style="display:block; margin-bottom:20px; padding:8px;">
+            <div class="text-input-container">
+                <label class="input-label" for="category">Email</label>
+                <input class="bordered-input" type="text" name="category" value="<?= htmlspecialchars($user->email) ?>" required>
+            </div>
 
-        <button class="action-button" type="submit">Guardar</button>
-
-        <button class="delete-button" href="<?= BASE_PATH ?>/admin/users">Cancelar</button>
+            <div class="action-container">
+                <button class="action-button" type="submit">Guardar</button>
+                <button class="delete-button" href="<?= BASE_PATH ?>/admin/users">Cancelar</button>
+            </div>
+        </fieldset>
     </form>
 </section>
