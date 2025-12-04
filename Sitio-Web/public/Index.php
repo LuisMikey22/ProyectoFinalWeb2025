@@ -8,6 +8,12 @@
     include __DIR__.'/../src/controllers/ProductsController.php';
     require __DIR__ . '/../src/helpers/auth.php';
 
+    error_log("=== NUEVA PETICIÓN ===");
+    error_log("Ruta solicitada: " . ($_GET['route'] ?? 'home'));
+    error_log("Método: " . $_SERVER['REQUEST_METHOD']);
+    error_log("SESSION ID: " . session_id());
+    error_log("User ID en sesión: " . ($_SESSION['user_id'] ?? 'NO DEFINIDO'));
+
     // Obtener ruta limpia desde $_GET['route']
     $route = trim($_GET['route'] ?? '', '/');
     $method = $_SERVER['REQUEST_METHOD'];
@@ -300,5 +306,39 @@
         }
     }
 
+    if ($route === 'cart/add' && $method === 'POST') {
+        error_log("=== RUTA CART/ADD INVOCADA ===");
+        error_log("POST data recibida: " . print_r($_POST, true));
+        error_log("SESSION data: " . print_r($_SESSION, true));
+        
+        // NO necesitas session_start() aquí porque ya se inició arriba
+        // REMUEVE esta línea:
+        // if (session_status() === PHP_SESSION_NONE) {
+        //     session_start();
+        // }
+        
+        if (!isset($_SESSION['user_id'])) {
+            error_log("USUARIO NO LOGUEADO - Redirigiendo a login");
+            header('Location: ' . BASE_PATH . '/login');
+            exit();
+        }
+        
+        $productId = (int)($_POST['product_id'] ?? 0);
+        error_log("Product ID recibido: " . $productId);
+        
+        // Verifica que el ID sea válido
+        if ($productId <= 0) {
+            error_log("ERROR: Product ID inválido");
+            $_SESSION['cart_error'] = "ID de producto inválido";
+            header('Location: ' . BASE_PATH . '/products');
+            exit();
+        }
+        
+        $_SESSION['cart_success'] = "Producto añadido al carrito exitosamente";
+        error_log("Mensaje de éxito establecido en sesión");
+        
+        header('Location: ' . BASE_PATH . '/products/' . $productId);
+        exit();
+    }
     http_response_code(404);
     return view('errors/404');

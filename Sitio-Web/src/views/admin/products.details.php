@@ -1,6 +1,11 @@
 <?php 
-    $productDesc = explode(',', htmlspecialchars($product->description)); //separar el string cada ',', se crea un arreglo
-    $fiberContent = end($productDesc); //obtener primer elemento (nombre)
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $productDesc = explode(',', htmlspecialchars($product->description));
+    $fiberContent = end($productDesc);
+    $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 
 <section class="bg-base-100 rounded-3xl product">
@@ -21,10 +26,25 @@
             <p class="text-sm text-teal-950"><?=$fiberContent?></p>
             <p class="text-2xl font-bold text-teal-950">$<?=$product->price?> MXN</p>
 
-            <button class="add-button">Añadir al carrito</button>
+            <?php if(isset($_SESSION['cart_success'])): ?>
+                <div class="success-message">
+                    ✓ <?= htmlspecialchars($_SESSION['cart_success']) ?>
+                </div>
+                <?php unset($_SESSION['cart_success']); ?>
+            <?php endif; ?>
+
+            <?php if($isLoggedIn): ?>
+                <form action="<?= BASE_PATH ?>/cart/add" method="POST">
+                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                    <button type="submit" class="add-button">Añadir al carrito</button>
+                </form>
+            <?php else: ?>
+                <a href="<?= BASE_PATH ?>/login" class="add-button" style="display: inline-block; text-align: center; text-decoration: none;">
+                    Inicia sesión para comprar
+                </a>
+            <?php endif; ?>
 
             <p class="text-teal-950 font-semibold mt-4"><?=$product->description?></p>
         </div>
     </div>
-
 </section>
