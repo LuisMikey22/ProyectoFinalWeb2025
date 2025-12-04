@@ -1,6 +1,14 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <?php 
-    $productDesc = explode(',', htmlspecialchars($product->description)); //separar el string cada ',', se crea un arreglo
-    $fiberContent = end($productDesc); //obtener primer elemento (nombre)
+    $productDesc = explode(',', htmlspecialchars($product->description));
+    $fiberContent = end($productDesc);
+    
+    $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 
 <section class="bg-base-100 rounded-3xl product">
@@ -21,7 +29,17 @@
             <p class="text-sm text-teal-950"><?=$fiberContent?></p>
             <p class="text-2xl font-bold text-teal-950">$<?=$product->price?> MXN</p>
 
-            <button class="add-button">Añadir al carrito</button>
+            <?php if($isLoggedIn): ?>
+                <form id="addToCartForm" action="<?=BASE_PATH?>/cart/add" method="POST" onsubmit="return showAddedMessage(event)">
+                    <input type="hidden" name="product_id" value="<?=$product->id?>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="add-button">Añadir al carrito</button>
+                </form>
+            <?php else: ?>
+                <a href="<?=BASE_PATH?>/login" class="add-button" style="display: inline-block; text-align: center; text-decoration: none;">
+                    Iniciar sesión para comprar
+                </a>
+            <?php endif; ?>
 
             <p class="text-teal-950 font-semibold mt-4"><?=$product->description?></p>
         </div>
@@ -31,3 +49,16 @@
         Volver a lista de productos
     </a>
 </section>
+
+<script>
+function showAddedMessage(event) {
+    event.preventDefault(); // Evita que el formulario se envíe inmediatamente
+    
+    alert('✓ Producto añadido al carrito exitosamente!');
+    
+    // Después de mostrar el mensaje, envía el formulario
+    document.getElementById('addToCartForm').submit();
+    
+    return false;
+}
+</script>
