@@ -33,8 +33,10 @@
             </div>
             
             <div class="action-container">
-                <a class="small-link" href="<?=BASE_PATH?>/admin/users">Volver a lista de usuarios</a>
-                <button class="action-button" type="submit">Crear Usuario</button>
+                <button class="action-button" style="margin: 0;" type="submit">Crear Usuario</button>
+                <a class="delete-button" style="width: fit-content; margin: 0;" href="<?=BASE_PATH?>/admin/users">
+                    Cancelar
+                </a>
             </div>
         </fieldset>
     </form>

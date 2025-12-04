@@ -8,14 +8,14 @@
     <?php foreach($users as $user) : ?>
         <div class="product-action-container">
             <a class="image-link" href="<?=BASE_PATH?>/admin/users/details/<?=$user->id?>">
-                <div class="user-info-container">
+                <div>
                     <h4 class="card-title art-desc"><?=$user->user?></h4>
-                    <p class="user-email"><?=$user->email?></p>
+                    <p class="art-price"><?=$user->email?></p>
                 </div>
             </a>
 
             <div class="operation-container">
-                <a href="<?=BASE_PATH?>/admin/users/details/<?=$user->id?>" class="action-button">Ver</a>
+                <a href="<?=BASE_PATH?>/admin/users/details/<?=$user->id?>" class="action-button">Ver detalles</a>
                 <a href="<?= BASE_PATH ?>/admin/users/mod/<?= $user->id ?>" class="edit-button">Modificar</a>
                 <a href="<?= BASE_PATH ?>/admin/users/delete/<?= $user->id ?>" class="delete-button"
                 onclick="return confirm('¿Seguro que quieres eliminar este usuario?')">Eliminar</a>

@@ -1,7 +1,7 @@
 <section class="product-section">
     <h3 class="product-title">Agregar producto</h3>
 
-    <form action="<?= BASE_PATH ?>/products/create"method="POST" enctype="multipart/form-data" class="create-product-form">
+    <form action="<?= BASE_PATH ?>/admin/products/create"method="POST" enctype="multipart/form-data" class="create-product-form">
         <fieldset class="product-fieldset">
             <div class="text-input-container">
                 <label class="input-label" for="name">Nombre</label>
@@ -35,6 +35,9 @@
 
             <div class="action-container">
                 <button class="action-button" type="submit">Agregar producto</button>
+                <a class="delete-button" style="width: fit-content; margin: 0;" href="<?=BASE_PATH?>/admin/products">
+                    Cancelar
+                </a>
             </div>
         </fieldset>
     </form>

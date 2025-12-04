@@ -49,7 +49,7 @@
                     <div class="card bg-base-100 shadow-sm art-item item">
                         <a class="image-link" href="<?=BASE_PATH?>/products/<?=$product->id?>">
                             <figure class="art-item-image-container">
-                                <img src="<?=ASSETS_PATH?>/images/<?=$product->image?>">  
+                                <img src="<?=ASSETS_PATH?>/images/<?=$product->image?>" alt="<?=$product->name?>">  
                             </figure>
 
                             <div class="card-body art-desc-container">

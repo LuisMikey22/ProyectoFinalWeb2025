@@ -13,7 +13,7 @@
         vuelva al inicio.
     </p>
 
-    <a href="<?=BASE_PATH?>" class="action-button">
+    <a href="<?=BASE_PATH?>" class="action-button" style="margin: auto;">
         Volver al inicio
     </a>
 </div>

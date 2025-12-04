@@ -5,7 +5,7 @@
         </h2>
     </div>
 
-    <a href="<?= BASE_PATH ?>/products" 
+    <a href="<?= BASE_PATH ?>/admin/products" 
        class="action-button">
        Volver al listado de productos
     </a>

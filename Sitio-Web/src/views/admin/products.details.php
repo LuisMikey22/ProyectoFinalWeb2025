@@ -13,7 +13,7 @@
             
             <img class="w-full h-full object-contain rounded-3xl" 
                 src="<?=ASSETS_PATH?>/images/<?=$product->image?>" 
-                alt="product">
+                alt="<?=$product->name?>">
         </figure>
 
         <div class="w-[320px] flex flex-col justify-center gap-8 lg:w-2/3 w-full">
@@ -27,4 +27,7 @@
         </div>
     </div>
 
+    <a class="action-button" style="margin: auto;" href="<?=BASE_PATH?>/admin/products">
+        Volver a lista de productos
+    </a>
 </section>
