@@ -13,7 +13,7 @@
         Materiales premium con texturas suaves y duraderas.
     </h4>
 
-    <a href="<?=BASE_PATH?>/products">
+    <a href="<?=BASE_PATH?>">
         <button class="action-button">Ver Productos</button>
     </a>
     <h2 class="home-subtitle">¿Por qué elegirnos?</h2>

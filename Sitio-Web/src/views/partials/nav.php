@@ -47,7 +47,7 @@
 
                 <label for="menu-toggle" class="menu-button"><img id="menu-button-image" src="<?=ASSETS_PATH?>/images/menuIcon.svg" alt="menu"></label>
                 
-                <a class="logo-link" href="<?=BASE_PATH?>">
+                <a class="logo-link" href="<?=BASE_PATH?>/about">
                     <span class="svg-logo">
                         <img src="<?=ASSETS_PATH?>/images/EHQALogoIcon.svg" alt="EstaHambreQueAta-logo">
                     </span>

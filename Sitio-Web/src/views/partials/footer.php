@@ -14,7 +14,7 @@
             <div class="about-links-container">
                 <h4>Acerca de</h4>
                 <ul class="about-list">
-                    <li><a>Nosotros</a></li>
+                    <li><a href="<?=BASE_PATH?>/about">Nosotros</a></li>
                     <li><a>Política de privacidad</a></li>
                     <li><a>Términos y condiciones</a></li>
                     <li><a>Blog</a></li>
