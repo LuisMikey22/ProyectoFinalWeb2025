@@ -32,6 +32,23 @@
     </section>
 
     <div role="tablist" class="carousel-indicator"></div>
+
+    <button id="chatbot-toggle-btn" class="chatbot-btn" aria-label="Abrir chat">
+        💬 </button>
+
+    <div id="chatbot-window" class="chatbot-window hidden">
+        <div class="chatbot-header">
+            <h4>Asistente Virtual</h4>
+            <button id="chatbot-close-btn" aria-label="Cerrar chat">✖</button>
+        </div>
+        <div class="chatbot-messages">
+            <p>¡Hola! ¿En qué te puedo ayudar con nuestros productos?</p>
+            </div>
+        <div class="chatbot-input-container">
+            <input type="text" placeholder="Escribe un mensaje..." class="chatbot-input">
+            <button class="chatbot-send-btn">Enviar</button>
+        </div>
+    </div>
 </section>
 
 <section class="best-selling-art">

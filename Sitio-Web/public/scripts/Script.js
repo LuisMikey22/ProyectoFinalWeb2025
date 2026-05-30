@@ -104,6 +104,21 @@ function redirect() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById('chatbot-toggle-btn');
+    const closeBtn = document.getElementById('chatbot-close-btn');
+    const chatbotWindow = document.getElementById('chatbot-window');
+
+    // Función para alternar la visibilidad
+    function toggleChat() {
+        chatbotWindow.classList.toggle('hidden');
+    }
+
+    // Eventos de clic
+    toggleBtn.addEventListener('click', toggleChat);
+    closeBtn.addEventListener('click', toggleChat);
+});
+
 /*
 window.addEventListener('load', () => {
     new Glider(document.querySelector('.new-art-item-container'), {

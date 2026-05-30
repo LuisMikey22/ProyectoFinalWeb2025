@@ -1233,6 +1233,96 @@ footer {
     animation: fadeIn 0.5s ease-in;
 }
 
+/* Botón flotante */
+.chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff; /* Color de tu marca */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    transition: transform 0.3s ease;
+}
+
+.chatbot-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Ventana del chat */
+.chatbot-window {
+    position: fixed;
+    bottom: 90px; /* Un poco por encima del botón */
+    right: 20px;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Ocultar la ventana por defecto */
+.hidden {
+    display: none !important;
+}
+
+/* Estilos internos de la ventana (Cabecera, Mensajes, Input) */
+.chatbot-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.chatbot-messages {
+    padding: 15px;
+    height: 250px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.chatbot-send-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 480px) {
     .art-item {
         width: 68%;
