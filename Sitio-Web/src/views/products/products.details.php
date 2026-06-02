@@ -1,14 +1,8 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <?php 
     $productDesc = explode(',', htmlspecialchars($product->description));
     $fiberContent = end($productDesc);
     
-    $isLoggedIn = isset($_SESSION['user_id']);
+    $isLoggedIn = isset($_SESSION['id_user']);
 ?>
 
 <section class="bg-base-100 rounded-3xl product">

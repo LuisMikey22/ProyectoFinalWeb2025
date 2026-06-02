@@ -1,353 +1,214 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/**
+ * Enrutador Centralizado del Sistema (Front Controller)
+ * Redirige las peticiones HTTP a los métodos correspondientes de los controladores.
+ */
+
+require_once __DIR__ . '/../src/config/config.php';
+require_once __DIR__ . '/../src/helpers/functions.php';
+require_once __DIR__ . '/../src/helpers/auth.php';
+require_once __DIR__ . '/../src/controllers/UsersController.php';
+require_once __DIR__ . '/../src/controllers/ProductsController.php';
+
+$pdo = getPDO();
+$userController = new UsersController($pdo);
+$productController = new ProductsController($pdo);
+
+$route = trim($_GET['route'] ?? 'home', '/');
+$method = $_SERVER['REQUEST_METHOD'];
+
+// ==========================================
+// 1. RUTAS PÚBLICAS (Visitantes y Clientes)
+// ==========================================
+
+// Inicio (Catálogo de productos)
+if ($route === '' || $route === 'home') {
+    if ($method === 'GET') {
+        // Obtenemos productos directamente para la vista home usando el modelo
+        $productModel = new Product($pdo);
+        $products = $productModel->getAll();
+        return view('home/index', ['products' => $products]);
     }
+}
 
-    require __DIR__ . '/../src/helpers/functions.php';
-    include __DIR__.'/../src/controllers/UsersController.php';
-    include __DIR__.'/../src/controllers/ProductsController.php';
-    require __DIR__ . '/../src/helpers/auth.php';
+// Sobre Nosotros
+if ($route === 'about') {
+    if ($method === 'GET') return view('about/index');
+}
 
-    error_log("=== NUEVA PETICIÓN ===");
-    error_log("Ruta solicitada: " . ($_GET['route'] ?? 'home'));
-    error_log("Método: " . $_SERVER['REQUEST_METHOD']);
-    error_log("SESSION ID: " . session_id());
-    error_log("User ID en sesión: " . ($_SESSION['user_id'] ?? 'NO DEFINIDO'));
-
-    // Obtener ruta limpia desde $_GET['route']
-    $route = trim($_GET['route'] ?? '', '/');
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    if($route === '' || $route === 'home') {
-        if($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $products = $productModel->all(); 
-            return view('home/index', ['products' => $products]);
-        }
-    }
-
-    if($route === 'about') {
-        return view('about/index');
-    }
-
-    if($route === 'admin/products') {
-        requireAdmin();
-
-        if($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $products = $productModel->all(); 
-            return view('admin/products.index', compact('products'));
-        }
-    }
-
-    if(preg_match('#^search/(.+)$#', $route, $matches)) {
-        $searchQuery = filter_var($matches[1], FILTER_SANITIZE_SPECIAL_CHARS);
-
-        if($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $searchResult = $productModel->search($searchQuery);
-            return view('search/products.search', compact('searchResult'));
-        }
-    }
-
-    if(preg_match('#^products/(\d+)$#', $route, $matches)) {
-        $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
-
-        if($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $product = $productModel->find($productId);
-            return view('products/products.details', ['product' => $product]);
-        }
-    }
-
-    if(preg_match('#^admin/products/(\d+)$#', $route, $matches)) {
-        $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
-
-        if($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $product = $productModel->find($productId);
-            return view('admin/products.details', ['product' => $product]);
-        }
-    }
-
-    if (preg_match('#^admin/products/mod/(\d+)$#', $route, $matches)) {
-        requireAdmin();
+// Búsqueda de Productos
+if (preg_match('#^search/(.+)$#', $route, $matches) || (isset($_GET['q']) && $route === 'search')) {
+    if ($method === 'GET') {
+        $query = $_GET['q'] ?? $matches[1] ?? '';
         
-        $id = (int)$matches[1];
-
-        if ($method === 'GET') {
-            $productModel = new Product(getPDO());
-            $product = $productModel->find($id);
-            return view('admin/products.mod', ['product' => $product]);
-        }
+        $productModel = new Product($pdo);
+        $searchResult = $productModel->search($query);
+        
+        return view('search/products.search', ['searchResult' => $searchResult]);
     }
+}
 
-    if (preg_match('#^admin/products/update/(\d+)$#', $route, $matches)) {
-        requireAdmin();
+// Detalles de un Producto
+if (preg_match('#^products/(\d+)$#', $route, $matches)) {
+    if ($method === 'GET') return $productController->showDetails((int)$matches[1]);
+}
+
+// ==========================================
+// 2. RUTAS DE AUTENTICACIÓN Y PERFIL
+// ==========================================
+
+// Registro de Usuarios
+if ($route === 'account/register') {
+    if ($method === 'GET') return $userController->showRegisterForm();
+    if ($method === 'POST') return $userController->registerUser();
+}
+
+// Iniciar Sesión
+if ($route === 'login') {
+    if ($method === 'GET') return $userController->showLoginForm();
+    if ($method === 'POST') return $userController->loginUser();
+}
+
+// Cerrar Sesión
+if ($route === 'logout') {
+    if ($method === 'GET') return $userController->logoutUser();
+}
+
+// Perfil de Usuario
+if (preg_match('#^account/profile/(\d+)$#', $route, $matches)) {
+    requerirAutenticacion();
+    if ($method === 'GET') return $userController->showProfile((int)$matches[1]);
+}
+
+// ==========================================
+// 3. RUTAS DEL CARRITO DE COMPRAS
+// ==========================================
+
+// Añadir al Carrito
+if ($route === 'cart/add' && $method === 'POST') {
+    requerirAutenticacion();
     
-        $id = (int)$matches[1];
-
-        if ($method === 'POST') {
-
-            $pdo = getPDO();
-            $productModel = new Product($pdo);
-
-            $product = $productModel->find($id);
-            if (!$product) {
-                die("Producto no encontrado");
-            }
-
-            $name        = $_POST['name'] ?? '';
-            $category    = $_POST['category'] ?? '';
-            $price       = $_POST['price'] ?? 0;
-            $description = $_POST['description'] ?? '';
-            $image       = $product->image;
-
-            if (!empty($_FILES['image']['name'])) {
-                $tmp       = $_FILES['image']['tmp_name'];
-                $fileName  = time() . "_" . basename($_FILES['image']['name']);
-                $destino   = __DIR__ . "/assets/images/" . $fileName;
-
-                if (move_uploaded_file($tmp, $destino)) {
-                    $image = $fileName;
-                }
-            }
-
-            $ok = $productModel->updateProduct($id, [
-                'name'        => $name,
-                'category'    => $category,
-                'price'       => $price,
-                'description' => $description,
-                'image'       => $image
-            ]);
-
-            if (!$ok) {
-                die("Error al actualizar el producto.");
-            }
-
-            $updatedProduct = $productModel->find($id);
-
-            return view('admin/products.update', [
-                'product' => $updatedProduct
-            ]);
-        }
-    }
-
-    if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
-        requireAdmin();
-        
-        $id = (int)$matches[1];
-
-        if ($method === 'GET') {
-
-            $pdo = getPDO();
-            $productModel = new Product($pdo);
-
-            $product = $productModel->find($id);
-
-            if (!$product) {
-                return view('errors/404');
-            }
-
-            $ok = $productModel->deleteProduct($id);
-
-            if (!$ok) {
-                die("Error al eliminar producto.");
-            }
-
-            return view("admin/products.delete", [
-                "name" => $product->name,
-                "id"   => $id
-            ]);
-        }
-    }
-
-    if ($route === 'admin/products/add' && $method === 'GET') {
-        requireAdmin();
-        return view('admin/products.add');
-    }
-
-    if ($route === 'admin/products/create' && $method === 'POST') {
-        requireAdmin();
-
-        $productModel = new Product(getPDO());
-
-        $name        = $_POST['name'] ?? '';
-        $category    = $_POST['category'] ?? '';
-        $price       = $_POST['price'] ?? '';
-        $description = $_POST['description'] ?? '';
-
-        $imageName = null;
-
-        if (!empty($_FILES['image']['name'])) {
-            
-            $uploadsDir = __DIR__ . "/assets/images/";
-
-            if (!is_dir($uploadsDir)) {
-                mkdir($uploadsDir, 0777, true);
-            }
-
-            $imageName = time() . "_" . basename($_FILES['image']['name']);
-
-            $destino = $uploadsDir . $imageName;
-
-            move_uploaded_file($_FILES['image']['tmp_name'], $destino);
-        }
-
-        $productModel->addProduct([
-            'name'        => $name,
-            'category'    => $category,
-            'price'       => $price,
-            'description' => $description,
-            'image'       => $imageName
-        ]);
-
-        header("Location: " . BASE_PATH . "/products");
-        exit;
-    }
-
-    if($route === 'account') {
-        return view('account/account.register');
-    }
-
-    if ($route === 'account/register' && $method === 'GET') {
-        $controller = new UsersController(getPDO());
-        return $controller->showRegisterForm();
-    }
-
-    if ($route === 'account/register' && $method === 'POST') {
-        $controller = new UsersController(getPDO());
-        return $controller->register();
-    }
-
-    if (preg_match('#^account/profile/(\d+)$#', $route, $matches)) {
-        requireLogin();
-        
-        $id = (int)$matches[1];
-
-        $pdo = getPDO();
-        $controller = new UsersController($pdo);
-
-        return $controller->profile($id);
-    }
-
-    if ($route === 'login' && $method === 'GET') {
-        $controller = new UsersController(getPDO());
-        return $controller->showLoginForm();
-    }
-
-    if ($route === 'login' && $method === 'POST') {
-        $controller = new UsersController(getPDO());
-        return $controller->logIn();
-    }
-
-    if ($route === 'logout' && $method === 'GET') {
-        $controller = new UsersController(getPDO());
-        return $controller->logout();
-    }
-
-    if($route === 'admin/users') {
-        requireAdmin();
-
-        if($method === 'GET') {
-            $controller = new UsersController(getPDO());
-            return $controller->listUsers();
-        }
-    }
-
-    if(preg_match('#^admin/users/details/(\d+)$#', $route, $matches)) {
-        requireAdmin();
-        
-        $userId = (int)$matches[1];
-
-        if($method === 'GET') {
-            $controller = new UsersController(getPDO());
-            return $controller->showUserDetails($userId);
-        }
-    }
-
-    if($route === 'admin/users/add') {
-        requireAdmin();
-
-        if($method === 'GET') {
-            $controller = new UsersController(getPDO());
-            return $controller->showAddUserForm();
-        }
-    }
-
-    if($route === 'admin/users/create' && $method === 'POST') {
-        requireAdmin();
-        
-        $controller = new UsersController(getPDO());
-        return $controller->createUser();
-    }
-
-    if(preg_match('#^admin/users/mod/(\d+)$#', $route, $matches)) {
-        requireAdmin();
-        
-        $userId = (int)$matches[1];
-
-        if($method === 'GET') {
-            $controller = new UsersController(getPDO());
-            return $controller->showModUserForm($userId);
-        }
-    }
-
-    if(preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
-        requireAdmin();
-        
-        $userId = (int)$matches[1];
-
-        if($method === 'POST') {
-            $controller = new UsersController(getPDO());
-            return $controller->updateUser($userId);
-        }
-    }
-
-    if(preg_match('#^admin/users/delete/(\d+)$#', $route, $matches)) {
-        requireAdmin();
-        
-        $userId = (int)$matches[1];
-
-        if($method === 'GET') {
-            $controller = new UsersController(getPDO());
-            return $controller->deleteUser($userId);
-        }
-    }
-
-    if ($route === 'cart/add' && $method === 'POST') {
-        error_log("=== RUTA CART/ADD INVOCADA ===");
-        error_log("POST data recibida: " . print_r($_POST, true));
-        error_log("SESSION data: " . print_r($_SESSION, true));
-        
-        // NO necesitas session_start() aquí porque ya se inició arriba
-        // REMUEVE esta línea:
-        // if (session_status() === PHP_SESSION_NONE) {
-        //     session_start();
-        // }
-        
-        if (!isset($_SESSION['user_id'])) {
-            error_log("USUARIO NO LOGUEADO - Redirigiendo a login");
-            header('Location: ' . BASE_PATH . '/login');
-            exit();
-        }
-        
-        $productId = (int)($_POST['product_id'] ?? 0);
-        error_log("Product ID recibido: " . $productId);
-        
-        // Verifica que el ID sea válido
-        if ($productId <= 0) {
-            error_log("ERROR: Product ID inválido");
-            $_SESSION['cart_error'] = "ID de producto inválido";
-            header('Location: ' . BASE_PATH . '/products');
-            exit();
-        }
-        
+    $id_product = (int)($_POST['id_product'] ?? 0);
+    
+    if ($id_product > 0) {
+        if (session_status() === PHP_SESSION_NONE) session_start();
         $_SESSION['cart_success'] = "Producto añadido al carrito exitosamente";
-        error_log("Mensaje de éxito establecido en sesión");
-        
-        header('Location: ' . BASE_PATH . '/products/' . $productId);
+        header('Location: ' . BASE_PATH . '/products/' . $id_product);
         exit();
     }
-    http_response_code(404);
-    return view('errors/404');
+    
+    header('Location: ' . BASE_PATH . '/products');
+    exit();
+}
+
+// ==========================================
+// 4. RUTAS ADMINISTRATIVAS (Protegidas)
+// ==========================================
+
+// --- MÓDULO DE PRODUCTOS ---
+if ($route === 'admin/products') {
+    requireAdmin();
+    if ($method === 'GET') {
+        // Reutilizamos showList pero indicando que es para el admin si fuera necesario
+        return $productController->showList(); 
+    }
+}
+if (preg_match('#^admin/products/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'GET') return $productController->showDetails((int)$matches[1]);
+}
+
+if ($route === 'admin/products/add') {
+    requireAdmin();
+    if ($method === 'GET') return $productController->showAddForm();
+}
+
+if ($route === 'admin/products/create' && $method === 'POST') {
+    requireAdmin();
+    return $productController->createProduct();
+}
+
+if (preg_match('#^admin/products/mod/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'GET') return $productController->showEditForm((int)$matches[1]);
+}
+
+if (preg_match('#^admin/products/update/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'POST') return $productController->updateProduct((int)$matches[1]);
+}
+
+if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    return $productController->deleteProduct((int)$matches[1]);
+}
+
+// --- MÓDULO DE USUARIOS ---
+if ($route === 'admin/users') {
+    requireAdmin();
+    if ($method === 'GET') return $userController->showUserList();
+}
+
+if ($route === 'admin/users/add') {
+    requireAdmin();
+    if ($method === 'GET') return view('admin/user.add');
+}
+
+if ($route === 'admin/users/create' && $method === 'POST') {
+    requireAdmin();
+    // Reutilizamos el registro normal
+    return $userController->registerUser(); 
+}
+
+if (preg_match('#^admin/users/details/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'GET') {
+        $userModel = new User($pdo);
+        $user = $userModel->findById((int)$matches[1]);
+        if (!$user) return view('errors/404');
+        
+        return view('admin/user.details', ['user' => $user]);
+    }
+}
+
+if (preg_match('#^admin/users/mod/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'GET') {
+        $user = (new User($pdo))->findById((int)$matches[1]);
+        if (!$user) return view('errors/404');
+        return view('admin/user.mod', ['user' => $user]);
+    }
+}
+
+if (preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    if ($method === 'POST') {
+        // Enrutamiento directo al modelo para actualización administrativa rápida
+        $data = [
+            'username'    => $_POST['user'] ?? '',
+            'email'       => $_POST['email'] ?? '',
+            'password'    => '', 
+            'role'        => $_POST['role'] ?? 'client',
+            'description' => $_POST['description'] ?? ''
+        ];
+        (new User($pdo))->update((int)$matches[1], $data);
+        header('Location: ' . BASE_PATH . '/admin/users');
+        exit();
+    }
+}
+
+if (preg_match('#^admin/users/delete/(\d+)$#', $route, $matches)) {
+    requireAdmin();
+    return $userController->deleteUser((int)$matches[1]);
+}
+
+// ==========================================
+// 5. MANEJO DE ERRORES (Cierre del Router)
+// ==========================================
+http_response_code(404);
+return view('errors/404');

@@ -14,7 +14,7 @@
         </div>
 
         <div class="w-[320px] flex flex-col justify-center gap-8 lg:w-2/3 w-full">
-            <h2 class="text-3xl font-bold text-teal-950"><?=$user->user?></h2>
+           <h2 class="text-3xl font-bold text-teal-950"><?= htmlspecialchars($user->username) ?></h2>
             
             <div class="flex flex-col gap-4">
                 <div>

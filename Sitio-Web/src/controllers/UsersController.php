@@ -1,210 +1,162 @@
 <?php
-require __DIR__ . '/../Models/Users.php';
+require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/../helpers/functions.php';
 
+/**
+ * Controlador encargado de la gestión de usuarios, perfiles y autenticación.
+ */
 class UsersController {
+    private User $userModel;
 
-    private Users $users;
-
+    /**
+     * Constructor del controlador de usuarios.
+     * @param PDO $pdo Conexión activa a la base de datos.
+     */
     public function __construct(PDO $pdo) {
-        $this->users = new Users($pdo);
+        $this->userModel = new User($pdo);
     }
 
+    /**
+     * Muestra el formulario de registro de cuenta.
+     * @return void
+     */
     public function showRegisterForm() {
         return view('account/account.register');
     }
 
-    public function showLoginForm(){
+    /**
+     * Muestra el formulario de inicio de sesión.
+     * @return void
+     */
+    public function showLoginForm() {
         return view('account/account.login');
     }
 
-    public function register() {
+    /**
+     * Procesa la solicitud de registro de un nuevo usuario.
+     * @return void
+     */
+    public function registerUser() {
         $data = [
-            'user'        => $_POST['user'] ?? '',
-            'email'      => $_POST['email'] ?? '',
+            'username'    => $_POST['username'] ?? '',
+            'email'       => $_POST['email'] ?? '',
             'password'    => $_POST['password'] ?? '',
-            'rol'         => $_POST['rol'] ?? '',
+            'role'        => $_POST['role'] ?? 'client',
             'description' => $_POST['description'] ?? ''
         ];
 
-        $ok = $this->users->addUser($data);
+        $success = $this->userModel->add($data);
 
-        if(!$ok){
-            return view("errors/500", ["msg"=>"Error al registrar usuario"]);
+        if (!$success) {
+            return view("errors/500", ["msg" => "Error al registrar usuario"]);
         }
 
-        $user = $this->users->findByEmail($data['email']);
+        $user = $this->userModel->findByEmail($data['email']);
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['user_id'] = $user->id;
+        $_SESSION['id_user'] = $user->id_user; // Adaptado al nuevo ID
+        $_SESSION['role'] = $user->role;
 
-        return view("account/account.profile", ["user" => $user]);
+        header("Location: " . BASE_PATH . "/account/profile/" . $user->id_user);
+        exit();
     }
 
-    public function logIn(){
+    /**
+     * Procesa las credenciales para iniciar sesión.
+     * @return void
+     */
+    public function loginUser() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            $user = $this->users->findByEmail($email);
+            $user = $this->userModel->findByEmail($email);
 
-            if ($user && password_verify($password, $user->password)) {
-
+            if ($user && password_verify($password, $user->password_hash)) {
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
 
-                $_SESSION['user_id'] = $user->id;
-                $_SESSION['rol'] = $user->rol;
+                $_SESSION['id_user'] = $user->id_user;
+                $_SESSION['role']    = $user->role;
 
-                header("Location: " . BASE_PATH . "/account/profile/" . $user->id);
+                header("Location: " . BASE_PATH . "/account/profile/" . $user->id_user);
                 exit();
             }
 
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             $_SESSION['login_error'] = "Credenciales incorrectas.";
-
             header("Location: " . BASE_PATH . "/login");
             exit();
         }
     }
 
-
-    public function logout() {
+    /**
+     * Cierra la sesión activa del usuario y limpia las cookies.
+     * @return void
+     */
+    public function logoutUser() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         
         $_SESSION = array();
-        
         if (isset($_COOKIE[session_name()])) {
-            setcookie(session_name(), '', time()-3600, '/');
+            setcookie(session_name(), '', time() - 3600, '/');
         }
-        
         session_destroy();
         
         header('Location: ' . BASE_PATH);
         exit();
     }
 
-    public function profile($id) {
-        $user = $this->users->view($id);
+    /**
+     * Muestra el perfil público o privado de un usuario.
+     * @param int $id Identificador del usuario.
+     * @return void
+     */
+    public function showProfile($id) {
+        $user = $this->userModel->findById($id);
+        if (!$user) return view('errors/404');
 
-        return view('account/account.profile', [
-            'user' => $user
-        ]);
+        return view('account/account.profile', ['user' => $user]);
     }
 
-    public function listUsers() {
-        $allUsers = $this->users->all();
-        
-        return view('admin/user.index', [
-            'users' => $allUsers
-        ]);
+    /**
+     * Lista todos los usuarios en el panel de administración.
+     * @return void
+     */
+    public function showUserList() {
+        $allUsers = $this->userModel->getAll();
+        return view('admin/user.index', ['users' => $allUsers]);
     }
 
-    public function showUserDetails($id) {
-        $user = $this->users->view($id);
-
-        if (!$user) {
-            return view('errors/404');
+    /**
+     * Elimina a un usuario desde el panel de administrador.
+     * @param int $id Identificador del usuario.
+     * @return void
+     */
+    public function deleteUser($id) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
 
-        return view('admin/user.details', [
-            'user' => $user
-        ]);
-    }
+        // Evita que el admin se elimine a sí mismo
+        if (isset($_SESSION['id_user']) && $_SESSION['id_user'] == $id) {
+            return view("errors/500", ["msg" => "No puedes eliminarte a ti mismo"]);
+        }
 
-    public function showAddUserForm() {
-        return view('admin/user.add');
-    }
+        $success = $this->userModel->delete($id);
 
-    public function createUser() {
-        $data = [
-            'user'        => $_POST['user'] ?? '',
-            'email'      => $_POST['email'] ?? '',
-            'password'    => $_POST['password'] ?? '',
-            'rol'         => $_POST['rol'] ?? 'cliente',
-            'description' => $_POST['description'] ?? ''
-        ];
-
-        $ok = $this->users->addUser($data);
-
-        if(!$ok){
-            return view("errors/500", ["msg"=>"Error al crear usuario"]);
+        if (!$success) {
+            return view("errors/500", ["msg" => "Error al eliminar usuario"]);
         }
 
         header('Location: ' . BASE_PATH . '/admin/users');
         exit();
     }
-
-    public function showModUserForm($id) {
-        $user = $this->users->view($id);
-
-        if (!$user) {
-            return view('errors/404');
-        }
-
-        return view('admin/user.mod', [
-            'user' => $user
-        ]);
-    }
-
-    public function updateUser($id) {
-        $user = $this->users->view($id);
-
-        if (!$user) {
-            return view('errors/404');
-        }
-
-        $data = [
-            'user'        => $_POST['user'] ?? $user->user,
-            'email'       => $_POST['email'] ?? $user->email,
-            'rol'         => $_POST['rol'] ?? $user->rol,
-            'description' => $_POST['description'] ?? $user->description,
-            'password'    => $user->password
-        ];
-
-        if (!empty($_POST['password'])) {
-            $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        }
-
-        $ok = $this->users->updateUser($id, $data);
-
-        if (!$ok) {
-            return view("errors/500", ["msg"=>"Error al actualizar usuario"]);
-        }
-
-        return view('admin/user.update', [
-            'name' => $data['user'],
-            'id'   => $id
-        ]);
-    }
-
-
-    public function deleteUser($id) {
-        $user = $this->users->view($id);
-
-        if (!$user) {
-            return view('errors/404');
-        }
-
-        // evita que eliminarse a si mismo
-        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $id) {
-            return view("errors/500", ["msg"=>"No puedes eliminarte a ti mismo"]);
-        }
-
-        $ok = $this->users->deleteUser($id);
-
-        if (!$ok) {
-            return view("errors/500", ["msg"=>"Error al eliminar usuario"]);
-        }
-
-        return view('admin/user.deleted', [
-            'name' => $user->user,
-            'id' => $id
-        ]);
-    }
-
 }

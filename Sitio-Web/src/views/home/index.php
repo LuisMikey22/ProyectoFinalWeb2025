@@ -11,7 +11,7 @@
             <?php foreach($products as $product) : ?>
                 <?php if($product->category === 'newart'): ?>
                     <div class="card bg-base-100 shadow-sm art-item item">
-                        <a class="image-link" href="<?=BASE_PATH?>/products/<?=$product->id?>">
+                        <a class="image-link" href="<?= BASE_PATH ?>/products/<?= $product->id_product ?>">
                             <figure class="art-item-image-container">
                                 <img src="<?=ASSETS_PATH?>/images/<?=$product->image?>">  
                             </figure>

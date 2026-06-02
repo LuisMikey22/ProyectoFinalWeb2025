@@ -1,48 +1,45 @@
 <?php
-
-function isLoggedIn() {
+/**
+ * Verifica si el usuario tiene una sesión activa.
+ * @return bool
+ */
+function estaLogueado() {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['id_user']);
 }
 
-function requireLogin() {
-    if (!isLoggedIn()) {
+/**
+ * Redirige al login si el usuario no está autenticado.
+ */
+function requerirAutenticacion() {
+    if (!estaLogueado()) {
         header('Location: ' . BASE_PATH . '/login');
         exit();
     }
 }
 
-function getCurrentUser() {
-    if (!isLoggedIn()) {
-        return null;
+/**
+ * Verifica si el usuario actual tiene rol de administrador.
+ * @return bool
+ */
+function esAdmin() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
-    
-    require_once __DIR__ . '/../Models/Users.php';
-    $pdo = getPDO();
-    $userModel = new Users($pdo);
-    
-    return $userModel->view($_SESSION['user_id']);
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 }
 
-function isAdmin() {
-    $user = getCurrentUser();
-    
-    if (!$user) {
-        return false;
-    }
-    
-    return strtolower($user->rol) === 'admin';
-}
-
+/**
+ * Restringe el acceso a rutas administrativas.
+ */
 function requireAdmin() {
-    if (!isLoggedIn()) {
+    if (!estaLogueado()) {
         header('Location: ' . BASE_PATH . '/login');
         exit();
     }
-    
-    if (!isAdmin()) {
+    if (!esAdmin()) {
         http_response_code(403);
         view('errors/403');
         exit();
