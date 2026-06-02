@@ -87,9 +87,9 @@
                     </li>
 
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
-                        <b href="<?= BASE_PATH ?>/admin/dashboard" class="menu-link" style="font-weight: bold; color: var(--color-dark-blue);">
-                             Estadísticas
-                        </b>
+                        <a href="<?= BASE_PATH ?>/admin/dashboard" class="menu-link" style="font-weight: bold; color: var(--color-dark-blue);">
+                             <b>Estadísticas</b>
+                        </a>
                     <?php endif; ?>
 
                     <li class="admin-link-visible"><b>Admin</b>
