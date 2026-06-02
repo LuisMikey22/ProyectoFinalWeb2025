@@ -24,9 +24,9 @@
             <div class="help-links-container">
                 <h4>Ayuda</h4>
                 <ul class="help-list">
-                    <li><a>Contacto</a></li>
+                    <li><a href="<?= BASE_PATH ?>/chatbot" class="menu-link">Ayuda y contacto</a></li>
                     <li><a>Tutoriales</a></li>
-                    <li><a>Preguntas frecuentes</a></li>
+                    <li><a href="<?= BASE_PATH ?>/chatbot" class="menu-link">Preguntas Frecuentes</a></li>
                     <li><a>Accesibilidad</a></li>
                 </ul> 
             </div>

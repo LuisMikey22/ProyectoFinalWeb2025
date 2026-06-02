@@ -14,8 +14,10 @@ require_once __DIR__ . '/../src/helpers/functions.php';
 require_once __DIR__ . '/../src/helpers/auth.php';
 require_once __DIR__ . '/../src/controllers/UsersController.php';
 require_once __DIR__ . '/../src/controllers/ProductsController.php';
+require_once __DIR__ . '/../src/controllers/ChatbotController.php';
 
 $pdo = getPDO();
+$chatbotController = new ChatbotController($pdo);
 $userController = new UsersController($pdo);
 $productController = new ProductsController($pdo);
 
@@ -205,6 +207,22 @@ if (preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
 if (preg_match('#^admin/users/delete/(\d+)$#', $route, $matches)) {
     requireAdmin();
     return $userController->deleteUser((int)$matches[1]);
+}
+
+// ==========================================
+// MÓDULO DE CHATBOT (Rutas Web y API)
+// ==========================================
+if ($route === 'chatbot' && $method === 'GET') {
+    return $chatbotController->showChatInterface();
+}
+if ($route === 'api/chatbot/main' && $method === 'GET') {
+    return $chatbotController->apiGetMainOptions();
+}
+if (preg_match('#^api/chatbot/sub/(\d+)$#', $route, $matches) && $method === 'GET') {
+    return $chatbotController->apiGetSubOptions((int)$matches[1]);
+}
+if ($route === 'api/chatbot/log' && $method === 'POST') {
+    return $chatbotController->apiLogInteraction();
 }
 
 // ==========================================
