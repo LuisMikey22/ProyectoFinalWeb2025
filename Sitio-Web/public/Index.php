@@ -15,8 +15,10 @@ require_once __DIR__ . '/../src/helpers/auth.php';
 require_once __DIR__ . '/../src/controllers/UsersController.php';
 require_once __DIR__ . '/../src/controllers/ProductsController.php';
 require_once __DIR__ . '/../src/controllers/ChatbotController.php';
+require_once __DIR__ . '/../src/controllers/DashboardController.php';
 
 $pdo = getPDO();
+$dashboardController = new DashboardController($pdo);
 $chatbotController = new ChatbotController($pdo);
 $userController = new UsersController($pdo);
 $productController = new ProductsController($pdo);
@@ -148,6 +150,9 @@ if (preg_match('#^admin/products/update/(\d+)$#', $route, $matches)) {
 if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
     requireAdmin();
     return $productController->deleteProduct((int)$matches[1]);
+}
+if ($route === 'admin/dashboard' && $method === 'GET') {
+    return $dashboardController->showAnalyticsSuite();
 }
 
 // --- MÓDULO DE USUARIOS ---
