@@ -3,7 +3,7 @@
 
         <div class="flex items-center justify-center lg:w-[50%] w-fit h-fit mx-auto lg:mx-0 rounded-3xl bg-white figure-shadow p-12">
             <div class="text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-48 h-48 text-teal-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="www.w3.org/2000/svg" class="w-48 h-48 text-teal-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             </div>
@@ -36,7 +36,7 @@
                 <?php endif; ?>
             </div>
 
-            <div class="operation-container" style="margin-top: 1rem; display: flex; gap: 1rem; flex-direction: column;">
+            <div class="operation-container" style="margin-top: 1rem; width:100%; display: flex; gap: 1rem; flex-direction: column;">
                 <a href="<?= BASE_PATH ?>/" class="action-button" style="text-decoration: none;">
                     Volver al inicio
                 </a>

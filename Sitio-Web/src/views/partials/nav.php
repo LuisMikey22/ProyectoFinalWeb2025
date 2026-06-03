@@ -24,6 +24,7 @@
     </script> 
     
     <script src="<?=BASE_PATH?>/scripts/script.js" defer></script>
+
     <body>
         <header>
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -87,17 +88,14 @@
                     </li>
 
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
-                        <a href="<?= BASE_PATH ?>/admin/dashboard" class="menu-link" style="font-weight: bold; color: var(--color-dark-blue);">
-                             <b>Estadísticas</b>
-                        </a>
+                        <li class="admin-link-visible"><b>Admin</b>
+                            <ul class="nav-link-sub-list">
+                                <a href="<?=BASE_PATH?>/admin/products"><li>Productos</li></a>
+                                <a href="<?=BASE_PATH?>/admin/users"><li>Usuarios</li></a>
+                                <a href="<?= BASE_PATH ?>/admin/dashboard"><li>Estadísticas</li></a>
+                            </ul>
+                        </li>
                     <?php endif; ?>
-
-                    <li class="admin-link-visible"><b>Admin</b>
-                        <ul class="nav-link-sub-list">
-                            <a href="<?=BASE_PATH?>/admin/products"><li>Productos</li></a>
-                            <a href="<?=BASE_PATH?>/admin/users"><li>Usuarios</li></a>
-                        </ul>
-                    </li>
                 </ul>
                 
                 <div class="nav-button-bar">
