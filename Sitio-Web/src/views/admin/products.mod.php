@@ -22,7 +22,7 @@
                 <input class="bordered-input" type="number" step="0.01" min="0" name="price" value="<?= htmlspecialchars($product->price) ?>" required>
             </div>
 
-             <div class="desc-container">
+            <div class="desc-container">
                 <label class="input-label" for="description">Descripción</label>
                 <textarea class="bordered-input" name="description" required><?= htmlspecialchars($product->description) ?></textarea>
             </div>
