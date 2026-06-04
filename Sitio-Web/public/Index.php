@@ -16,12 +16,14 @@ require_once __DIR__ . '/../src/controllers/UsersController.php';
 require_once __DIR__ . '/../src/controllers/ProductsController.php';
 require_once __DIR__ . '/../src/controllers/ChatbotController.php';
 require_once __DIR__ . '/../src/controllers/DashboardController.php';
+require_once __DIR__ . '/../src/controllers/CartController.php';
 
 $pdo = getPDO();
 $dashboardController = new DashboardController($pdo);
 $chatbotController = new ChatbotController($pdo);
 $userController = new UsersController($pdo);
 $productController = new ProductsController($pdo);
+$cartController = new CartController($pdo);
 
 $route = trim($_GET['route'] ?? 'home', '/');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -94,20 +96,20 @@ if (preg_match('#^account/profile/(\d+)$#', $route, $matches)) {
 // ==========================================
 
 // Añadir al Carrito
+
+// Ver el carrito
+if ($route === 'cart' && $method === 'GET') {
+    return $cartController->showCart();
+}
+
+// Añadir al Carrito
 if ($route === 'cart/add' && $method === 'POST') {
-    requerirAutenticacion();
-    
-    $id_product = (int)($_POST['id_product'] ?? 0);
-    
-    if ($id_product > 0) {
-        if (session_status() === PHP_SESSION_NONE) session_start();
-        $_SESSION['cart_success'] = "Producto añadido al carrito exitosamente";
-        header('Location: ' . BASE_PATH . '/products/' . $id_product);
-        exit();
-    }
-    
-    header('Location: ' . BASE_PATH . '/products');
-    exit();
+    return $cartController->addToCart();
+}
+
+// Eliminar del carrito
+if (preg_match('#^cart/remove/(\d+)$#', $route, $matches) && $method === 'POST') {
+    return $cartController->removeFromCart((int)$matches[1]);
 }
 
 // ==========================================
@@ -210,7 +212,7 @@ if (preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
         else:
             header('Location: ' . BASE_PATH);
         endif;
-        
+
         exit();
     }
 }

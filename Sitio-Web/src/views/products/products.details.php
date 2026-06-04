@@ -24,10 +24,11 @@
             <p class="text-2xl font-bold text-teal-950">$<?=$product->price?> MXN</p>
 
             <?php if($isLoggedIn): ?>
-                <form id="addToCartForm" action="<?=BASE_PATH?>/cart/add" method="POST" onsubmit="return showAddedMessage(event)">
-                    <input type="hidden" name="product_id" value="<?=$product->id?>">
+                <form action="<?= BASE_PATH ?>/cart/add" method="POST">
+                    <input type="hidden" name="id_product" value="<?= $product->id_product?>"> 
+                    
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="add-button">Añadir al carrito</button>
+                    <button type="submit" class="action-button">Añadir al carrito 🛒</button>
                 </form>
             <?php else: ?>
                 <a href="<?=BASE_PATH?>/login" class="add-button" style="display: inline-block; text-align: center; text-decoration: none;">

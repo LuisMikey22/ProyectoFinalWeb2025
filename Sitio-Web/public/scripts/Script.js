@@ -115,8 +115,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Eventos de clic
-    toggleBtn.addEventListener('click', toggleChat);
-    closeBtn.addEventListener('click', toggleChat);
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleChat);
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', toggleChat);
+    }
 });
 
 /*
