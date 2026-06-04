@@ -200,11 +200,17 @@ if (preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
             'username'    => $_POST['user'] ?? '',
             'email'       => $_POST['email'] ?? '',
             'password'    => '', 
-            'role'        => $_POST['role'] ?? 'client',
+            'role'        => $_POST['role'] ?? '',
             'description' => $_POST['description'] ?? ''
         ];
         (new User($pdo))->update((int)$matches[1], $data);
-        header('Location: ' . BASE_PATH . '/admin/users');
+
+        if ($_POST['role'] === 'admin') : 
+            header('Location: ' . BASE_PATH . '/admin/users');
+        else:
+            header('Location: ' . BASE_PATH);
+        endif;
+        
         exit();
     }
 }
