@@ -1,5 +1,6 @@
 <?php 
     $urlDestino = isset($_SESSION['id_user']) ? BASE_PATH . "/account/profile/" . $_SESSION['id_user'] : BASE_PATH . "/account/register"; 
+    $isLoggedIn = isset($_SESSION['id_user']);
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +102,12 @@
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
                     <button class="account-button" title="Perfil"><a href="<?= $urlDestino ?>"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
-                    <button class="cart-button" title="Bolsa de compras"><a href="<?=BASE_PATH?>"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
+                    
+                    <?php if($isLoggedIn): ?>
+                        <button class="cart-button" title="Bolsa de compras"><a href="<?= BASE_PATH ?>/cart"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
+                    <?php else: ?>
+                        <button class="cart-button" title="Bolsa de compras"><a href="<?=BASE_PATH?>/login"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
+                    <?php endif; ?>
                 </div>
             </nav>
 
