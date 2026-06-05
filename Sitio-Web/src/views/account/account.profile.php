@@ -1,4 +1,4 @@
-<section class="bg-base-100 rounded-3xl product" style="margin-top: 2rem; margin-bottom: 2rem;">
+<section class="rounded-3xl product" style="margin-top: 2rem; margin-bottom: 2rem;"  style="padding-top: 100px; min-height: 80vh; padding-bottom: 2rem;">
     <div class="w-full mx-auto bg-base-100 flez flex-row lg:flex-row justify-between gap-12 lg:gap-20 p-16 product-container" style="width: 28rem; gap: 1rem;display: flex;flex-direction: column;"">
 
         <div class="flex items-center justify-center lg:w-[50%] w-fit h-fit mx-auto lg:mx-0 rounded-3xl bg-white figure-shadow p-12" style="width: fit-content; margin: auto">
@@ -25,7 +25,7 @@
 
                 <div>
                     <p class="text-sm text-teal-700 font-semibold">Rol en el sistema:</p>
-                    <p class="text-lg text-teal-950"><span class="badge badge-ghost"><?= ucfirst(htmlspecialchars($user->role)) ?></span></p>
+                    <p class="text-lg text-teal-950"><?= ucfirst(htmlspecialchars($user->role)) ?></p>
                 </div>
 
                 <?php if(!empty($user->description)) : ?>
@@ -38,8 +38,12 @@
         </div>
 
         <div class="operation-container" style="margin: auto; display: flex; gap: 1rem; flex-direction: column;">
-            <a href="<?= BASE_PATH ?>/" class="action-button" style="text-decoration: none; width: 100%;">
+            <a href="<?= BASE_PATH ?>" class="action-button" style="text-decoration: none; width: 100%;">
                 Volver al inicio
+            </a>
+
+             <a href="<?= BASE_PATH ?>/mis-compras" class="edit-button" style="text-decoration: none; width: 100%;">
+                Ver pedidos
             </a>
             
             <a href="<?= BASE_PATH ?>/logout" class="delete-button" style="text-decoration: none; width: 100%">

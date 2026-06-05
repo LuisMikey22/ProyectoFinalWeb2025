@@ -1,5 +1,6 @@
 <?php 
-    $urlDestino = isset($_SESSION['id_user']) ? BASE_PATH . "/account/profile/" . $_SESSION['id_user'] : BASE_PATH . "/account/register"; 
+    $urlDestinoCuenta = isset($_SESSION['id_user']) ? BASE_PATH . "/account/profile/" . $_SESSION['id_user'] : BASE_PATH . "/login"; 
+    $urlDestinoCarrito = isset($_SESSION['id_user']) ? BASE_PATH . "/cart" : BASE_PATH . "/login"; 
     $isLoggedIn = isset($_SESSION['id_user']);
 ?>
 
@@ -14,7 +15,7 @@
         <link rel="icon" href="<?=ASSETS_PATH?>/images/EHQALogoCropped2.svg" type="image/x-icon">
         
         <link href="<?=BASE_PATH?>/output.css" rel="stylesheet">
-        <link href="<?=BASE_PATH?>/css/style.css" rel="stylesheet"> 
+        <link href="<?=BASE_PATH?>/src/css/style.css" rel="stylesheet"> 
 
         <title>EstaHambreQueAta</title>
     </head>
@@ -94,6 +95,7 @@
                                 <a href="<?=BASE_PATH?>/admin/products"><li>Productos</li></a>
                                 <a href="<?=BASE_PATH?>/admin/users"><li>Usuarios</li></a>
                                 <a href="<?= BASE_PATH ?>/admin/dashboard"><li>Estadísticas</li></a>
+                                <a href="<?= BASE_PATH ?>/admin/inventory"><li>Inventario</li></a>
                             </ul>
                         </li>
                     <?php endif; ?>
@@ -101,13 +103,9 @@
                 
                 <div class="nav-button-bar">
                     <button id="search-button" class="search-button" title="Buscar"><img src="<?=ASSETS_PATH?>/images/searchIcon.svg" alt="search"></button>
-                    <button class="account-button" title="Perfil"><a href="<?= $urlDestino ?>"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
+                    <button class="account-button" title="Perfil"><a href="<?= $urlDestinoCuenta ?>"><img src="<?=ASSETS_PATH?>/images/userIcon.svg" alt="account"></a></button>
                     
-                    <?php if($isLoggedIn): ?>
-                        <button class="cart-button" title="Bolsa de compras"><a href="<?= BASE_PATH ?>/cart"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
-                    <?php else: ?>
-                        <button class="cart-button" title="Bolsa de compras"><a href="<?=BASE_PATH?>/login"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
-                    <?php endif; ?>
+                    <button class="cart-button" title="Bolsa de compras"><a href="<?= $urlDestinoCarrito ?>"><img src="<?=ASSETS_PATH?>/images/cartIcon.svg" alt="cart"></a></button>
                 </div>
             </nav>
 

@@ -281,7 +281,6 @@ nav {
 
 .nav-link-list {
     display: flex;
-    overflow: hidden;
     list-style: none;
     flex: 2 1 0;
     margin: auto 0;
@@ -291,12 +290,24 @@ nav {
     transition: all 0.2s ease-in-out;
 }
 
+.nav-link-list li, .admin-link-visible {
+    display: flex;
+    position: relative; /* submenú atrapado debajo de su propio botón */
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 12rem;
+    flex: 0 1 12rem;
+    padding: 1rem 1rem 1rem 0;
+    background-color: var(--color-white);
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: var(--border-radius-8);
+}
+
 .nav-link-sub-list {
     display: none;
-    overflow: hidden;
     list-style: none;
-    width: inherit;
-    flex: inherit;
+    width: 100%;
     flex-direction: column;
     justify-items: center;
     align-items: center;
@@ -305,26 +316,10 @@ nav {
     border-style: solid;
     border-color: var(--color-light-grey);
     border-radius: var(--border-radius-8);
+    /* submenú se coloca exactamente debajo del botón */
+    top: 100%;
+    left: 0;
 }
-
-.nav-link-list li, .admin-link-visible {
-    display: inline;
-    height: auto;
-    width: 12rem;
-    flex: 0 1 12rem;
-    padding: 1rem 1rem 1rem 0;
-    text-align: center;
-    align-self: flex-start;
-    background-color: var(--color-white);
-    transition: background-color 0.2s, color 0.2s;
-    border-radius: var(--border-radius-8);
-}
-
-.admin-link-hidden {
-    display: none;
-}
-
-.admin-list-link 
 
 .nav-link-sub-list li {
     display: flex;
@@ -369,6 +364,7 @@ nav {
     font-family: var(--font-secondary);
     cursor: pointer;
 }
+
 .nav-link-list a:hover,
 .nav-link-sub-list a:hover {
     text-decoration: underline;
@@ -376,10 +372,10 @@ nav {
 }
 
 li:hover .nav-link-sub-list {
-    /*menú popup que aparece*/
+    /* menú popup que aparece */
     display: flex;
     position: absolute;
-    z-index: 100;
+    z-index: 9999; /* menú siempre por encima del contenido de la página */
 }
 
 .nav-decoration-line {
@@ -1571,7 +1567,7 @@ footer {
         left: 0;
         height: 100%;
         width: auto;
-        padding: 20% 0 0 0;
+        padding: 15% 0 0 0;
         margin: auto;
         flex-direction: column;
         justify-content: flex-start;
@@ -1583,11 +1579,9 @@ footer {
         z-index: 30;
         transform: translateX(-100%);
     }
-
     .nav-link-list > li {
         border-radius: 0;
     }
-
     .nav-link-list li {
         display: flex;
         flex: 0 1 0;
@@ -1599,7 +1593,6 @@ footer {
         font-size: 1em;
         text-align: left;
     }
-    
     .nav-link-sub-list a {
         color: var(--color-dark-blue);
         font-size: 0.8em;
@@ -1612,12 +1605,18 @@ footer {
     .menu-toggle:checked ~ nav .menu-button {
         background-color: transparent;
     }
-
+    
     .nav-link-sub-list {
-        transform: translate(88%);
+        top: 0;
+        left: 100%;
+        transform: none; 
+        
         border-width: 1px;
         transition: transform 0.2s ease-in;
         z-index: 35;
+        
+        width: max-content;
+        min-width: 12rem;
     }
 
     .art-item-image-container {

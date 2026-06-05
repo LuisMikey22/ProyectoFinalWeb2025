@@ -19,6 +19,8 @@ require_once __DIR__ . '/../src/controllers/DashboardController.php';
 require_once __DIR__ . '/../src/controllers/CartController.php';
 require_once __DIR__ . '/../src/controllers/CheckoutController.php';
 require_once __DIR__ . '/../src/controllers/TrackingController.php';
+require_once __DIR__ . '/../src/controllers/InventoryController.php';
+require_once __DIR__ . '/../src/controllers/ReviewController.php';
 
 $pdo = getPDO();
 $dashboardController = new DashboardController($pdo);
@@ -28,6 +30,8 @@ $productController = new ProductsController($pdo);
 $cartController = new CartController($pdo);
 $checkoutController = new CheckoutController($pdo);
 $trackingController = new TrackingController($pdo);
+$inventoryController = new InventoryController($pdo);
+$reviewController = new ReviewController($pdo);
 
 $route = trim($_GET['route'] ?? 'home', '/');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -114,6 +118,16 @@ if ($route === 'cart/add' && $method === 'POST') {
 // Eliminar del carrito
 if (preg_match('#^cart/remove/(\d+)$#', $route, $matches) && $method === 'POST') {
     return $cartController->removeFromCart((int)$matches[1]);
+}
+
+// ==========================================
+// RUTAS DE RESEÑAS / REVIEWS
+// ==========================================
+if (preg_match('#^review/(\d+)$#', $route, $matches) && $method === 'GET') {
+    return $reviewController->showForm((int)$matches[1]);
+}
+if ($route === 'review/submit' && $method === 'POST') {
+    return $reviewController->submitReview();
 }
 
 // ==========================================
@@ -250,6 +264,15 @@ if (preg_match('#^admin/users/update/(\d+)$#', $route, $matches)) {
 if (preg_match('#^admin/users/delete/(\d+)$#', $route, $matches)) {
     requireAdmin();
     return $userController->deleteUser((int)$matches[1]);
+}
+
+// RUTAS DE INVENTARIO (ADMIN)
+// ==========================================
+if ($route === 'admin/inventory' && $method === 'GET') {
+    return $inventoryController->showInventory();
+}
+if ($route === 'admin/inventory/add' && $method === 'POST') {
+    return $inventoryController->updateStock();
 }
 
 // ==========================================

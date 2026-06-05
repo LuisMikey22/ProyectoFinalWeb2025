@@ -1,0 +1,23 @@
+<?php
+
+class Review {
+    private PDO $pdo;
+
+    public function __construct(PDO $pdo) {
+        $this->pdo = $pdo;
+    }
+
+    /**
+     * Guarda la reseña con estrellas y comentario en la base de datos
+     */
+    public function addReview($id_user, $id_product, $rating, $comment) {
+        try {
+            // Guardamos el ID del usuario, el producto, calificación (1-5), el texto y la fecha
+            $stmt = $this->pdo->prepare("INSERT INTO reviews (id_user, id_product, rating, comment, created_at) VALUES (?, ?, ?, ?, NOW())");
+            return $stmt->execute([$id_user, $id_product, $rating, $comment]);
+        } catch(PDOException $e) {
+            // Detector de errores: Si la tabla no existe o se llama diferente, nos avisará.
+            die("ERROR AL GUARDAR RESEÑA: " . $e->getMessage() . "<br><br>👉 Pista: Revisa si tu tabla se llama 'reviews' o 'resenas' y si tiene las columnas correctas.");
+        }
+    }
+}

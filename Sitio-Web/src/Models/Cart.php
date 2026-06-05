@@ -83,14 +83,14 @@ class Cart {
 
             // Si la ejecución falla pero PDO no lanza excepción, lo forzamos a detenerse
             if (!$success) {
-                die("🚨 ERROR SILENCIOSO DESCUBIERTO: " . print_r($this->pdo->errorInfo(), true));
+                die("ERROR SILENCIOSO DESCUBIERTO: " . print_r($this->pdo->errorInfo(), true));
             }
 
             return true;
 
         } catch(PDOException $e) {
             // Si PDO lanza la excepción, la atrapamos e imprimimos
-            die("🚨 ERROR EXPLÍCITO AL GUARDAR: " . $e->getMessage());
+            die("ERROR EXPLÍCITO AL GUARDAR: " . $e->getMessage());
         }
     }
 

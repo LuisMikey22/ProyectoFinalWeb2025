@@ -5,17 +5,12 @@
     $isLoggedIn = isset($_SESSION['id_user']);
 ?>
 
-<section class="bg-base-100 rounded-3xl product">
+<section class="rounded-3xl product">
     <div class="max-w-6xl mx-auto bg-base-100 flex flex-col lg:flex-row justify-between 
             gap-12 lg:gap-20 p-8 product-container">
 
-        <figure class="flex items-center justify-center 
-                lg:w-[50%] w-fit h-fit mx-auto lg:mx-0
-                rounded-3xl bg-white figure-shadow">
-            
-            <img class="w-full h-full object-contain rounded-3xl" 
-                src="<?=ASSETS_PATH?>/images/<?=$product->image?>" 
-                alt="<?=$product->name?>">
+        <figure class="inline-flex items-center justify-center w-max h-fit mx-auto lg:mx-0 rounded-3xl bg-white figure-shadow">
+            <img class="w-[200px] h-auto object-contain rounded-3xl" src="<?=ASSETS_PATH?>/images/<?=$product->image?>" alt="<?=$product->name?>">
         </figure>
 
         <div class="w-[320px] flex flex-col justify-center gap-8 lg:w-2/3 w-full">

@@ -5,7 +5,7 @@
         <fieldset class="create-account-fieldset">
             <div class="text-input-container">
                 <label class="input-label" for="user">Nombre de usuario</label>
-                <input class="bordered-input" id="user" type="text" name="user" placeholder="Usuario" required>
+                <input class="bordered-input" id="username" type="text" name="username" placeholder="Usuario" required>
             </div>
             
             <div class="text-input-container">
@@ -20,8 +20,12 @@
 
             <div class="text-input-container">
                 <label class="input-label" for="rol">Rol</label>
-                <input class="bordered-input" id="rol" type="text" value="Cliente" readonly style="background-color: #f0f0f0; cursor: not-allowed; opacity: 0.7;">
-                <input type="hidden" name="rol" value="cliente">
+                <select class="bordered-input" id="role" type="text" name="role" required>
+                    <optgroup label="Roles">
+                        <option value="client">cliente</option>
+                        <option value="admin">Administrador</option>
+                    </optgroup> 
+                </select>
             </div>
             
             <div class="desc-container">

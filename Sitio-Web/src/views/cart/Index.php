@@ -43,7 +43,7 @@
                 <?php endforeach; ?>
             </div>
 
-            <div class="figure-shadow" style="background: white; padding: 2rem; border-radius: 1.5rem; position: sticky; top: 2rem;">
+            <div class="figure-shadow" style="background: white; padding: 2rem; border-radius: 1.5rem; position: sticky; top: 2rem; width: max-content; display: flex; flex-direction: column;">
                 <h3 class="text-xl font-bold text-teal-950" style="margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem;">Resumen de Pedido</h3>
                 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #64748b;">
@@ -55,7 +55,7 @@
                     <span>Calculado en checkout</span>
                 </div>
                 
-                <div style="display: flex; justify-content: space-between; font-size: 1.25rem; gap: rem; margin-bottom: 2rem; border-top: 2px solid #f1f5f9; padding-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 1.25rem; gap: 0.5rem; margin-bottom: 2rem; border-top: 2px solid #f1f5f9; padding-top: 1rem;">
                     <strong class="text-teal-950">Total a pagar</strong>
                     <strong style="color: var(--color-dark-blue);">$<?= number_format($total, 2) ?> MXN</strong>
                 </div>
