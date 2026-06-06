@@ -13,7 +13,18 @@ const menuButtonImage = document.getElementById("menu-button-image");
 //por cada contenedor de tarjetas
 document.querySelectorAll('.item-container').forEach(container => {
     let currentIndex = 0;
-    const visibleCards = 5; //muestra cantidad de tarjetas simultáneas
+    var intViewportWidth = window.innerWidth;
+
+    //según la dimensión de la pantallas mostar número de tarjetas simultáneas
+    let visibleCards = 0;
+    
+    if (intViewportWidth > 800) {
+        visibleCards = 5;
+    }else if (intViewportWidth > 480){
+        visibleCards = 3; 
+    } else {
+        visibleCards = 2;
+    }
 
     const carousel = container.parentElement;
     const cards = Array.from(container.querySelectorAll('.item'));
