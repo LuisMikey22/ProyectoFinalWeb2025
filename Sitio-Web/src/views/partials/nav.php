@@ -54,13 +54,13 @@
                 </a>
 
                 <ul class="nav-link-list">
-                    <a href="<?=BASE_PATH?>#seasonal-art">
+                    <a href="<?=BASE_PATH?>/#seasonal-art">
                         <li>
                             <b>Estambres</b>
                         </li>
                     </a>
 
-                    <a href="<?=BASE_PATH?>#yarn-art">
+                    <a href="<?=BASE_PATH?>/#yarn-art">
                         <li>
                             <b>Patrones</b>
                         </li>
@@ -68,13 +68,13 @@
 
                     <li><b>Accesorios</b>
                         <ul class="nav-link-sub-list">
-                            <a href="<?=BASE_PATH?>#"><li>Recién agregados</li></a>
+                            <a href="<?=BASE_PATH?>/#"><li>Recién agregados</li></a>
                             <a href="<?=BASE_PATH?>#new-art"><li>Mejor vendidos</li></a>
                             <a href="<?=BASE_PATH?>#best-selling-art"><li>De temporada</li></a>
                         </ul>
                     </li>
 
-                    <a href="<?=BASE_PATH?>#pattern-art">
+                    <a href="<?=BASE_PATH?>/#pattern-art">
                         <li>
                             <b>Ganchos</b>
                         </li>

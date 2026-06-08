@@ -1,7 +1,7 @@
     <footer>
         <div class="footer-links-bar">
             <div class="footer-brand-links-bar">
-                <a class="logo-link" href="#"><span class="svg-logo">
+                <a class="logo-link" href="<?=BASE_PATH?>/#"><span class="svg-logo">
                     <img src="<?=ASSETS_PATH?>/images/EHQALogoText.svg" alt="EstaHambreQueAta-logo">
                 </span></a>
 
@@ -13,9 +13,9 @@
 
             <div class="about-links-container">
                 <h4>Acerca de</h4>
-                <!--<ul class="about-list">
+                <ul class="about-list">
                     <li><a href="<?=BASE_PATH?>/about">Nosotros</a></li>
-                    <li><a>Política de privacidad</a></li>
+                    <!--<li><a>Política de privacidad</a></li>
                     <li><a>Términos y condiciones</a></li>
                     <li><a>Blog</a></li>
                 </ul>--> 
