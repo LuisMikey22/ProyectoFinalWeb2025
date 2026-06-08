@@ -1,4 +1,8 @@
-    <footer>
+<?php
+    $isLoggedIn = isset($_SESSION['id_user']);
+?>
+   
+   <footer>
         <div class="footer-links-bar">
             <div class="footer-brand-links-bar">
                 <a class="logo-link" href="<?=BASE_PATH?>/#"><span class="svg-logo">
@@ -24,21 +28,24 @@
             <div class="help-links-container">
                 <h4>Ayuda</h4>
                 <ul class="help-list">
-                    <li><a href="<?= BASE_PATH ?>/chatbot" class="menu-link">Ayuda y contacto</a></li>
-                    <!--<li><a>Tutoriales</a></li>
+                    <!--<li><a href="<?= BASE_PATH ?>/chatbot" class="menu-link">Ayuda y contacto</a></li>
+                    <li><a>Tutoriales</a></li>-->
                     <li><a href="<?= BASE_PATH ?>/chatbot" class="menu-link">Preguntas Frecuentes</a></li>
-                    <li><a>Accesibilidad</a></li>-->
+                    <!--<li><a>Accesibilidad</a></li>-->
                 </ul> 
             </div>
 
             <div class="store-links-container">
                 <h4>Tienda</h4>
-                <!--<ul class="store-list">
-                    <li><a>Envíos nacionales</a></li>
-                    <li><a>Envios internacionales</a></li>
-                    <li><a>Devoluciones</a></li>
-                    <li><a>Cambios</a></li>
-                </ul>-->
+                <ul class="store-list">
+                    <!--<li><a>Envíos nacionales</a></li>
+                    <li><a>Envios internacionales</a></li>-->
+                    <?php if ($isLoggedIn) : ?>
+                        <li><a href="<?= BASE_PATH ?>/mis-compras">Cambios y devoluciones</a></li>
+                    <?php else: ?>
+                        <li><a href="<?= BASE_PATH ?>/mis-compras">Cambios y devoluciones</a></li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
 
