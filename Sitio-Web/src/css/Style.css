@@ -887,8 +887,8 @@ footer {
     margin: auto;
     gap: 1rem;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
 }
 
 .instagram-button,
